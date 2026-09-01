@@ -1,53 +1,66 @@
-<div align="center">
-  <h1>🚜 LocalBite</h1>
-  <p><b>Das Farm-to-Table Abo-System – Regionale Frische, automatisiert.</b></p>
-  <p><i>Gemeinsames Kochen | Gastro der Bauernhöfe | Lieferando meets HelloFresh</i></p>
-</div>
+# 🧠 Internes Brainstorming & Action Plan: LocalBite
+**Dokument für uns als Team:** Was ist unsere Vision? Was müssen wir konkret tun? Welche offenen Fragen gibt es?
 
 ---
 
-## 💡 Über das Projekt
+## 1. 💡 Innovative Features (Unser "Geheimrezept")
+*Hier sammeln wir unsere Alleinstellungsmerkmale. Wie setzen wir das um?*
 
-**LocalBite** revolutioniert den Bezug lokaler Lebensmittel. Wir verbinden die Konzepte von *HelloFresh* und *Lieferando* mit lokaler Hofgastronomie. Unser Ziel ist es, regionale Produkte in maßgeschneiderten Wochen-Boxen direkt an die Haustür zu liefern, während wir lokale Bauernhöfe durch intelligente Logistik und Software-Lösungen entlasten.
-
-## ✨ Einzigartige Features
-
-- 🍲 **Community Kochen & Hof-Gastronomie:** Verbindung von Erzeugern und Kunden durch gemeinsame, regionale Koch-Erlebnisse.
-- 🐄 **Animal-Sharing (Tier-Partnerschaften):** Innovative Tierfinanzierung. Kunden übernehmen Partnerschaften und erhalten im Gegenzug direkte Rabatte auf Erzeugnisse.
-- 🤖 **Autonome Lieferung:** Zukunftsorientierte, automatisierte Zustellkonzepte direkt vor die Haustür.
-
-## ⚙️ Kernprozesse (Business Process Management)
-
-Das Backend und die Geschäftslogik von LocalBite basieren auf hochkomplexen, automatisierten Prozessen:
-
-### 🛍️ Kunden & Bestellungen
-- **Abo / Einkauf abschließen:** Registrierung, Box-Auswahl und Zahlung.
-- **Abo verwalten:** Flexibles Pausieren und Anpassen der Lieferungen.
-- **Abrechnung & Rechnungsstellung:** Automatisierter Payment-Flow.
-- **Reklamation & Support:** Schnelle Hilfe bei Problemen.
-
-### 📦 Logistik & Operations
-- **Auslieferung & Routing:** Dynamische, software-gestützte Berechnung der optimalen Auslieferungsrouten.
-- **Fahrermanagement & Abwicklung:** Zuweisung, Tracking und Management der Fahrerflotte.
-- **Retouren & Pfand-Management:** Nachhaltiger Kreislauf der Transportboxen und Verpackungen.
-
-### 🧑‍🌾 Landwirte & Lieferanten
-- **Onboarding Landwirt:** Nahtlose Integration neuer Partner in das LocalBite-System.
-- **Box & Lieferanten-Management:** Automatischer Bestandsabgleich und Bedarfsberechnung.
-- **Wareneingang & Qualitätskontrolle:** Strenge Qualitätskontrollen inklusive eines transparenten Bewertungssystems (Kunde bewertet Landwirt).
-
-## 🗺️ Projekt-Fahrplan (Architektur & Modellierung)
-
-Die Umsetzung des Systems erfolgt phasenweise mit Fokus auf **BPMN 2.0** und **UML**:
-
-| Phase | Zeitraum | Fokus |
-| :--- | :--- | :--- |
-| **1. Setup** | Woche 1 | Setup Camunda & VP Server, Definition der Kernprozesse. |
-| **2. Prozessdesign** | Woche 2-3 | BPMN-Modellierung (Kollaborationsdiagramme mit Pools/Lanes/Gateways). |
-| **3. Architektur** | Woche 4-5 | OOA & UML Modellierung (Klassen-, Use-Case-, Sequenzdiagramme). |
-| **4. Abschluss** | Woche 6 | Qualitätssicherung, Review & finale Abgabe. |
+*   [ ] **Community Kochen / Gastro der Bauernhöfe:** 
+    *   *Idee:* Kunden können nicht nur Essen bestellen, sondern auch Events/Kochabende auf den Höfen buchen.
+    *   *To-Do:* Brauchen wir ein Ticket-System in der App? 
+*   [ ] **Animal-Sharing (Tierfinanzierung):** 
+    *   *Idee:* Kunde sponsert ein Tier (z.B. ein Schwein/Kuh) und bekommt dafür dauerhaft X% Rabatt auf Produkte dieses Hofes.
+    *   *To-Do:* Wie berechnen wir das? Brauchen wir dafür Verträge in der App?
+*   [ ] **Autonome Lieferung:** 
+    *   *Idee:* Lieferung per Roboter/Drohne (Zukunftsvision). 
+    *   *To-Do:* Erstmal als "Vision" im Pitch lassen, für das aktuelle Modellierungs-Projekt vielleicht zu komplex, aber gut für den Ausblick!
 
 ---
-<div align="center">
-  <i>Gebaut mit 💚 für die lokale Landwirtschaft.</i>
-</div>
+
+## 2. 📱 UI/UX & Plattform (Was müssen wir designen/bauen?)
+
+### 🧑‍🌾 Für den Landwirt (Erzeuger-Portal)
+*   [ ] **Profil-Erstellung:** Name, Standort, Geschichte des Hofes, Bilder hochladen.
+*   [ ] **Angebots-Baukasten:** Wie stellt der Bauer seine Produkte ein? (Inventar-Management).
+*   [ ] **Bewertungs-Ansicht:** Wie sieht der Bauer sein Feedback?
+*   [ ] **Social Media Automatisierung:** 
+    *   *Technisches To-Do:* Wie binden wir die Meta-API an, damit App-Posts automatisch auf Instagram/Facebook landen?
+
+### 👤 Für den Kunden (Genießer-App)
+*   [ ] **Profil-Erstellung:** Lieferadresse, Zahlungsdaten, Präferenzen (z.B. "vegetarisch").
+*   [ ] **Landkreis-Filter:** 
+    *   *Logik:* User gibt PLZ ein -> System zeigt nur Höfe im Umkreis von X km.
+*   [ ] **Follow-Funktion:** Ein "Abonnieren"-Button auf dem Hof-Profil.
+    *   *Logik:* Wenn Bauer neues Angebot postet -> Push-Nachricht an alle Follower.
+
+---
+
+## 3. ⚙️ BPMN Kernprozesse (Unsere Hausaufgaben für Woche 2-3)
+*Das sind die Prozesse, die wir für das Projekt modellieren (mit Pools, Lanes, Gateways).*
+
+**Kunde & Abo:**
+*   [ ] 1. Abo / Einkauf abschließen (Onboarding, Zahlung)
+*   [ ] 2. Abo verwalten (Pausieren, Ändern)
+*   [ ] 3. Abrechnung und Rechnungsstellung
+*   [ ] 4. Reklamation und Support
+
+**Logistik:**
+*   [ ] 5. Auslieferung und Routing (Wie wird die Route berechnet?)
+*   [ ] 6. Fahrermanagement und Abwicklung (Wer fährt wann?)
+*   [ ] 7. Retouren und Pfand Management (Boxen zurücknehmen)
+
+**Landwirt:**
+*   [ ] 8. Onboarding Landwirt (Wie kommt der Bauer ins System?)
+*   [ ] 9. Box und Lieferanten (Bestellungen an die Höfe übermitteln)
+*   [ ] 10. Wareneingang und Qualitätsordnung (+ Kundenbewertung)
+
+---
+
+## 4. ❓ Offene Fragen für das nächste Meeting
+1.  **Arbeitsteilung:** Wer macht welche BPMN-Diagramme?
+2.  **Tools:** Machen wir Wireframes/Mockups für die App? (z.B. in Figma?)
+3.  **Animal-Sharing:** Sollen wir dafür einen eigenen kleinen Prozess modellieren oder ist das nur ein Rabatt-Code im System?
+
+---
+*Let's build LocalBite! 🚀*
