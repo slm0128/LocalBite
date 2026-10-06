@@ -1,0 +1,591 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_Process_06V2" targetNamespace="http://localbite.example/bpmn" exporter="Camunda Modeler" exporterVersion="5.50.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:process id="Process_06V2" name="06 – Fahrermanagement &amp; Abwicklung" isExecutable="false">
+    <bpmn:documentation>BPMN 06 übernimmt eine in BPMN 05 geplante und freigegebene Tour. Es wählt konkrete Ressourcen, organisiert Warenübernahme/Beladung, führt die Stopp-Schleife aus und behandelt operative Störungen. Nur wenn eine Tour nicht mehr lokal ausführbar ist, wird an BPMN 05 zur Neuplanung eskaliert.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_Process_06V2">
+      <bpmn:lane id="L06_DISP" name="Disposition / System">
+        <bpmn:flowNodeRef>S06</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Req</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Vehicle</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G06_Veh</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_VehReplace</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G06_VehRep</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Driver</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G06_Drv</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_DrvReplace</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G06_DrvRep</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Assign</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Replan</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>E06_ReplanEnd</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Order</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_ProbEval</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G06_Mach</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Fallback</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G06_Continue</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Abort</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_VehStatus</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Doc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>E06_End</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="L06_OPS" name="Operations / Warenübergabe">
+        <bpmn:flowNodeRef>T06_Prepare</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_CheckGoods</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G06_Goods</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_LocalFix</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G06_Local</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_GoodsReplan</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Load</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Secure</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Handover</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Returns</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="L06_DRV" name="Fahrer">
+        <bpmn:flowNodeRef>T06_Take</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Start</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Next</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G06_Stop</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Pick</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_PickConf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Deliver</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_DelConf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G06_StopMerge</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Status</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G06_Prob</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G06_More</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T06_Return</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="S06" name="Freigegebene Tour erhalten">
+      <bpmn:messageEventDefinition messageRef="Msg_06_Tour"/>
+    </bpmn:startEvent>
+    <bpmn:task id="T06_Req" name="Touranforderungen prüfen"/>
+    <bpmn:task id="T06_Vehicle" name="Konkretes geeignetes Fahrzeug auswählen"/>
+    <bpmn:exclusiveGateway id="G06_Veh" name="Fahrzeug verfügbar?"/>
+    <bpmn:userTask id="T06_VehReplace" name="Ersatzfahrzeug suchen"/>
+    <bpmn:exclusiveGateway id="G06_VehRep" name="Ersatz gefunden?"/>
+    <bpmn:task id="T06_Driver" name="Konkreten geeigneten Fahrer auswählen"/>
+    <bpmn:exclusiveGateway id="G06_Drv" name="Fahrer verfügbar?"/>
+    <bpmn:userTask id="T06_DrvReplace" name="Ersatzfahrer suchen"/>
+    <bpmn:exclusiveGateway id="G06_DrvRep" name="Ersatz gefunden?"/>
+    <bpmn:task id="T06_Assign" name="Fahrzeug und Fahrer verbindlich zuweisen"/>
+    <bpmn:task id="T06_Replan" name="Neuplanung / Verschiebung an BPMN 05 melden"/>
+    <bpmn:endEvent id="E06_ReplanEnd" name="Neuplanung angefordert"/>
+    <bpmn:task id="T06_Order" name="Tourauftrag und Übergabeinformationen bereitstellen"/>
+    <bpmn:manualTask id="T06_Prepare" name="Warenübernahme vorbereiten"/>
+    <bpmn:userTask id="T06_CheckGoods" name="Ware bei Übernahme auf Menge, Zustand, Verpackung und Temperatur prüfen"/>
+    <bpmn:exclusiveGateway id="G06_Goods" name="Ware transportfähig?"/>
+    <bpmn:userTask id="T06_LocalFix" name="Problem lokal klären"/>
+    <bpmn:exclusiveGateway id="G06_Local" name="Lokal lösbar?"/>
+    <bpmn:task id="T06_GoodsReplan" name="Teil-Neuplanung an Disposition / BPMN 05 melden"/>
+    <bpmn:manualTask id="T06_Load" name="Fahrzeug beladen"/>
+    <bpmn:userTask id="T06_Secure" name="Beladung, Temperatur und Sicherung kontrollieren"/>
+    <bpmn:userTask id="T06_Handover" name="Fahrzeug und Tour an Fahrer übergeben"/>
+    <bpmn:userTask id="T06_Take" name="Fahrer übernimmt Fahrzeug und Tour"/>
+    <bpmn:userTask id="T06_Start" name="Tour starten / Status unterwegs setzen"/>
+    <bpmn:userTask id="T06_Next" name="Nächsten geplanten Stopp anfahren"/>
+    <bpmn:exclusiveGateway id="G06_Stop" name="Stoppart?"/>
+    <bpmn:manualTask id="T06_Pick" name="Ware am Abholort übernehmen"/>
+    <bpmn:userTask id="T06_PickConf" name="Menge und Zustand bestätigen"/>
+    <bpmn:manualTask id="T06_Deliver" name="Bestellung zustellen / vorgemerkte Pfandbox mitnehmen"/>
+    <bpmn:userTask id="T06_DelConf" name="Zustellung / Rückgabe bestätigen"/>
+    <bpmn:exclusiveGateway id="G06_StopMerge" name="Stopp abgeschlossen"/>
+    <bpmn:task id="T06_Status" name="Tour- und Lieferstatus aktualisieren"/>
+    <bpmn:exclusiveGateway id="G06_Prob" name="Problem aufgetreten?"/>
+    <bpmn:userTask id="T06_ProbEval" name="Problem bewerten und lokalen Fallback prüfen"/>
+    <bpmn:exclusiveGateway id="G06_Mach" name="Tour weiterhin machbar?"/>
+    <bpmn:userTask id="T06_Fallback" name="Operativen Fallback koordinieren (z. B. Ersatz oder Fahrzeug-zu-Fahrzeug-Transfer)"/>
+    <bpmn:exclusiveGateway id="G06_Continue" name="Fortsetzung möglich?"/>
+    <bpmn:task id="T06_Abort" name="Tourabbruch / Neuplanung an BPMN 05 melden"/>
+    <bpmn:exclusiveGateway id="G06_More" name="Weitere Stopps?"/>
+    <bpmn:userTask id="T06_Return" name="Rückfahrt / Übergabe am LocalBite-Standort"/>
+    <bpmn:manualTask id="T06_Returns" name="Restware, Pfandboxen und Retouren übergeben"/>
+    <bpmn:task id="T06_VehStatus" name="Fahrzeugstatus melden"/>
+    <bpmn:task id="T06_Doc" name="Tourergebnis dokumentieren"/>
+    <bpmn:endEvent id="E06_End" name="Tour abgeschlossen"/>
+    <bpmn:sequenceFlow id="F06_01" sourceRef="S06" targetRef="T06_Req"/>
+    <bpmn:sequenceFlow id="F06_02" sourceRef="T06_Req" targetRef="T06_Vehicle"/>
+    <bpmn:sequenceFlow id="F06_03" sourceRef="T06_Vehicle" targetRef="G06_Veh"/>
+    <bpmn:sequenceFlow id="F06_04" sourceRef="G06_Veh" targetRef="T06_Driver" name="Ja"/>
+    <bpmn:sequenceFlow id="F06_05" sourceRef="G06_Veh" targetRef="T06_VehReplace" name="Nein"/>
+    <bpmn:sequenceFlow id="F06_06" sourceRef="T06_VehReplace" targetRef="G06_VehRep"/>
+    <bpmn:sequenceFlow id="F06_07" sourceRef="G06_VehRep" targetRef="T06_Driver" name="Ja"/>
+    <bpmn:sequenceFlow id="F06_08" sourceRef="G06_VehRep" targetRef="T06_Replan" name="Nein"/>
+    <bpmn:sequenceFlow id="F06_09" sourceRef="T06_Driver" targetRef="G06_Drv"/>
+    <bpmn:sequenceFlow id="F06_10" sourceRef="G06_Drv" targetRef="T06_Assign" name="Ja"/>
+    <bpmn:sequenceFlow id="F06_11" sourceRef="G06_Drv" targetRef="T06_DrvReplace" name="Nein"/>
+    <bpmn:sequenceFlow id="F06_12" sourceRef="T06_DrvReplace" targetRef="G06_DrvRep"/>
+    <bpmn:sequenceFlow id="F06_13" sourceRef="G06_DrvRep" targetRef="T06_Assign" name="Ja"/>
+    <bpmn:sequenceFlow id="F06_14" sourceRef="G06_DrvRep" targetRef="T06_Replan" name="Nein"/>
+    <bpmn:sequenceFlow id="F06_15" sourceRef="T06_Assign" targetRef="T06_Order"/>
+    <bpmn:sequenceFlow id="F06_16" sourceRef="T06_Replan" targetRef="E06_ReplanEnd"/>
+    <bpmn:sequenceFlow id="F06_17" sourceRef="T06_Order" targetRef="T06_Prepare"/>
+    <bpmn:sequenceFlow id="F06_18" sourceRef="T06_Prepare" targetRef="T06_CheckGoods"/>
+    <bpmn:sequenceFlow id="F06_19" sourceRef="T06_CheckGoods" targetRef="G06_Goods"/>
+    <bpmn:sequenceFlow id="F06_20" sourceRef="G06_Goods" targetRef="T06_Load" name="Ja"/>
+    <bpmn:sequenceFlow id="F06_21" sourceRef="G06_Goods" targetRef="T06_LocalFix" name="Nein"/>
+    <bpmn:sequenceFlow id="F06_22" sourceRef="T06_LocalFix" targetRef="G06_Local"/>
+    <bpmn:sequenceFlow id="F06_23" sourceRef="G06_Local" targetRef="T06_Load" name="Ja"/>
+    <bpmn:sequenceFlow id="F06_24" sourceRef="G06_Local" targetRef="T06_GoodsReplan" name="Nein"/>
+    <bpmn:sequenceFlow id="F06_25" sourceRef="T06_GoodsReplan" targetRef="T06_Replan"/>
+    <bpmn:sequenceFlow id="F06_26" sourceRef="T06_Load" targetRef="T06_Secure"/>
+    <bpmn:sequenceFlow id="F06_27" sourceRef="T06_Secure" targetRef="T06_Handover"/>
+    <bpmn:sequenceFlow id="F06_28" sourceRef="T06_Handover" targetRef="T06_Take"/>
+    <bpmn:sequenceFlow id="F06_29" sourceRef="T06_Take" targetRef="T06_Start"/>
+    <bpmn:sequenceFlow id="F06_30" sourceRef="T06_Start" targetRef="T06_Next"/>
+    <bpmn:sequenceFlow id="F06_31" sourceRef="T06_Next" targetRef="G06_Stop"/>
+    <bpmn:sequenceFlow id="F06_32" sourceRef="G06_Stop" targetRef="T06_Pick" name="Abholung"/>
+    <bpmn:sequenceFlow id="F06_33" sourceRef="T06_Pick" targetRef="T06_PickConf"/>
+    <bpmn:sequenceFlow id="F06_34" sourceRef="T06_PickConf" targetRef="G06_StopMerge"/>
+    <bpmn:sequenceFlow id="F06_35" sourceRef="G06_Stop" targetRef="T06_Deliver" name="Lieferung"/>
+    <bpmn:sequenceFlow id="F06_36" sourceRef="T06_Deliver" targetRef="T06_DelConf"/>
+    <bpmn:sequenceFlow id="F06_37" sourceRef="T06_DelConf" targetRef="G06_StopMerge"/>
+    <bpmn:sequenceFlow id="F06_38" sourceRef="G06_StopMerge" targetRef="T06_Status"/>
+    <bpmn:sequenceFlow id="F06_39" sourceRef="T06_Status" targetRef="G06_Prob"/>
+    <bpmn:sequenceFlow id="F06_40" sourceRef="G06_Prob" targetRef="G06_More" name="Nein"/>
+    <bpmn:sequenceFlow id="F06_41" sourceRef="G06_Prob" targetRef="T06_ProbEval" name="Ja"/>
+    <bpmn:sequenceFlow id="F06_42" sourceRef="T06_ProbEval" targetRef="G06_Mach"/>
+    <bpmn:sequenceFlow id="F06_43" sourceRef="G06_Mach" targetRef="G06_More" name="Ja"/>
+    <bpmn:sequenceFlow id="F06_44" sourceRef="G06_Mach" targetRef="T06_Fallback" name="Nein"/>
+    <bpmn:sequenceFlow id="F06_45" sourceRef="T06_Fallback" targetRef="G06_Continue"/>
+    <bpmn:sequenceFlow id="F06_46" sourceRef="G06_Continue" targetRef="G06_More" name="Ja"/>
+    <bpmn:sequenceFlow id="F06_47" sourceRef="G06_Continue" targetRef="T06_Abort" name="Nein"/>
+    <bpmn:sequenceFlow id="F06_48" sourceRef="T06_Abort" targetRef="T06_Replan"/>
+    <bpmn:sequenceFlow id="F06_49" sourceRef="G06_More" targetRef="T06_Next" name="Ja"/>
+    <bpmn:sequenceFlow id="F06_50" sourceRef="G06_More" targetRef="T06_Return" name="Nein"/>
+    <bpmn:sequenceFlow id="F06_51" sourceRef="T06_Return" targetRef="T06_Returns"/>
+    <bpmn:sequenceFlow id="F06_52" sourceRef="T06_Returns" targetRef="T06_VehStatus"/>
+    <bpmn:sequenceFlow id="F06_53" sourceRef="T06_VehStatus" targetRef="T06_Doc"/>
+    <bpmn:sequenceFlow id="F06_54" sourceRef="T06_Doc" targetRef="E06_End"/>
+    <bpmn:textAnnotation id="ANN06">
+      <bpmn:text>Fahrzeug-zu-Fahrzeug-Transfer ist nur ein Ausnahme-Fallback, z. B. bei Ausfall, Überlastung oder starker Verspätung. Hub vs. direkte Abholung bleibt offen.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="A06_Ann" sourceRef="ANN06" targetRef="T06_Fallback"/>
+  </bpmn:process>
+  <bpmn:collaboration id="Collaboration_Process_06V2">
+    <bpmn:participant id="Participant_Process_06V2" name="06 – Fahrermanagement &amp; Abwicklung" processRef="Process_06V2"/>
+    <bpmn:participant id="P06_05" name="05 – Auslieferung &amp; Routing"/>
+    <bpmn:participant id="P06_07" name="07 – Retouren &amp; Pfand-Management"/>
+    <bpmn:messageFlow id="M06_From05" sourceRef="P06_05" targetRef="S06" name="Freigegebene Tour" messageRef="Msg_06_Tour"/>
+    <bpmn:messageFlow id="M06_To05" sourceRef="T06_Replan" targetRef="P06_05" name="Neuplanung erforderlich" messageRef="Msg_06_Replan"/>
+    <bpmn:messageFlow id="M06_To07" sourceRef="T06_Returns" targetRef="P06_07" name="Pfandboxen / Retouren" messageRef="Msg_06_Returns"/>
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration_Process_06V2">
+    <bpmndi:BPMNPlane id="BPMNPlane_Collaboration_Process_06V2" bpmnElement="Collaboration_Process_06V2">
+      <bpmndi:BPMNShape id="Participant_Process_06V2_di" bpmnElement="Participant_Process_06V2" isHorizontal="true">
+        <dc:Bounds x="100" y="220" width="8998" height="864"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="L06_DISP_di" bpmnElement="L06_DISP" isHorizontal="true">
+        <dc:Bounds x="130" y="220" width="8968" height="288"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="L06_OPS_di" bpmnElement="L06_OPS" isHorizontal="true">
+        <dc:Bounds x="130" y="508" width="8968" height="288"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="L06_DRV_di" bpmnElement="L06_DRV" isHorizontal="true">
+        <dc:Bounds x="130" y="796" width="8968" height="288"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="P06_05_di" bpmnElement="P06_05" isHorizontal="true">
+        <dc:Bounds x="100" y="80" width="8998" height="70"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="P06_07_di" bpmnElement="P06_07" isHorizontal="true">
+        <dc:Bounds x="100" y="1178" width="8998" height="70"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S06_di" bpmnElement="S06">
+        <dc:Bounds x="242" y="286" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Req_di" bpmnElement="T06_Req">
+        <dc:Bounds x="410" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Vehicle_di" bpmnElement="T06_Vehicle">
+        <dc:Bounds x="640" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G06_Veh_di" bpmnElement="G06_Veh">
+        <dc:Bounds x="925" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_VehReplace_di" bpmnElement="T06_VehReplace">
+        <dc:Bounds x="1100" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G06_VehRep_di" bpmnElement="G06_VehRep">
+        <dc:Bounds x="1385" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Driver_di" bpmnElement="T06_Driver">
+        <dc:Bounds x="1560" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G06_Drv_di" bpmnElement="G06_Drv">
+        <dc:Bounds x="1845" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_DrvReplace_di" bpmnElement="T06_DrvReplace">
+        <dc:Bounds x="2020" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G06_DrvRep_di" bpmnElement="G06_DrvRep">
+        <dc:Bounds x="2305" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Assign_di" bpmnElement="T06_Assign">
+        <dc:Bounds x="2480" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Replan_di" bpmnElement="T06_Replan">
+        <dc:Bounds x="8000" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="E06_ReplanEnd_di" bpmnElement="E06_ReplanEnd">
+        <dc:Bounds x="8292" y="286" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Order_di" bpmnElement="T06_Order">
+        <dc:Bounds x="2710" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Prepare_di" bpmnElement="T06_Prepare">
+        <dc:Bounds x="2940" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_CheckGoods_di" bpmnElement="T06_CheckGoods">
+        <dc:Bounds x="3170" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G06_Goods_di" bpmnElement="G06_Goods">
+        <dc:Bounds x="3455" y="567" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_LocalFix_di" bpmnElement="T06_LocalFix">
+        <dc:Bounds x="3630" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G06_Local_di" bpmnElement="G06_Local">
+        <dc:Bounds x="3915" y="567" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_GoodsReplan_di" bpmnElement="T06_GoodsReplan">
+        <dc:Bounds x="4090" y="674" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Load_di" bpmnElement="T06_Load">
+        <dc:Bounds x="4090" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Secure_di" bpmnElement="T06_Secure">
+        <dc:Bounds x="4320" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Handover_di" bpmnElement="T06_Handover">
+        <dc:Bounds x="4550" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Take_di" bpmnElement="T06_Take">
+        <dc:Bounds x="4780" y="842" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Start_di" bpmnElement="T06_Start">
+        <dc:Bounds x="5010" y="842" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Next_di" bpmnElement="T06_Next">
+        <dc:Bounds x="5240" y="842" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G06_Stop_di" bpmnElement="G06_Stop">
+        <dc:Bounds x="5525" y="855" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Pick_di" bpmnElement="T06_Pick">
+        <dc:Bounds x="5700" y="842" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_PickConf_di" bpmnElement="T06_PickConf">
+        <dc:Bounds x="5930" y="842" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Deliver_di" bpmnElement="T06_Deliver">
+        <dc:Bounds x="5700" y="962" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_DelConf_di" bpmnElement="T06_DelConf">
+        <dc:Bounds x="5930" y="962" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G06_StopMerge_di" bpmnElement="G06_StopMerge">
+        <dc:Bounds x="6215" y="855" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Status_di" bpmnElement="T06_Status">
+        <dc:Bounds x="6390" y="842" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G06_Prob_di" bpmnElement="G06_Prob">
+        <dc:Bounds x="6675" y="855" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_ProbEval_di" bpmnElement="T06_ProbEval">
+        <dc:Bounds x="6850" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G06_Mach_di" bpmnElement="G06_Mach">
+        <dc:Bounds x="7135" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Fallback_di" bpmnElement="T06_Fallback">
+        <dc:Bounds x="7310" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G06_Continue_di" bpmnElement="G06_Continue">
+        <dc:Bounds x="7595" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Abort_di" bpmnElement="T06_Abort">
+        <dc:Bounds x="7770" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G06_More_di" bpmnElement="G06_More">
+        <dc:Bounds x="7825" y="855" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Return_di" bpmnElement="T06_Return">
+        <dc:Bounds x="8000" y="842" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Returns_di" bpmnElement="T06_Returns">
+        <dc:Bounds x="8230" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_VehStatus_di" bpmnElement="T06_VehStatus">
+        <dc:Bounds x="8460" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T06_Doc_di" bpmnElement="T06_Doc">
+        <dc:Bounds x="8690" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="E06_End_di" bpmnElement="E06_End">
+        <dc:Bounds x="8982" y="286" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ANN06_di" bpmnElement="ANN06">
+        <dc:Bounds x="7240" y="384" width="300" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="F06_01_di" bpmnElement="F06_01">
+        <di:waypoint x="278" y="304"/>
+        <di:waypoint x="410" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_02_di" bpmnElement="F06_02">
+        <di:waypoint x="570" y="304"/>
+        <di:waypoint x="640" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_03_di" bpmnElement="F06_03">
+        <di:waypoint x="800" y="304"/>
+        <di:waypoint x="925" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_04_di" bpmnElement="F06_04">
+        <di:waypoint x="975" y="304"/>
+        <di:waypoint x="1560" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_05_di" bpmnElement="F06_05">
+        <di:waypoint x="975" y="304"/>
+        <di:waypoint x="1100" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_06_di" bpmnElement="F06_06">
+        <di:waypoint x="1260" y="304"/>
+        <di:waypoint x="1385" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_07_di" bpmnElement="F06_07">
+        <di:waypoint x="1435" y="304"/>
+        <di:waypoint x="1560" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_08_di" bpmnElement="F06_08">
+        <di:waypoint x="1435" y="304"/>
+        <di:waypoint x="8000" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_09_di" bpmnElement="F06_09">
+        <di:waypoint x="1720" y="304"/>
+        <di:waypoint x="1845" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_10_di" bpmnElement="F06_10">
+        <di:waypoint x="1895" y="304"/>
+        <di:waypoint x="2480" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_11_di" bpmnElement="F06_11">
+        <di:waypoint x="1895" y="304"/>
+        <di:waypoint x="2020" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_12_di" bpmnElement="F06_12">
+        <di:waypoint x="2180" y="304"/>
+        <di:waypoint x="2305" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_13_di" bpmnElement="F06_13">
+        <di:waypoint x="2355" y="304"/>
+        <di:waypoint x="2480" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_14_di" bpmnElement="F06_14">
+        <di:waypoint x="2355" y="304"/>
+        <di:waypoint x="8000" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_15_di" bpmnElement="F06_15">
+        <di:waypoint x="2640" y="304"/>
+        <di:waypoint x="2710" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_16_di" bpmnElement="F06_16">
+        <di:waypoint x="8160" y="304"/>
+        <di:waypoint x="8292" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_17_di" bpmnElement="F06_17">
+        <di:waypoint x="2870" y="304"/>
+        <di:waypoint x="2905" y="304"/>
+        <di:waypoint x="2905" y="592"/>
+        <di:waypoint x="2940" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_18_di" bpmnElement="F06_18">
+        <di:waypoint x="3100" y="592"/>
+        <di:waypoint x="3170" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_19_di" bpmnElement="F06_19">
+        <di:waypoint x="3330" y="592"/>
+        <di:waypoint x="3455" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_20_di" bpmnElement="F06_20">
+        <di:waypoint x="3505" y="592"/>
+        <di:waypoint x="4090" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_21_di" bpmnElement="F06_21">
+        <di:waypoint x="3505" y="592"/>
+        <di:waypoint x="3630" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_22_di" bpmnElement="F06_22">
+        <di:waypoint x="3790" y="592"/>
+        <di:waypoint x="3915" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_23_di" bpmnElement="F06_23">
+        <di:waypoint x="3965" y="592"/>
+        <di:waypoint x="4090" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_24_di" bpmnElement="F06_24">
+        <di:waypoint x="3965" y="592"/>
+        <di:waypoint x="4028" y="592"/>
+        <di:waypoint x="4028" y="712"/>
+        <di:waypoint x="4090" y="712"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_25_di" bpmnElement="F06_25">
+        <di:waypoint x="4250" y="712"/>
+        <di:waypoint x="6125" y="712"/>
+        <di:waypoint x="6125" y="304"/>
+        <di:waypoint x="8000" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_26_di" bpmnElement="F06_26">
+        <di:waypoint x="4250" y="592"/>
+        <di:waypoint x="4320" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_27_di" bpmnElement="F06_27">
+        <di:waypoint x="4480" y="592"/>
+        <di:waypoint x="4550" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_28_di" bpmnElement="F06_28">
+        <di:waypoint x="4710" y="592"/>
+        <di:waypoint x="4745" y="592"/>
+        <di:waypoint x="4745" y="880"/>
+        <di:waypoint x="4780" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_29_di" bpmnElement="F06_29">
+        <di:waypoint x="4940" y="880"/>
+        <di:waypoint x="5010" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_30_di" bpmnElement="F06_30">
+        <di:waypoint x="5170" y="880"/>
+        <di:waypoint x="5240" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_31_di" bpmnElement="F06_31">
+        <di:waypoint x="5400" y="880"/>
+        <di:waypoint x="5525" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_32_di" bpmnElement="F06_32">
+        <di:waypoint x="5575" y="880"/>
+        <di:waypoint x="5700" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_33_di" bpmnElement="F06_33">
+        <di:waypoint x="5860" y="880"/>
+        <di:waypoint x="5930" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_34_di" bpmnElement="F06_34">
+        <di:waypoint x="6090" y="880"/>
+        <di:waypoint x="6215" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_35_di" bpmnElement="F06_35">
+        <di:waypoint x="5575" y="880"/>
+        <di:waypoint x="5638" y="880"/>
+        <di:waypoint x="5638" y="1000"/>
+        <di:waypoint x="5700" y="1000"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_36_di" bpmnElement="F06_36">
+        <di:waypoint x="5860" y="1000"/>
+        <di:waypoint x="5930" y="1000"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_37_di" bpmnElement="F06_37">
+        <di:waypoint x="6090" y="1000"/>
+        <di:waypoint x="6152" y="1000"/>
+        <di:waypoint x="6152" y="880"/>
+        <di:waypoint x="6215" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_38_di" bpmnElement="F06_38">
+        <di:waypoint x="6265" y="880"/>
+        <di:waypoint x="6390" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_39_di" bpmnElement="F06_39">
+        <di:waypoint x="6550" y="880"/>
+        <di:waypoint x="6675" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_40_di" bpmnElement="F06_40">
+        <di:waypoint x="6725" y="880"/>
+        <di:waypoint x="7825" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_41_di" bpmnElement="F06_41">
+        <di:waypoint x="6725" y="880"/>
+        <di:waypoint x="6788" y="880"/>
+        <di:waypoint x="6788" y="304"/>
+        <di:waypoint x="6850" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_42_di" bpmnElement="F06_42">
+        <di:waypoint x="7010" y="304"/>
+        <di:waypoint x="7135" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_43_di" bpmnElement="F06_43">
+        <di:waypoint x="7185" y="304"/>
+        <di:waypoint x="7505" y="304"/>
+        <di:waypoint x="7505" y="880"/>
+        <di:waypoint x="7825" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_44_di" bpmnElement="F06_44">
+        <di:waypoint x="7185" y="304"/>
+        <di:waypoint x="7310" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_45_di" bpmnElement="F06_45">
+        <di:waypoint x="7470" y="304"/>
+        <di:waypoint x="7595" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_46_di" bpmnElement="F06_46">
+        <di:waypoint x="7645" y="304"/>
+        <di:waypoint x="7735" y="304"/>
+        <di:waypoint x="7735" y="880"/>
+        <di:waypoint x="7825" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_47_di" bpmnElement="F06_47">
+        <di:waypoint x="7645" y="304"/>
+        <di:waypoint x="7770" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_48_di" bpmnElement="F06_48">
+        <di:waypoint x="7930" y="304"/>
+        <di:waypoint x="8000" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_49_di" bpmnElement="F06_49">
+        <di:waypoint x="7850" y="905"/>
+        <di:waypoint x="7850" y="1112"/>
+        <di:waypoint x="5320" y="1112"/>
+        <di:waypoint x="5320" y="918"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_50_di" bpmnElement="F06_50">
+        <di:waypoint x="7875" y="880"/>
+        <di:waypoint x="8000" y="880"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_51_di" bpmnElement="F06_51">
+        <di:waypoint x="8160" y="880"/>
+        <di:waypoint x="8195" y="880"/>
+        <di:waypoint x="8195" y="592"/>
+        <di:waypoint x="8230" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_52_di" bpmnElement="F06_52">
+        <di:waypoint x="8390" y="592"/>
+        <di:waypoint x="8425" y="592"/>
+        <di:waypoint x="8425" y="304"/>
+        <di:waypoint x="8460" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_53_di" bpmnElement="F06_53">
+        <di:waypoint x="8620" y="304"/>
+        <di:waypoint x="8690" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F06_54_di" bpmnElement="F06_54">
+        <di:waypoint x="8850" y="304"/>
+        <di:waypoint x="8982" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="A06_Ann_di" bpmnElement="A06_Ann">
+        <di:waypoint x="7390" y="384"/>
+        <di:waypoint x="7390" y="342"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="M06_From05_di" bpmnElement="M06_From05">
+        <di:waypoint x="260" y="150"/>
+        <di:waypoint x="260" y="286"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="M06_To05_di" bpmnElement="M06_To05">
+        <di:waypoint x="8080" y="266"/>
+        <di:waypoint x="8080" y="150"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="M06_To07_di" bpmnElement="M06_To07">
+        <di:waypoint x="8310" y="630"/>
+        <di:waypoint x="8310" y="1178"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmn:message id="Msg_06_Tour" name="Freigegebene Tour"/>
+  <bpmn:message id="Msg_06_Replan" name="Neuplanung erforderlich"/>
+  <bpmn:message id="Msg_06_Returns" name="Rückgaben / Pfandboxen übergeben"/>
+</bpmn:definitions>
