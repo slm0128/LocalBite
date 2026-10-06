@@ -1,0 +1,33 @@
+Ideen / Punkte aus den anderen Gruppen:
+Werbung einbauen
+-> Werbung bzw. Werbeanzeigen als Bestandteil des Systems berücksichtigen.
+
+Tutorial / richtige Nutzung
+-> Zeigen, wie ein Werkzeug bzw. eine Funktion richtig benutzt wird.
+-> Zum Beispiel durch ein kurzes Tutorial oder eine Anleitung.
+
+
+Unsere Punkte:
+
+Indizes
+-> Indizes bzw. eine sinnvolle Strukturierung der Daten berücksichtigen.
+
+Nicht einfach DHL nachbauen
+-> Das Logistiksystem sollte nicht einfach nur einen bestehenden Paketdienst wie DHL nachbilden.
+-> Eigene Besonderheiten und Prozesse einbauen.
+
+Abholung beim Bauern
+-> Genauer überlegen, wie die Produkte beim Bauern abgeholt werden.
+-> Wer holt sie ab?
+-> Wann werden sie abgeholt?
+-> Wie läuft die Übergabe ab?
+
+Selbstfahrende Fahrzeuge
+-> Autonome Fahrzeuge könnten für die Abholung bzw. Lieferung eingesetzt werden.
+
+Drohnensystem
+-> Drohnen als weitere Möglichkeit für Transport oder Lieferung berücksichtigen.
+-> zu futuristisch anscheinend
+
+Amazon-Mitarbeiter nehmen das auf
+-> Mitarbeiter bzw. Fahrer nehmen die Ware beim Anbieter auf und übernehmen sie in den Lieferprozess.
