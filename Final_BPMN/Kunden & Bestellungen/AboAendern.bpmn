@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_17q52io" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.50.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:collaboration id="Collaboration_1bhks3t">
+    <bpmn:participant id="Participant_0at4ws6" name="Kunde" processRef="Process_0m99vuw" />
+    <bpmn:participant id="Participant_1ncwhlj" name="Local Bite" processRef="Process_0vdnh88" />
+    <bpmn:messageFlow id="Flow_1ssml2w" sourceRef="Event_0qa5pz9" targetRef="Event_0s21jo8" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_0m99vuw" isExecutable="true">
+    <bpmn:startEvent id="Event_0fs85pt" name="Wunsch nach Abo Änderung">
+      <bpmn:outgoing>Flow_1uv24dj</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_0vtdkwr" name="Einloggen auf Webseite">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1uv24dj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0tcirwg</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1uv24dj" sourceRef="Event_0fs85pt" targetRef="Activity_0vtdkwr" />
+    <bpmn:intermediateThrowEvent id="Event_0qa5pz9">
+      <bpmn:incoming>Flow_0tcirwg</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0tqo3e0" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="Flow_0tcirwg" sourceRef="Activity_0vtdkwr" targetRef="Event_0qa5pz9" />
+  </bpmn:process>
+  <bpmn:process id="Process_0vdnh88" isExecutable="false">
+    <bpmn:startEvent id="Event_0s21jo8">
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1rd2oz7" />
+    </bpmn:startEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1bhks3t">
+      <bpmndi:BPMNShape id="Participant_0at4ws6_di" bpmnElement="Participant_0at4ws6" isHorizontal="true">
+        <dc:Bounds x="160" y="70" width="600" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0fs85pt_di" bpmnElement="Event_0fs85pt">
+        <dc:Bounds x="232" y="172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="205" y="215" width="90" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02cc2uh_di" bpmnElement="Activity_0vtdkwr">
+        <dc:Bounds x="340" y="150" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0og075x_di" bpmnElement="Event_0qa5pz9">
+        <dc:Bounds x="472" y="172" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1uv24dj_di" bpmnElement="Flow_1uv24dj">
+        <di:waypoint x="268" y="190" />
+        <di:waypoint x="340" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0tcirwg_di" bpmnElement="Flow_0tcirwg">
+        <di:waypoint x="440" y="190" />
+        <di:waypoint x="472" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_1ncwhlj_di" bpmnElement="Participant_1ncwhlj" isHorizontal="true">
+        <dc:Bounds x="160" y="350" width="600" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0t8kiqe_di" bpmnElement="Event_0s21jo8">
+        <dc:Bounds x="472" y="442" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1ssml2w_di" bpmnElement="Flow_1ssml2w">
+        <di:waypoint x="490" y="208" />
+        <di:waypoint x="490" y="442" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
