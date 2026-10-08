@@ -45,6 +45,7 @@
     </bpmn:parallelGateway>
     <bpmn:sendTask id="Activity_07x3r21" name="Informationen&#10;übermitteln">
       <bpmn:incoming>Flow_1nib7ft</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qdk3fl</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:intermediateCatchEvent id="Event_1muuj5n">
       <bpmn:incoming>Flow_1qqutvx</bpmn:incoming>
@@ -126,8 +127,10 @@
     <bpmn:sequenceFlow id="Flow_1qqutvx" sourceRef="Gateway_15jupyo" targetRef="Event_1muuj5n" />
     <bpmn:parallelGateway id="Gateway_15jupyo">
       <bpmn:incoming>Flow_1qydzzl</bpmn:incoming>
+      <bpmn:incoming>Flow_0qdk3fl</bpmn:incoming>
       <bpmn:outgoing>Flow_1qqutvx</bpmn:outgoing>
     </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="Flow_0qdk3fl" sourceRef="Activity_07x3r21" targetRef="Gateway_15jupyo" />
   </bpmn:process>
   <bpmn:process id="Process_0vdnh88" isExecutable="false">
     <bpmn:startEvent id="Event_0s21jo8">
@@ -473,6 +476,11 @@
       <bpmndi:BPMNEdge id="Flow_1qqutvx_di" bpmnElement="Flow_1qqutvx">
         <di:waypoint x="1345" y="460" />
         <di:waypoint x="1652" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0qdk3fl_di" bpmnElement="Flow_0qdk3fl">
+        <di:waypoint x="1170" y="330" />
+        <di:waypoint x="1320" y="330" />
+        <di:waypoint x="1320" y="435" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_1ncwhlj_di" bpmnElement="Participant_1ncwhlj" isHorizontal="true">
         <dc:Bounds x="160" y="620" width="2460" height="815" />
