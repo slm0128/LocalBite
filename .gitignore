@@ -1,2 +1,4 @@
 .DS_Store
 **/.DS_Store
+*.vpp.lck
+*.vpp.bak_*
