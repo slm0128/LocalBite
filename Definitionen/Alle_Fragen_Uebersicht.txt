@@ -49,11 +49,15 @@ Details und Optionen stehen in den einzelnen Dateien 01 bis 09.
 
 04 - ABHOLUNG UND LIEFERUNG
 - Wer holt die Ware beim Landwirt ab (LocalBite-Fahrer, Bauer bringt selbst, Subunternehmer)?
+	eigene Fahrer
 - Wann wird abgeholt (Abholfenster)?
-- Wie laeuft die Uebergabe (QS beim Bauern oder im Hub)?
-- Wer liefert zum Kunden (eigene Fahrer, Subunternehmer, Mischmodell, Freelance-Pool)?
-- Welche Fahrzeugklassen, Kapazitaeten, Kuehlung, Spezialausstattung?
 
+- Wie laeuft die Uebergabe (QS beim Bauern oder im Hub)?
+	Abholung beim Bauern
+- Wer liefert zum Kunden (eigene Fahrer, Subunternehmer, Mischmodell, Freelance-Pool)?
+	eigene Fahrer
+- Welche Fahrzeugklassen, Kapazitaeten, Kuehlung, Spezialausstattung?
+	Kleinbus mit Kühlung
 
 05 - PFAND UND BOX-RUECKNAHME
 Bereits festgelegt (aus BPMN 07):
@@ -63,26 +67,37 @@ Bereits festgelegt (aus BPMN 07):
 Noch offen:
 - Wie hoch ist das Pfand (absoluter Betrag)?
 - Welche Boxgroessen / Boxklassen gibt es?
+	S, M, L, XL
 - Welcher zentrale Rueckgabeort (nur bei Lieferung, fester Punkt, Partnerstellen)?
 - Welche Scan-/Erfassungstechnik (QR, Barcode, RFID)?
+	Barcode
 - Wo ist die Schwelle zwischen normaler Abnutzung und erheblichem Schaden?
+	wiederverwendbarkeit als Kriterium
 - Wie lautet die Einspruchsregel bei Schaeden?
 
 
 06 - ZAHLUNG UND ABRECHNUNG
 - Wann zahlt der Kunde (nach Lieferung, Vorkasse, monatliche Sammelrechnung)?
+	nach Lieferung
 - Welche Zahlungsmethoden (Kreditkarte, PayPal, SEPA, Rechnung)?
+	SEPA Lastschrift
 - Wie wird mit dem Landwirt abgerechnet (abhaengig vom Geschaeftsmodell, Thema 01)?
+	E-Rechnung
 - Provisionsabzug oder Einkaufsrechnung?
 
 
 07 - LIEFERGEBIET UND PLANUNG
 - Wie gross ist das Liefergebiet / welcher Radius (z.B. 30 km)?
+	Local, Je nach Standort
 - Eine Pilotregion oder mehrere Gebiete?
+	erst Pilot region
 - Welche konkreten Planungszeiten gelten (T-2, T-1, T-0)?
 - Bis wann koennen Kunden bestellen/aendern (Cutoff)?
+	2 Tage vorher
 - Wie weit darf eine freigegebene Tour noch geaendert werden?
+	keine Änderung mehr notwendig
 - Welcher Lieferrhythmus (feste Liefertage oder taeglich)?
+	täglich
 
 
 08 - INNOVATIVE FEATURES UND SCOPE
