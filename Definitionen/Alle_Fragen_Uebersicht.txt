@@ -66,9 +66,11 @@ Bereits festgelegt (aus BPMN 07):
 - Pfand und Schaden werden getrennt behandelt
 Noch offen:
 - Wie hoch ist das Pfand (absoluter Betrag)?
+	7,50 Euro
 - Welche Boxgroessen / Boxklassen gibt es?
 	S, M, L, XL
 - Welcher zentrale Rueckgabeort (nur bei Lieferung, fester Punkt, Partnerstellen)?
+	bei Lieferung oder Geschäftstelle
 - Welche Scan-/Erfassungstechnik (QR, Barcode, RFID)?
 	Barcode
 - Wo ist die Schwelle zwischen normaler Abnutzung und erheblichem Schaden?
@@ -102,9 +104,13 @@ Noch offen:
 
 08 - INNOVATIVE FEATURES UND SCOPE
 - Animal-Sharing: voll modellieren, nur als Klasse/Rabatt, oder nur Vision?
+	Modellierung evtl wichtig
 - Community-Kochen: eigener Buchungsprozess oder nur Pitch?
+	pitch / kleiner seitenabschnitt zum Planen und anmelden
 - Autonome Lieferung (Roboter/Drohne): nur Vision?
+	wichtiges Alleinstellungsmerkmal
 - Social-Media-Automatisierung: Teilschritt, optional oder weglassen?
+	weglassen?
 - Werbung / gesponserte Platzierungen: Teil des Erloesmodells oder weglassen?
 - Wie viele der 10 BPMN-Diagramme gehen an Features statt an Kernprozesse?
 
