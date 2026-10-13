@@ -8,7 +8,7 @@ Details und Optionen stehen in den einzelnen Dateien 01 bis 09.
 - Was ist LocalBite: Vermittler/Marktplatz oder Haendler/Reseller?
 	Vermittler zwischen Bauer und Kunde
 - Wem gehoert die Ware?
-	erst Bauer, dann Kunde
+	erst Bauer, kurz wir als Lieferanten, dann Kunde
 - Wer stellt wem die Rechnung?
 	Bauer an uns, wir an Kunden
 - Wer traegt das Risiko bei unverkaufter/verdorbener Ware?
@@ -18,11 +18,28 @@ Details und Optionen stehen in den einzelnen Dateien 01 bis 09.
 	
 
 
+
+
 02 - PRODUKT, WOCHENBOX UND ABO
 - Was genau ist eine Wochenbox (feste Box, Einzelprodukte, Hybrid)?
 	konfigurierbar, hatPfand, ÜBERHAUPT WICHTIG? -> evtl einmalige Tagesbox besser
+
+  Vllt -> Komplett streichen - ne Box ist das Set was wir haben 
+  Der Kunde sagt vllt an welchen Tag er was braucht und kann dann selber entscheiden 
+    welche "Essenstage" in welche Box kommt und wann die geliefert werden
+  aber wie verbinden dann mit dem Abo?
+  -> das ist irgendwie noch sehr unklar
+
+  Die Box sicherer gelagert, so kann auch geliefert werden, 
+    wenn die Person nicht da ist - anti Klauen? Innovation?
+
 - Was ist ein Abo?
 	Tageweise, Wochenweise, Monatsweise
+
+  was ist ein Tagesweise Abo? -> weil wenn mehrere Tage ausgewählt wurden, ist dann ne Woche? 
+  oder ist eine Woche dann alle Tage Mo-So?
+
+
 - Festes wiederkehrendes Abo oder flexibel oder nur Einmalbestellung?
 	Abo und Einmalbestellung
 - Ein Abo pro Account?
@@ -35,6 +52,8 @@ Details und Optionen stehen in den einzelnen Dateien 01 bis 09.
 	Ja
 
 
+
+
 03 - WARENFLUSS, LAGERUNG UND HUB
 - Wo wird die Ware gelagert, und ob ueberhaupt?
   - gar nicht (direkt Bauer -> Auto -> Kunde)
@@ -43,46 +62,64 @@ Details und Optionen stehen in den einzelnen Dateien 01 bis 09.
   - zentrales Hub / Kuehllager
   - Hybrid (regionale Mini-Hubs)
 - Wo wird die Box gepackt?
+  Wir machen des beim aufladen? -> Innovative Roboter idk?
+  -> Der Bauer legt die Sachen nur ordentlich ab, kümmert sich aber nicht das jede "Box" korrekt gefüllt ist
+    -> weil wir müssen ja sicher sein, dass es richitg ist + Bauer hat andere Aufgaben zu tun
 - Wo findet Wareneingang und Qualitaetskontrolle statt?
+  Direkt beim Bauern
 - Wo wird gekuehlt?
+  Das Auto oder die Box an sich hat ne Kühlung idk? (siehe 04 -> 	Kleinbus mit Kühlung)
+
+
 
 
 04 - ABHOLUNG UND LIEFERUNG
 - Wer holt die Ware beim Landwirt ab (LocalBite-Fahrer, Bauer bringt selbst, Subunternehmer)?
 	eigene Fahrer
-- Wann wird abgeholt (Abholfenster)?
-
-- Wie laeuft die Uebergabe (QS beim Bauern oder im Hub)?
-	Abholung beim Bauern
+    LocalBite-Fahrer
 - Wer liefert zum Kunden (eigene Fahrer, Subunternehmer, Mischmodell, Freelance-Pool)?
-	eigene Fahrer
+	  eigene Fahrer
+- Wann wird abgeholt (Abholfenster)?
+    grobes Abholfenster + Erfahrungswerte über die Zeit, wie lange das Packen dauert usw...
+- Wie laeuft die Uebergabe (Qualitätssicherung (QS) beim Bauern oder im Hub)?
+	Abholung beim Bauern
 - Welche Fahrzeugklassen, Kapazitaeten, Kuehlung, Spezialausstattung?
-	Kleinbus mit Kühlung
+	Kleinbus mit Kühlung (siehe 03 Wo wird gekuehlt?)
+- Was wenn dem Kunden beim annehmen auffällt, dass das Gemüse kaputt ist?
+  Dann wird nachgeliefert. Am besten am gleichen Tag noch.
+
+
+
 
 05 - PFAND UND BOX-RUECKNAHME
 Bereits festgelegt (aus BPMN 07):
 - Mehrwegbox mit eindeutiger Box-ID und Box-Historie
-- Pfandstaffel: Tag 0-14 = 100%, Tag 15-21 = 75%, Tag 22-29 = 50%, ab Tag 30 = 0%
-- Pfand und Schaden werden getrennt behandelt
-Noch offen:
-- Wie hoch ist das Pfand (absoluter Betrag)?
-	7,50 Euro
-- Welche Boxgroessen / Boxklassen gibt es?
-	S, M, L, XL
+- Pfandstaffel: Tag 0-14 = 100%, Tag 15-29 = 50%, ab Tag 30 = 0%
 - Welcher zentrale Rueckgabeort (nur bei Lieferung, fester Punkt, Partnerstellen)?
-	bei Lieferung oder Geschäftstelle
+	bei Lieferung oder Hub -> wenn eine weitere Lieferung noch ansteht, dann die 
 - Welche Scan-/Erfassungstechnik (QR, Barcode, RFID)?
-	Barcode
+	Barcode idk einfach schnell wie dhl...
 - Wo ist die Schwelle zwischen normaler Abnutzung und erheblichem Schaden?
 	wiederverwendbarkeit als Kriterium
-- Wie lautet die Einspruchsregel bei Schaeden?
+  Bzw wenn auf einmal die Box nicht mehr wiederverwendbar ist, dann gibt es auch kein Pfand
+
+Noch offen:
+- Pfand und Schaden werden getrennt behandelt 
+    Muss noch in BPMN Aaron verbesserungspunkt angepasst werden 07
+- Wie hoch ist das Pfand (absoluter Betrag)?
+	5,00 Euro
+- Welche Boxgroessen / Boxklassen gibt es?
+	S, M, L, XL - Ja also jenachdem wie viel man bestellt hat vllt auch mehrere kleine idk
+
+
+
 
 
 06 - ZAHLUNG UND ABRECHNUNG
 - Wann zahlt der Kunde (nach Lieferung, Vorkasse, monatliche Sammelrechnung)?
 	nach Lieferung
 - Welche Zahlungsmethoden (Kreditkarte, PayPal, SEPA, Rechnung)?
-	SEPA Lastschrift
+	SEPA Lastschrift, Paypal, Wero usw... -> je einfacher desto besser für uns und Kunde
 - Wie wird mit dem Landwirt abgerechnet (abhaengig vom Geschaeftsmodell, Thema 01)?
 	E-Rechnung
 - Provisionsabzug oder Einkaufsrechnung?
@@ -94,6 +131,9 @@ Noch offen:
 - Eine Pilotregion oder mehrere Gebiete?
 	erst Pilot region
 - Welche konkreten Planungszeiten gelten (T-2, T-1, T-0)?
+  Ja der Bauer sollte schon vllt vorher wissen, was er alles bereitstellen muss bzw kann.
+  idk wie es beim echten Bauer ist, aber mindestens 2 Tage vorher sollte 
+    er schon wissen, sodass er seine Menge uns noch angeben kann usw... - ok siehe nächste Frage
 - Bis wann koennen Kunden bestellen/aendern (Cutoff)?
 	2 Tage vorher
 - Wie weit darf eine freigegebene Tour noch geaendert werden?
@@ -105,13 +145,15 @@ Noch offen:
 08 - INNOVATIVE FEATURES UND SCOPE
 - Animal-Sharing: voll modellieren, nur als Klasse/Rabatt, oder nur Vision?
 	Modellierung evtl wichtig
+  Ist das die Tierpartnerschaft? Wenn ja name anpassen statt Animal-Sharing oder zwischen Bauer oder Share aktien?
 - Community-Kochen: eigener Buchungsprozess oder nur Pitch?
 	pitch / kleiner seitenabschnitt zum Planen und anmelden
 - Autonome Lieferung (Roboter/Drohne): nur Vision?
 	wichtiges Alleinstellungsmerkmal
 - Social-Media-Automatisierung: Teilschritt, optional oder weglassen?
-	weglassen?
+	weglassen? ja lass ma nich mache
 - Werbung / gesponserte Platzierungen: Teil des Erloesmodells oder weglassen?
+  ne glaub nicht
 - Wie viele der 10 BPMN-Diagramme gehen an Features statt an Kernprozesse?
 
 
