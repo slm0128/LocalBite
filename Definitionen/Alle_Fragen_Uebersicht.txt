@@ -6,20 +6,33 @@ Details und Optionen stehen in den einzelnen Dateien 01 bis 09.
 
 01 - GESCHAEFTSMODELL UND ROLLE
 - Was ist LocalBite: Vermittler/Marktplatz oder Haendler/Reseller?
+	Vermittler zwischen Bauer und Kunde
 - Wem gehoert die Ware?
+	erst Bauer, dann Kunde
 - Wer stellt wem die Rechnung?
+	Bauer an uns, wir an Kunden
 - Wer traegt das Risiko bei unverkaufter/verdorbener Ware?
-- Womit verdient LocalBite Geld (Marge, Provision, Liefergebuehr, Werbung, Animal-Sharing)?
+	Wir, prüfen durch Qualitätskontrolle
+- Womit verdient LocalBite Geld?
+	Marge, Provision, Liefergebuehr, Tierpartnerschaft
+	
 
 
 02 - PRODUKT, WOCHENBOX UND ABO
-- Was genau ist eine Wochenbox (feste Box, konfigurierbar, Einzelprodukte, Hybrid)?
+- Was genau ist eine Wochenbox (feste Box, Einzelprodukte, Hybrid)?
+	konfigurierbar, hatPfand, ÜBERHAUPT WICHTIG? -> evtl einmalige Tagesbox besser
 - Was ist ein Abo?
+	Tageweise, Wochenweise, Monatsweise
 - Festes wiederkehrendes Abo oder flexibel oder nur Einmalbestellung?
+	Abo und Einmalbestellung
 - Ein Abo pro Account?
+	nicht zwingend, nicht auf eines beschränkt
 - Reihenfolge: erst Account anlegen, dann Abo?
+	erst Account, dann abo
 - Gibt es Abo verwalten (Pausieren, Aendern, Kuendigen)?
+	Ja
 - Soll es Einmalbestellungen parallel zum Abo geben?
+	Ja
 
 
 03 - WARENFLUSS, LAGERUNG UND HUB
