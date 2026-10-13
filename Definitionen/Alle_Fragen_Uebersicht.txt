@@ -1,0 +1,96 @@
+LOCALBITE - OFFENE DEFINITIONEN UND FRAGEN (UEBERSICHT)
+
+Einfache Gesamtliste aller Themenbloecke und Fragen.
+Details und Optionen stehen in den einzelnen Dateien 01 bis 09.
+
+
+01 - GESCHAEFTSMODELL UND ROLLE
+- Was ist LocalBite: Vermittler/Marktplatz oder Haendler/Reseller?
+- Wem gehoert die Ware?
+- Wer stellt wem die Rechnung?
+- Wer traegt das Risiko bei unverkaufter/verdorbener Ware?
+- Womit verdient LocalBite Geld (Marge, Provision, Liefergebuehr, Werbung, Animal-Sharing)?
+
+
+02 - PRODUKT, WOCHENBOX UND ABO
+- Was genau ist eine Wochenbox (feste Box, konfigurierbar, Einzelprodukte, Hybrid)?
+- Was ist ein Abo?
+- Festes wiederkehrendes Abo oder flexibel oder nur Einmalbestellung?
+- Ein Abo pro Account?
+- Reihenfolge: erst Account anlegen, dann Abo?
+- Gibt es Abo verwalten (Pausieren, Aendern, Kuendigen)?
+- Soll es Einmalbestellungen parallel zum Abo geben?
+
+
+03 - WARENFLUSS, LAGERUNG UND HUB
+- Wo wird die Ware gelagert, und ob ueberhaupt?
+  - gar nicht (direkt Bauer -> Auto -> Kunde)
+  - Mini-Umschlagpunkt / Depot
+  - nur in den Fahrzeugen
+  - zentrales Hub / Kuehllager
+  - Hybrid (regionale Mini-Hubs)
+- Wo wird die Box gepackt?
+- Wo findet Wareneingang und Qualitaetskontrolle statt?
+- Wo wird gekuehlt?
+
+
+04 - ABHOLUNG UND LIEFERUNG
+- Wer holt die Ware beim Landwirt ab (LocalBite-Fahrer, Bauer bringt selbst, Subunternehmer)?
+- Wann wird abgeholt (Abholfenster)?
+- Wie laeuft die Uebergabe (QS beim Bauern oder im Hub)?
+- Wer liefert zum Kunden (eigene Fahrer, Subunternehmer, Mischmodell, Freelance-Pool)?
+- Welche Fahrzeugklassen, Kapazitaeten, Kuehlung, Spezialausstattung?
+
+
+05 - PFAND UND BOX-RUECKNAHME
+Bereits festgelegt (aus BPMN 07):
+- Mehrwegbox mit eindeutiger Box-ID und Box-Historie
+- Pfandstaffel: Tag 0-14 = 100%, Tag 15-21 = 75%, Tag 22-29 = 50%, ab Tag 30 = 0%
+- Pfand und Schaden werden getrennt behandelt
+Noch offen:
+- Wie hoch ist das Pfand (absoluter Betrag)?
+- Welche Boxgroessen / Boxklassen gibt es?
+- Welcher zentrale Rueckgabeort (nur bei Lieferung, fester Punkt, Partnerstellen)?
+- Welche Scan-/Erfassungstechnik (QR, Barcode, RFID)?
+- Wo ist die Schwelle zwischen normaler Abnutzung und erheblichem Schaden?
+- Wie lautet die Einspruchsregel bei Schaeden?
+
+
+06 - ZAHLUNG UND ABRECHNUNG
+- Wann zahlt der Kunde (nach Lieferung, Vorkasse, monatliche Sammelrechnung)?
+- Welche Zahlungsmethoden (Kreditkarte, PayPal, SEPA, Rechnung)?
+- Wie wird mit dem Landwirt abgerechnet (abhaengig vom Geschaeftsmodell, Thema 01)?
+- Provisionsabzug oder Einkaufsrechnung?
+
+
+07 - LIEFERGEBIET UND PLANUNG
+- Wie gross ist das Liefergebiet / welcher Radius (z.B. 30 km)?
+- Eine Pilotregion oder mehrere Gebiete?
+- Welche konkreten Planungszeiten gelten (T-2, T-1, T-0)?
+- Bis wann koennen Kunden bestellen/aendern (Cutoff)?
+- Wie weit darf eine freigegebene Tour noch geaendert werden?
+- Welcher Lieferrhythmus (feste Liefertage oder taeglich)?
+
+
+08 - INNOVATIVE FEATURES UND SCOPE
+- Animal-Sharing: voll modellieren, nur als Klasse/Rabatt, oder nur Vision?
+- Community-Kochen: eigener Buchungsprozess oder nur Pitch?
+- Autonome Lieferung (Roboter/Drohne): nur Vision?
+- Social-Media-Automatisierung: Teilschritt, optional oder weglassen?
+- Werbung / gesponserte Platzierungen: Teil des Erloesmodells oder weglassen?
+- Wie viele der 10 BPMN-Diagramme gehen an Features statt an Kernprozesse?
+
+
+09 - AUTOMATISIERUNGSPOTENTIAL (PFLICHT DER FALLSTUDIE)
+- Welcher eine Aspekt wird als Automatisierung ausgearbeitet?
+  - Tourenplanung und Routing-Optimierung (BPMN 05)
+  - Bedarfsprognose und automatische Box-Zusammenstellung
+  - Box- und Pfand-Tracking (BPMN 07)
+  - Dynamisches Fahrer-/Fahrzeug-Matching (BPMN 06)
+- Begruendung fuer die Wahl?
+- Welches der 5 Sequenzdiagramme gehoert dazu?
+
+
+HINWEIS ZUR REIHENFOLGE
+Thema 01 ist das Fundament und sollte zuerst entschieden werden.
+Empfohlene Reihenfolge: 01 -> 02 -> 03 -> 04, danach der Rest.
