@@ -144,7 +144,7 @@ Noch offen:
 
 08 - INNOVATIVE FEATURES UND SCOPE
 - Animal-Sharing: voll modellieren, nur als Klasse/Rabatt, oder nur Vision?
-	Modellierung evtl wichtig
+	Modellierung wichtig
   Ist das die Tierpartnerschaft? Wenn ja name anpassen statt Animal-Sharing oder zwischen Bauer oder Share aktien?
 - Community-Kochen: eigener Buchungsprozess oder nur Pitch?
 	pitch / kleiner seitenabschnitt zum Planen und anmelden
@@ -155,6 +155,7 @@ Noch offen:
 - Werbung / gesponserte Platzierungen: Teil des Erloesmodells oder weglassen?
   ne glaub nicht
 - Wie viele der 10 BPMN-Diagramme gehen an Features statt an Kernprozesse?
+	Wir müssen noch die genauen Kernprozesse definieren
 
 
 09 - AUTOMATISIERUNGSPOTENTIAL (PFLICHT DER FALLSTUDIE)
@@ -164,7 +165,8 @@ Noch offen:
   - Box- und Pfand-Tracking (BPMN 07)
   - Dynamisches Fahrer-/Fahrzeug-Matching (BPMN 06)
 - Begruendung fuer die Wahl?
-- Welches der 5 Sequenzdiagramme gehoert dazu?
+	optimieren des Aufwandes und Lieferzeit, sowie Kosten durch die Automatisierung
+- Welches der 5 Sequenzdiagramme gehoert dazu? (Macht Frage Sinn?)
 
 
 HINWEIS ZUR REIHENFOLGE
