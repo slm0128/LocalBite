@@ -141,6 +141,21 @@ Noch offen:
 - Welcher Lieferrhythmus (feste Liefertage oder taeglich)?
 	täglich
 
+Route: Eine Route ist die geplante Reihenfolge und Strecke der anzufahrenden Stopps.
+	- Planung: Welche Stopps in welcher Reihenfolge und auf welchem Weg?
+Tour: Eine Tour ist die konkrete Durchführung einer Route mit zugewiesenem Fahrer und Fahrzeug.
+	- Ausführung: Diese Route wird jetzt konkret mit Fahrer und Fahrzeug gefahren.
+Für eure BPMNs passt das deshalb sehr gut:
+	BPMN 05:
+	Route planen
+	→ Route prüfen
+	→ Route freigeben
+	BPMN 06:
+	Fahrer + Fahrzeug zuweisen
+	→ Tour bestätigen
+	→ Tour durchführen
+	→ Tour abschließen
+
 
 08 - INNOVATIVE FEATURES UND SCOPE
 - Animal-Sharing: voll modellieren, nur als Klasse/Rabatt, oder nur Vision?
