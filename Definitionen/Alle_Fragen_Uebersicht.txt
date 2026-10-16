@@ -106,6 +106,14 @@ Bereits festgelegt (aus BPMN 07):
 Noch offen:
 - Pfand und Schaden werden getrennt behandelt 
     Muss noch in BPMN Aaron verbesserungspunkt angepasst werden 07
+
+	Logistik & Operations
+	= Rückgabefall, Fristen, Kundenkommunikation, Pfand
+
+	Rücknahme & Boxmanagement
+	= physische Box annehmen, prüfen, Historie vergleichen,
+	wiederverwenden oder aussortieren
+
 - Wie hoch ist das Pfand (absoluter Betrag)?
 	5,00 Euro
 - Welche Boxgroessen / Boxklassen gibt es?
