@@ -228,9 +228,6 @@
           <dc:Bounds x="1193" y="462" width="54" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_144bvbr_di" bpmnElement="Activity_1clf53r">
-        <dc:Bounds x="1110" y="510" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_02evg2x_di" bpmnElement="Gateway_02evg2x" isMarkerVisible="true">
         <dc:Bounds x="1345" y="525" width="50" height="50" />
         <bpmndi:BPMNLabel>
@@ -310,6 +307,9 @@
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1863" y="1072" width="54" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_144bvbr_di" bpmnElement="Activity_1clf53r">
+        <dc:Bounds x="1110" y="510" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1aq609z_di" bpmnElement="Gateway_1aq609z" isMarkerVisible="true">
         <dc:Bounds x="955" y="525" width="50" height="50" />
@@ -504,10 +504,6 @@
         <dc:Bounds x="160" y="80" width="2290" height="130" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_1kt59i5_di" bpmnElement="DataOutputAssociation_1kt59i5">
-        <di:waypoint x="1170" y="510" />
-        <di:waypoint x="1184" y="455" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_011adl0_di" bpmnElement="DataInputAssociation_011adl0">
         <di:waypoint x="1475" y="646" />
         <di:waypoint x="1420" y="658" />
@@ -519,6 +515,10 @@
       <bpmndi:BPMNEdge id="DataOutputAssociation_0ezd6yw_di" bpmnElement="DataOutputAssociation_0ezd6yw">
         <di:waypoint x="1855" y="1000" />
         <di:waypoint x="1868" y="1015" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1kt59i5_di" bpmnElement="DataOutputAssociation_1kt59i5">
+        <di:waypoint x="1170" y="510" />
+        <di:waypoint x="1184" y="455" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1l1d9e6_di" bpmnElement="DataOutputAssociation_1l1d9e6">
         <di:waypoint x="418" y="400" />
