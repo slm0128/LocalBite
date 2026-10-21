@@ -22,3 +22,16 @@ Fahrer  [Esra]
 
 Tierpartnerschaft [Selim]
 Bewertung [Selim]
+
+
+
+----
+
+
+Use Case Diagramm:
+
+Kundenkonto anlegen - Selim
+Produktangebot verwalten - Leon
+Bestellung aufgeben - Mika
+Spenden tätigen / Bewertung abgeben - Esra
+Tierpartnerschaft verwalten - Aaron
