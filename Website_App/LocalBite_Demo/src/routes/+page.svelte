@@ -4,42 +4,58 @@
 	import { resolve } from '$app/paths';
 	import type { RouteId } from '$app/types';
 
-	const benefits = [
+	const steps = [
 		{
-			label: 'Regional bestellen',
-			description: 'Produkte aus deiner Region – frisch, saisonal und mit kurzen Transportwegen.',
-			iconBg: 'bg-emerald-100',
-			iconColor: 'text-emerald-600',
-			iconPath:
-				'M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z'
+			number: '01',
+			emoji: '📍',
+			title: 'Region entdecken',
+			description: 'Wähle deine Region und entdecke lokale Höfe mit saisonalen Produkten.'
 		},
 		{
-			label: 'Direkt vom Hof',
-			description: 'Kein Zwischenhändler. Du kaufst direkt bei lokalen Höfen und Landwirten.',
-			iconBg: 'bg-lime-100',
-			iconColor: 'text-lime-600',
-			iconPath:
-				'M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25'
+			number: '02',
+			emoji: '🧺',
+			title: 'Lebensmittel auswählen',
+			description: 'Stelle deine persönliche Box zusammen oder wähle aus saisonalen Angeboten.'
 		},
 		{
-			label: 'Nachhaltige Lieferung',
-			description: 'Optimierte Routen reduzieren Emissionen und sorgen für pünktliche Lieferungen.',
-			iconBg: 'bg-sky-100',
-			iconColor: 'text-sky-600',
-			iconPath:
-				'M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12'
+			number: '03',
+			emoji: '🚚',
+			title: 'Lieferung erhalten',
+			description: 'Bestellungen mehrerer Höfe werden gebündelt und pünktlich zu dir geliefert.'
 		},
 		{
-			label: 'Mehrweg & Pfand',
-			description: 'Verpackungen im Kreislauf – mit unserem Mehrwegsystem für eine saubere Region.',
-			iconBg: 'bg-orange-100',
-			iconColor: 'text-orange-600',
-			iconPath:
-				'M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99'
+			number: '04',
+			emoji: '♻️',
+			title: 'Mehrwegbox zurückgeben',
+			description: 'Die LocalBite-Box wird bei der nächsten Lieferung wieder mitgenommen.'
 		}
 	];
 
-	const badges = ['Vom Hof zur Tür', '100 % Regional', 'Nachhaltige Logistik'];
+	const features = [
+		{
+			emoji: '🥕',
+			title: 'Wochenbox statt Supermarktstress',
+			description:
+				'Saisonale Lebensmittel aus mehreren Höfen werden zu einer regionalen Box gebündelt.'
+		},
+		{
+			emoji: '🐄',
+			title: 'Tierpartnerschaften',
+			description:
+				'Kunden unterstützen Tiere und Höfe direkt und erhalten Vorteile auf passende Erzeugnisse.'
+		},
+		{
+			emoji: '📍',
+			title: 'Region sichtbar machen',
+			description: 'Eine Karte zeigt Höfe, Produkte und Partnerschaften in der direkten Umgebung.'
+		}
+	];
+
+	const mockupItems = [
+		{ emoji: '🥔', name: 'Kartoffeln', farm: 'Hof Sonnenfeld' },
+		{ emoji: '🥕', name: 'Karotten', farm: 'Biohof Winter' },
+		{ emoji: '🍎', name: 'Äpfel', farm: 'Obstgut Klein' }
+	];
 
 	let mounted = $state(false);
 	onMount(() => {
@@ -59,132 +75,451 @@
 	<title>LocalBite – Regionale Lebensmittel, direkt zu dir</title>
 	<meta
 		name="description"
-		content="LocalBite verbindet Kunden, Landwirte und Logistik für eine nachhaltige Lebensmittelversorgung aus der Region."
+		content="LocalBite bringt saisonale Lebensmittel lokaler Landwirte gebündelt und planbar zu dir – transparent, regional und nachhaltig."
+	/>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+		rel="stylesheet"
 	/>
 </svelte:head>
 
-<div class="flex min-h-screen flex-col bg-white">
-	<!-- Navigation -->
-	<header class="sticky top-0 z-10 border-b border-stone-100 bg-white">
-		<div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-			<div class="flex items-center gap-2.5">
-				<div
-					class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-600"
-				>
-					<span class="text-xs font-bold tracking-tight text-white">LB</span>
-				</div>
-				<span class="text-lg font-semibold tracking-tight text-stone-800">LocalBite</span>
-			</div>
+<div
+	class="min-h-screen bg-[#f7f7f2]"
+	style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1917"
+>
+	<!-- ── Hero (nav embedded inside) ──────────────────────── -->
+	<section
+		class="relative overflow-hidden text-white"
+		style="background: #0b3526; min-height: 760px"
+	>
+		<!-- Radial gradient overlays -->
+		<div
+			class="pointer-events-none absolute inset-0"
+			style="background: radial-gradient(circle at 15% 20%, rgba(52,211,153,.32), transparent 26%), radial-gradient(circle at 85% 85%, rgba(245,158,11,.20), transparent 28%)"
+		></div>
 
-			<nav class="flex items-center gap-4">
-				<span class="hidden text-sm text-stone-400 sm:block"
-					>Regionale Lebensmittel · Nachhaltige Logistik</span
-				>
-				{#if isLoggedIn}
-					<a
-						href={resolve(dashboardHref)}
-						class="rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+		<!-- Nav inside hero -->
+		<div class="relative z-10 mx-auto w-full px-5" style="max-width: 1440px">
+			<div class="flex items-center justify-between" style="height: 80px">
+				<!-- Logo -->
+				<a href={resolve('/')} class="inline-flex items-center gap-2.5">
+					<span
+						class="grid flex-shrink-0 place-items-center rounded-[14px]"
+						style="width:38px;height:38px;background:#059669;box-shadow:0 8px 18px rgba(4,120,87,.22)"
 					>
-						{userName ? `Hallo, ${userName}` : 'Dashboard'}
-					</a>
-				{:else}
-					<a
-						href={resolve('/login')}
-						class="rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
-					>
-						Anmelden
-					</a>
-				{/if}
-			</nav>
-		</div>
-	</header>
-
-	<!-- Hero -->
-	<section class="bg-gradient-to-br from-emerald-950 to-emerald-800 text-white">
-		<div class="mx-auto max-w-4xl px-6 py-20 text-center sm:py-28">
-			<h1 class="mb-6 text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl">
-				Regionale Lebensmittel.<br class="hidden sm:block" />
-				Direkt zu dir.
-			</h1>
-			<p class="mx-auto max-w-2xl text-lg leading-relaxed text-emerald-100 sm:text-xl">
-				LocalBite verbindet Kunden, Landwirte und Logistik – für eine nachhaltige, transparente
-				Lebensmittelversorgung aus der Region.
-			</p>
-			<div class="mt-8 flex flex-wrap items-center justify-center gap-6">
-				{#each badges as badge (badge)}
-					<span class="flex items-center gap-1.5 text-sm text-emerald-300">
-						<svg class="h-4 w-4 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+						<svg
+							viewBox="0 0 24 24"
+							width="20"
+							height="20"
+							fill="none"
+							stroke="white"
+							stroke-width="1.8"
+						>
 							<path
-								fill-rule="evenodd"
-								d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-								clip-rule="evenodd"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M5 20V9.5L12 4l7 5.5V20M8 20v-5h8v5M7 10h10M9 10V7.8M15 10V7.8"
 							/>
 						</svg>
-						{badge}
 					</span>
-				{/each}
-			</div>
-			<div class="mt-10">
-				<a
-					href={resolve('/login')}
-					class="inline-flex items-center gap-2 rounded-2xl bg-white px-8 py-3.5 text-base font-semibold text-emerald-800 shadow-lg transition hover:bg-emerald-50"
-				>
-					Jetzt anmelden
-					<svg viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-						<path
-							fill-rule="evenodd"
-							d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
-							clip-rule="evenodd"
-						/>
-					</svg>
+					<span>
+						<span
+							class="block text-white"
+							style="font-size:17px;font-weight:900;letter-spacing:-.04em;line-height:1"
+							>LocalBite</span
+						>
+						<span
+							class="block"
+							style="font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-top:5px;color:#a7f3d0"
+							>vom Hof zu dir</span
+						>
+					</span>
 				</a>
+
+				<!-- Nav links (desktop) + auth button -->
+				<div class="flex items-center gap-3">
+					<nav class="hidden items-center gap-6 md:flex">
+						<a
+							href="#how-it-works"
+							class="text-sm font-[700] transition"
+							style="color:rgba(236,253,245,.65)">So funktioniert's</a
+						>
+						<a
+							href="#warum"
+							class="text-sm font-[700] transition"
+							style="color:rgba(236,253,245,.65)">Warum LocalBite</a
+						>
+					</nav>
+					{#if isLoggedIn}
+						<a
+							href={resolve(dashboardHref)}
+							class="inline-flex items-center justify-center rounded-full px-3.5 py-2 text-xs font-[800] text-white transition"
+							style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)"
+						>
+							{userName ? `Hallo, ${userName}` : 'Dashboard'}
+						</a>
+					{:else}
+						<a
+							href={resolve('/login')}
+							class="inline-flex items-center justify-center rounded-full px-3.5 py-2 text-xs font-[800] text-white transition hover:bg-white/20"
+							style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)"
+						>
+							Anmelden
+						</a>
+					{/if}
+				</div>
+			</div>
+		</div>
+
+		<!-- Hero content -->
+		<div class="relative z-10 mx-auto w-full px-5" style="max-width: 1440px">
+			<div
+				class="grid grid-cols-1 items-center gap-12 pt-10 pb-20 lg:gap-[70px]"
+				style="min-height:680px"
+			>
+				<!-- Responsive: single col by default, two-col at lg via class override -->
+				<div class="contents lg:hidden">
+					<!-- Mobile: just the text col -->
+					<div>
+						<!-- Eyebrow pill -->
+						<div
+							class="mb-[22px] inline-flex items-center gap-2 rounded-full px-3 py-2 text-[12px] font-[800]"
+							style="background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.2);color:#d1fae5"
+						>
+							<span class="h-2 w-2 flex-shrink-0 rounded-full" style="background:#10b981"></span>
+							Farm-to-Table, neu gedacht
+						</div>
+
+						<h1
+							class="m-0 text-[46px] font-[950] sm:text-[58px]"
+							style="line-height:.98;letter-spacing:-.06em"
+						>
+							Deine Region.<br />
+							Deine Box.<br />
+							<span style="color:#6ee7b7">Dein Hof.</span>
+						</h1>
+
+						<p
+							class="mt-6 text-[16px] sm:text-[18px]"
+							style="max-width:690px;line-height:1.65;color:rgba(236,253,245,.72)"
+						>
+							LocalBite bringt saisonale Lebensmittel lokaler Landwirte in einer Wochenbox direkt zu
+							dir – transparent, planbar und mit echter Verbindung zu den Höfen deiner Region.
+						</p>
+
+						<div class="mt-[30px] flex flex-wrap gap-3">
+							<a
+								href={resolve('/login')}
+								class="inline-flex items-center justify-center rounded-[13px] px-[18px] py-[13px] text-[13px] font-[900] transition hover:-translate-y-px"
+								style="background:#a7f3d0;color:#064e3b"
+							>
+								Regional einkaufen →
+							</a>
+							<a
+								href="#how-it-works"
+								class="inline-flex items-center justify-center rounded-[13px] px-[18px] py-[13px] text-[13px] font-[900] text-white transition hover:bg-white/20"
+								style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2)"
+							>
+								So funktioniert's
+							</a>
+						</div>
+
+						<div
+							class="mt-[26px] flex flex-wrap gap-x-[18px] gap-y-2 text-[12px]"
+							style="color:rgba(236,253,245,.65);font-weight:750"
+						>
+							<span>✓ regionale Höfe</span>
+							<span>✓ flexible Lieferungen</span>
+							<span>✓ Mehrwegboxen</span>
+							<span>✓ Tierpartnerschaften</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Desktop: two-col grid -->
+				<div
+					class="hidden lg:grid lg:items-center"
+					style="grid-template-columns:1.08fr .92fr;gap:70px;min-height:680px;padding-top:40px;padding-bottom:80px"
+				>
+					<!-- Left -->
+					<div>
+						<div
+							class="mb-[22px] inline-flex items-center gap-2 rounded-full px-3 py-2 text-[12px] font-[800]"
+							style="background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.2);color:#d1fae5"
+						>
+							<span class="h-2 w-2 flex-shrink-0 rounded-full" style="background:#10b981"></span>
+							Farm-to-Table, neu gedacht
+						</div>
+
+						<h1 class="m-0 text-[76px] font-[950]" style="line-height:.98;letter-spacing:-.06em">
+							Deine Region.<br />
+							Deine Box.<br />
+							<span style="color:#6ee7b7">Dein Hof.</span>
+						</h1>
+
+						<p
+							class="mt-6 text-[18px]"
+							style="max-width:690px;line-height:1.65;color:rgba(236,253,245,.72)"
+						>
+							LocalBite bringt saisonale Lebensmittel lokaler Landwirte in einer Wochenbox direkt zu
+							dir – transparent, planbar und mit echter Verbindung zu den Höfen deiner Region.
+						</p>
+
+						<div class="mt-[30px] flex flex-wrap gap-3">
+							<a
+								href={resolve('/login')}
+								class="inline-flex items-center justify-center rounded-[13px] px-[18px] py-[13px] text-[13px] font-[900] transition hover:-translate-y-px"
+								style="background:#a7f3d0;color:#064e3b"
+							>
+								Regional einkaufen →
+							</a>
+							<a
+								href="#how-it-works"
+								class="inline-flex items-center justify-center rounded-[13px] px-[18px] py-[13px] text-[13px] font-[900] text-white transition hover:bg-white/20"
+								style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2)"
+							>
+								So funktioniert's
+							</a>
+						</div>
+
+						<div
+							class="mt-[26px] flex flex-wrap gap-x-[18px] gap-y-2 text-[12px]"
+							style="color:rgba(236,253,245,.65);font-weight:750"
+						>
+							<span>✓ regionale Höfe</span>
+							<span>✓ flexible Lieferungen</span>
+							<span>✓ Mehrwegboxen</span>
+							<span>✓ Tierpartnerschaften</span>
+						</div>
+					</div>
+
+					<!-- Right: Demo Window -->
+					<div class="relative">
+						<div
+							class="rounded-[34px] p-[15px]"
+							style="background:#f9faf5;border:1px solid rgba(255,255,255,.18);box-shadow:0 30px 80px rgba(0,0,0,.3);transform:rotate(-1deg)"
+						>
+							<div class="rounded-[24px] bg-white p-[22px]" style="color:#1c1917">
+								<!-- Demo header -->
+								<div class="flex items-start justify-between gap-4">
+									<div>
+										<div
+											class="text-[10px] font-[900] uppercase"
+											style="letter-spacing:.14em;color:#047857"
+										>
+											Deine nächste Box
+										</div>
+										<h2
+											class="mt-1 text-[22px] font-[900]"
+											style="margin:4px 0 0;letter-spacing:-.04em;line-height:1.1"
+										>
+											Herbstlieblinge
+										</h2>
+									</div>
+									<span
+										class="mt-1 flex-shrink-0 rounded-full px-2.5 py-1.5 text-[9px] font-[900]"
+										style="background:#d1fae5;color:#047857"
+									>
+										Fr, 23. Okt.
+									</span>
+								</div>
+
+								<!-- Mini products -->
+								<div class="mt-[18px] grid grid-cols-3 gap-2">
+									{#each mockupItems as item (item.name)}
+										<div class="rounded-[16px] p-[13px]" style="background:#fafaf9">
+											<div class="text-[30px]">{item.emoji}</div>
+											<b class="mt-1 block text-[12px]">{item.name}</b>
+											<div class="text-[10px]" style="color:#a8a29e">{item.farm}</div>
+										</div>
+									{/each}
+								</div>
+
+								<!-- Demo bottom -->
+								<div
+									class="mt-3 flex items-center justify-between rounded-[17px] p-[15px] text-white"
+									style="background:#0b3526"
+								>
+									<div>
+										<div class="text-[11px] font-[800]" style="color:#a7f3d0">
+											Classic Box · wöchentlich
+										</div>
+										<div class="mt-1 text-[20px] font-[950]">29,90 €</div>
+									</div>
+									<div
+										class="grid h-11 w-11 place-items-center rounded-[13px] text-[20px] font-[900]"
+										style="background:#6ee7b7;color:#064e3b"
+									>
+										→
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Floating card -->
+						<div
+							class="absolute flex items-center gap-2.5 rounded-[18px] bg-white p-[14px]"
+							style="left:-25px;bottom:-30px;width:225px;box-shadow:0 18px 50px rgba(28,25,23,.08);color:#1c1917"
+						>
+							<div
+								class="grid flex-shrink-0 place-items-center rounded-full text-[23px]"
+								style="width:42px;height:42px;background:#fef3c7"
+							>
+								🐄
+							</div>
+							<div>
+								<b class="block text-[12px]">Lotte unterstützen</b>
+								<div class="text-[10px]" style="color:#a8a29e">Tierpartnerschaft · 8 % Vorteil</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Benefits -->
-	<section class="flex-grow bg-stone-50 py-16 sm:py-24">
-		<div class="mx-auto max-w-6xl px-6">
-			<div class="mb-12 text-center">
-				<h2 class="mb-3 text-2xl font-bold text-stone-800 sm:text-3xl">Warum LocalBite?</h2>
-				<p class="text-base text-stone-500">
-					Frische Produkte, faire Preise und kurze Wege – das ist unsere Plattform.
-				</p>
+	<!-- ── So funktioniert LocalBite ──────────────────────── -->
+	<section id="how-it-works" class="bg-white" style="padding: 82px 0">
+		<div class="mx-auto w-full px-5" style="max-width: 1240px">
+			<div class="mb-8 text-center">
+				<div class="text-[11px] font-[900] uppercase" style="letter-spacing:.18em;color:#047857">
+					In vier Schritten
+				</div>
+				<h2
+					class="mt-2 text-[32px] font-[900] sm:text-[38px]"
+					style="letter-spacing:-.045em;color:#1c1917"
+				>
+					So funktioniert LocalBite.
+				</h2>
 			</div>
 
 			<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-				{#each benefits as benefit (benefit.label)}
+				{#each steps as step, i (step.number)}
 					<div
-						class="flex flex-col gap-3 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+						class="rounded-[28px] p-[26px] transition-shadow hover:-translate-y-1 hover:shadow-lg"
+						style="background:#fff;border:1px solid #e7e5e4;box-shadow:0 5px 18px rgba(28,25,23,.05)"
 					>
-						<div
-							class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl {benefit.iconBg}"
-						>
-							<svg
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="1.5"
-								class="h-6 w-6 {benefit.iconColor}"
-							>
-								<path stroke-linecap="round" stroke-linejoin="round" d={benefit.iconPath} />
-							</svg>
+						<div class="flex items-center justify-between">
+							<span class="text-[11px] font-[900]" style="letter-spacing:.14em;color:#d6d3d1">
+								{step.number}
+							</span>
 						</div>
-						<h3 class="text-base font-semibold text-stone-800">{benefit.label}</h3>
-						<p class="grow text-sm leading-relaxed text-stone-500">{benefit.description}</p>
+						<div class="mt-[35px] text-[32px]">{step.emoji}</div>
+						<h3
+							class="mt-[14px] mb-[7px] text-[18px] font-[900]"
+							style="letter-spacing:-.02em;color:#1c1917"
+						>
+							{step.title}
+						</h3>
+						<p class="m-0 text-[13px] leading-[1.6]" style="color:#78716c">
+							{step.description}
+						</p>
+						{#if i < steps.length - 1}
+							<div class="mt-5 hidden text-[11px] font-[900] lg:block" style="color:#047857">
+								→ nächster Schritt
+							</div>
+						{/if}
 					</div>
 				{/each}
 			</div>
 		</div>
 	</section>
 
-	<!-- Footer -->
-	<footer class="border-t border-stone-100 bg-white">
+	<!-- ── Warum LocalBite ─────────────────────────────────── -->
+	<section id="warum" style="padding: 82px 0; background: #f7f7f2">
+		<div class="mx-auto w-full px-5" style="max-width: 1240px">
+			<div class="grid grid-cols-1 gap-[60px] lg:grid-cols-[0.7fr_1.3fr]">
+				<!-- Left text -->
+				<div>
+					<div class="text-[11px] font-[900] uppercase" style="letter-spacing:.18em;color:#047857">
+						Warum LocalBite?
+					</div>
+					<h2
+						class="mt-[11px] text-[32px] font-[900] sm:text-[38px]"
+						style="letter-spacing:-.045em;color:#1c1917"
+					>
+						Mehr als Lebensmittel liefern.
+					</h2>
+					<p class="mt-3 text-[15px]" style="max-width:700px;line-height:1.7;color:#78716c">
+						LocalBite verbindet die Bequemlichkeit eines Abo-Modells mit lokaler Landwirtschaft. So
+						werden Herkunft, Menschen und Wertschöpfung sichtbar.
+					</p>
+				</div>
+
+				<!-- Right: 3 feature cards -->
+				<div class="grid grid-cols-1 gap-5 sm:grid-cols-3">
+					{#each features as feature (feature.title)}
+						<div
+							class="rounded-[28px] p-[25px] transition-shadow hover:-translate-y-1 hover:shadow-lg"
+							style="background:#fff;border:1px solid #e7e5e4;box-shadow:0 5px 18px rgba(28,25,23,.05)"
+						>
+							<div class="text-[30px]">{feature.emoji}</div>
+							<h3
+								class="mt-4 mb-2 text-[16px] font-[900]"
+								style="letter-spacing:-.02em;color:#1c1917"
+							>
+								{feature.title}
+							</h3>
+							<p class="m-0 text-[13px] leading-[1.7]" style="color:#78716c">
+								{feature.description}
+							</p>
+						</div>
+					{/each}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ── CTA ─────────────────────────────────────────────── -->
+	<section style="padding: 0 0 80px">
+		<div class="mx-auto w-full px-5" style="max-width: 1240px">
+			<div
+				class="flex flex-col items-start justify-between gap-6 rounded-[32px] p-7 text-white sm:flex-row sm:items-center sm:p-[40px]"
+				style="background:#1c1917"
+			>
+				<div>
+					<div class="text-[11px] font-[900] uppercase" style="letter-spacing:.18em;color:#6ee7b7">
+						Regional einkaufen
+					</div>
+					<h2
+						class="mt-1.5 text-[24px] font-[900] sm:text-[30px]"
+						style="letter-spacing:-.04em;color:#fff"
+					>
+						Ohne fünf Höfe selbst abfahren zu müssen.
+					</h2>
+				</div>
+				<div class="flex flex-shrink-0 flex-wrap gap-2.5">
+					<a
+						href={resolve('/login')}
+						class="inline-flex items-center justify-center rounded-[13px] px-[18px] py-[13px] text-[13px] font-[900] transition hover:-translate-y-px"
+						style="background:#fff;color:#1c1917"
+					>
+						LocalBite entdecken →
+					</a>
+					{#if !isLoggedIn}
+						<a
+							href={resolve('/login')}
+							class="inline-flex items-center justify-center rounded-[13px] px-[18px] py-[13px] text-[13px] font-[900] text-white transition hover:bg-white/10"
+							style="background:transparent;border:1px solid rgba(255,255,255,.2)"
+						>
+							Anmelden
+						</a>
+					{/if}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ── Footer ─────────────────────────────────────────── -->
+	<footer style="border-top:1px solid #e7e5e4;background:rgba(255,255,255,.7)">
 		<div
-			class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 py-6 text-sm text-stone-400 sm:flex-row"
+			class="mx-auto flex w-full items-center justify-between gap-5 px-5 py-5 text-[11px]"
+			style="max-width:1240px;color:#a8a29e"
 		>
-			<span class="font-medium text-stone-500">LocalBite</span>
-			<span>Nachhaltig · Regional · Transparent</span>
+			<span>LocalBite · Regionale Lebensmittel</span>
+			<span>Regional · Transparent · Direkt</span>
 		</div>
 	</footer>
 </div>
