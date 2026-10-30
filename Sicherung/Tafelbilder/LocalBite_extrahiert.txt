@@ -1,0 +1,33 @@
+LOCALBITE – KERNPROZESSE
+
+Kernprozesse
+------------
+- Abo abschließen ✓
+  -> Einmalbestellung
+
+- Box & Lieferanten ✓
+
+- Auslieferung & Routing ✓
+
+- Abo verwalten
+
+- Retouren- & Pfandmanagement
+
+- Abrechnung & Rechnungsstellung ✓
+
+- Landwirtaufnahme ✓
+
+- Wareneingang & Qualitätskontrolle ✓
+  -> + Bewertung
+
+- Reklamations- & Supportabwicklung ✓
+
+- Fahrermanagement & Abwicklung
+  -> + Vorbereitung Ware
+
+
+WEITERE IDEEN / ERWEITERUNGEN
+-----------------------------
+- Community kochen
+- Nachhaltig (Pfandbox)
+- Animal-Sharing

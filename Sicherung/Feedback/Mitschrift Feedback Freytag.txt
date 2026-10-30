@@ -1,0 +1,13 @@
+abo genauer definieren
+Daten an backend übermitteln nicht SQL, sondern eher sauberer -> Zahlung wann im Verlauf, dann als Zahlungsmethode und erst nach Lieferung Bezahlung fordern
+
+als Datentyp
+weitere Datentypen, wie Bestellung
+
+
+erst Account anlegen, dann abo anbieten/abschließen, ein abo pro Account
+
+abo verwalten nötig?
+
+
+"Fülle Formular aus" als Beispielstep, betriebswirtschaftlich relevant

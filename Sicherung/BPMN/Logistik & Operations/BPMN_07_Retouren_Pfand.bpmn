@@ -1,0 +1,575 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_Process_07V2" targetNamespace="http://localbite.example/bpmn" exporter="Camunda Modeler" exporterVersion="5.50.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
+  <bpmn:process id="Process_07V2" name="07 – Retouren &amp; Pfand-Management" isExecutable="false">
+    <bpmn:documentation>BPMN 07 wickelt Rückgabe, Pfand und Boxzustand ab. Rückgabe erfolgt entweder bei einer nächsten Lieferung über BPMN 06 oder an einem zentralen LocalBite-Rückgabeort. Pfandregel und Zustand/Schaden werden nach erfolgter Rückgabe parallel bearbeitet und anschließend zusammengeführt.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_Process_07V2">
+      <bpmn:lane id="L07_SYS" name="System / Pfandverwaltung">
+        <bpmn:flowNodeRef>S07</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Assign</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Monitor</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G07_Next</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Sched</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Notify06</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Result06</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G07_Returned</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Further</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G07_Further</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_CentralInfo</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G07_Wait</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>E07_Return</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>E07_Day30</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Retain</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>E07_Late</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G07_MergeReturn</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_History</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G07_Split</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Duration</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_DepositRule</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_DepositBook</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G07_Join</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Stock</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>E07_End</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="L07_OPS" name="Rücknahme / Qualitätsprüfung">
+        <bpmn:flowNodeRef>T07_Scan</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_State</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Compare</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G07_Damage</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_DamageDoc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G07_Cause</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_CustDamage</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Manual</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G07_DmgMerge</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Reuse</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G07_Treat</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Clean</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Repair</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>T07_Recycle</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>G07_TreatMerge</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="S07" name="Rückgabefall angelegt"/>
+    <bpmn:task id="T07_Assign" name="Box-ID Kunde und Bestellung zuordnen"/>
+    <bpmn:task id="T07_Monitor" name="Rückgabefrist überwachen"/>
+    <bpmn:exclusiveGateway id="G07_Next" name="Nächste Lieferung rechtzeitig?"/>
+    <bpmn:task id="T07_Sched" name="Rückgabe bei nächster Lieferung vormerken"/>
+    <bpmn:task id="T07_Notify06" name="BPMN 06 über Rücknahme informieren"/>
+    <bpmn:task id="T07_Result06" name="Rückgabeergebnis übernehmen"/>
+    <bpmn:exclusiveGateway id="G07_Returned" name="Box zurückgegeben?"/>
+    <bpmn:task id="T07_Further" name="Weitere rechtzeitige Lieferung prüfen"/>
+    <bpmn:exclusiveGateway id="G07_Further" name="Weitere Lieferung möglich?"/>
+    <bpmn:task id="T07_CentralInfo" name="Zentralen LocalBite-Rückgabeort mitteilen"/>
+    <bpmn:eventBasedGateway id="G07_Wait" name="Auf Rückgabe oder Tag 30 warten"/>
+    <bpmn:intermediateCatchEvent id="E07_Return" name="Box zentral zurückgegeben">
+      <bpmn:messageEventDefinition messageRef="Msg_07_Return"/>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:intermediateCatchEvent id="E07_Day30" name="Tag 30 erreicht">
+      <bpmn:timerEventDefinition>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P16D</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:task id="T07_Retain" name="Pfand vollständig einbehalten"/>
+    <bpmn:intermediateCatchEvent id="E07_Late" name="Späte Rückgabe erhalten">
+      <bpmn:messageEventDefinition messageRef="Msg_07_Return"/>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:exclusiveGateway id="G07_MergeReturn" name="Rückgabe erfolgt"/>
+    <bpmn:manualTask id="T07_Scan" name="Box-ID scannen / Rückgabe registrieren"/>
+    <bpmn:task id="T07_History" name="Box-Historie und Vorschäden laden"/>
+    <bpmn:userTask id="T07_State" name="Boxzustand dokumentieren"/>
+    <bpmn:parallelGateway id="G07_Split" name="Pfand und Zustand parallel bearbeiten"/>
+    <bpmn:task id="T07_Duration" name="Rückgabedauer berechnen"/>
+    <bpmn:task id="T07_DepositRule" name="Pfandanspruch nach Fristregel bestimmen"/>
+    <bpmn:task id="T07_DepositBook" name="Pfand erstatten / einbehalten und verbuchen"/>
+    <bpmn:task id="T07_Compare" name="Zustand mit Box-Historie vergleichen"/>
+    <bpmn:exclusiveGateway id="G07_Damage" name="Neuer erheblicher Schaden?"/>
+    <bpmn:userTask id="T07_DamageDoc" name="Schaden dokumentieren"/>
+    <bpmn:exclusiveGateway id="G07_Cause" name="Verursachung eindeutig?"/>
+    <bpmn:userTask id="T07_CustDamage" name="Möglichen Kundenschadensfall prüfen"/>
+    <bpmn:userTask id="T07_Manual" name="Manuelle Schadensklärung"/>
+    <bpmn:exclusiveGateway id="G07_DmgMerge" name="Schaden geklärt"/>
+    <bpmn:userTask id="T07_Reuse" name="Wiederverwendbarkeit bestimmen"/>
+    <bpmn:exclusiveGateway id="G07_Treat" name="Behandlung der Box"/>
+    <bpmn:manualTask id="T07_Clean" name="Box reinigen"/>
+    <bpmn:manualTask id="T07_Repair" name="Box reparieren und anschließend reinigen"/>
+    <bpmn:manualTask id="T07_Recycle" name="Box aussortieren / Recycling"/>
+    <bpmn:exclusiveGateway id="G07_TreatMerge" name="Boxbehandlung abgeschlossen"/>
+    <bpmn:parallelGateway id="G07_Join" name="Pfand und Boxbehandlung abgeschlossen"/>
+    <bpmn:task id="T07_Stock" name="Boxbestand / Boxstatus aktualisieren"/>
+    <bpmn:endEvent id="E07_End" name="Rückgabefall abgeschlossen"/>
+    <bpmn:dataStoreReference id="DS07_History" name="Box-Historie" dataStoreRef="DS07_History_def"/>
+    <bpmn:sequenceFlow id="F07_01" sourceRef="S07" targetRef="T07_Assign"/>
+    <bpmn:sequenceFlow id="F07_02" sourceRef="T07_Assign" targetRef="T07_Monitor"/>
+    <bpmn:sequenceFlow id="F07_03" sourceRef="T07_Monitor" targetRef="G07_Next"/>
+    <bpmn:sequenceFlow id="F07_04" sourceRef="G07_Next" targetRef="T07_Sched" name="Ja"/>
+    <bpmn:sequenceFlow id="F07_05" sourceRef="T07_Sched" targetRef="T07_Notify06"/>
+    <bpmn:sequenceFlow id="F07_06" sourceRef="T07_Notify06" targetRef="T07_Result06"/>
+    <bpmn:sequenceFlow id="F07_07" sourceRef="T07_Result06" targetRef="G07_Returned"/>
+    <bpmn:sequenceFlow id="F07_08" sourceRef="G07_Returned" targetRef="G07_MergeReturn" name="Ja"/>
+    <bpmn:sequenceFlow id="F07_09" sourceRef="G07_Returned" targetRef="T07_Further" name="Nein"/>
+    <bpmn:sequenceFlow id="F07_10" sourceRef="T07_Further" targetRef="G07_Further"/>
+    <bpmn:sequenceFlow id="F07_11" sourceRef="G07_Further" targetRef="T07_Sched" name="Ja"/>
+    <bpmn:sequenceFlow id="F07_12" sourceRef="G07_Further" targetRef="T07_CentralInfo" name="Nein"/>
+    <bpmn:sequenceFlow id="F07_13" sourceRef="G07_Next" targetRef="T07_CentralInfo" name="Nein"/>
+    <bpmn:sequenceFlow id="F07_14" sourceRef="T07_CentralInfo" targetRef="G07_Wait"/>
+    <bpmn:sequenceFlow id="F07_15" sourceRef="G07_Wait" targetRef="E07_Return" name="Rückgabe"/>
+    <bpmn:sequenceFlow id="F07_16" sourceRef="G07_Wait" targetRef="E07_Day30" name="Tag 30"/>
+    <bpmn:sequenceFlow id="F07_17" sourceRef="E07_Return" targetRef="G07_MergeReturn"/>
+    <bpmn:sequenceFlow id="F07_18" sourceRef="E07_Day30" targetRef="T07_Retain"/>
+    <bpmn:sequenceFlow id="F07_19" sourceRef="T07_Retain" targetRef="E07_Late"/>
+    <bpmn:sequenceFlow id="F07_20" sourceRef="E07_Late" targetRef="G07_MergeReturn"/>
+    <bpmn:sequenceFlow id="F07_21" sourceRef="G07_MergeReturn" targetRef="T07_Scan"/>
+    <bpmn:sequenceFlow id="F07_22" sourceRef="T07_Scan" targetRef="T07_History"/>
+    <bpmn:sequenceFlow id="F07_23" sourceRef="T07_History" targetRef="T07_State"/>
+    <bpmn:sequenceFlow id="F07_24" sourceRef="T07_State" targetRef="G07_Split"/>
+    <bpmn:sequenceFlow id="F07_25" sourceRef="G07_Split" targetRef="T07_Duration" name="Pfand"/>
+    <bpmn:sequenceFlow id="F07_26" sourceRef="T07_Duration" targetRef="T07_DepositRule"/>
+    <bpmn:sequenceFlow id="F07_27" sourceRef="T07_DepositRule" targetRef="T07_DepositBook"/>
+    <bpmn:sequenceFlow id="F07_28" sourceRef="T07_DepositBook" targetRef="G07_Join"/>
+    <bpmn:sequenceFlow id="F07_29" sourceRef="G07_Split" targetRef="T07_Compare" name="Zustand"/>
+    <bpmn:sequenceFlow id="F07_30" sourceRef="T07_Compare" targetRef="G07_Damage"/>
+    <bpmn:sequenceFlow id="F07_31" sourceRef="G07_Damage" targetRef="T07_Reuse" name="Nein / Vorschaden / normale Abnutzung"/>
+    <bpmn:sequenceFlow id="F07_32" sourceRef="G07_Damage" targetRef="T07_DamageDoc" name="Ja"/>
+    <bpmn:sequenceFlow id="F07_33" sourceRef="T07_DamageDoc" targetRef="G07_Cause"/>
+    <bpmn:sequenceFlow id="F07_34" sourceRef="G07_Cause" targetRef="T07_CustDamage" name="Ja"/>
+    <bpmn:sequenceFlow id="F07_35" sourceRef="G07_Cause" targetRef="T07_Manual" name="Nein"/>
+    <bpmn:sequenceFlow id="F07_36" sourceRef="T07_CustDamage" targetRef="G07_DmgMerge"/>
+    <bpmn:sequenceFlow id="F07_37" sourceRef="T07_Manual" targetRef="G07_DmgMerge"/>
+    <bpmn:sequenceFlow id="F07_38" sourceRef="G07_DmgMerge" targetRef="T07_Reuse"/>
+    <bpmn:sequenceFlow id="F07_39" sourceRef="T07_Reuse" targetRef="G07_Treat"/>
+    <bpmn:sequenceFlow id="F07_40" sourceRef="G07_Treat" targetRef="T07_Clean" name="Direkt wiederverwendbar"/>
+    <bpmn:sequenceFlow id="F07_41" sourceRef="G07_Treat" targetRef="T07_Repair" name="Reparierbar"/>
+    <bpmn:sequenceFlow id="F07_42" sourceRef="G07_Treat" targetRef="T07_Recycle" name="Nicht wiederverwendbar"/>
+    <bpmn:sequenceFlow id="F07_43" sourceRef="T07_Clean" targetRef="G07_TreatMerge"/>
+    <bpmn:sequenceFlow id="F07_44" sourceRef="T07_Repair" targetRef="G07_TreatMerge"/>
+    <bpmn:sequenceFlow id="F07_45" sourceRef="T07_Recycle" targetRef="G07_TreatMerge"/>
+    <bpmn:sequenceFlow id="F07_46" sourceRef="G07_TreatMerge" targetRef="G07_Join"/>
+    <bpmn:sequenceFlow id="F07_47" sourceRef="G07_Join" targetRef="T07_Stock"/>
+    <bpmn:sequenceFlow id="F07_48" sourceRef="T07_Stock" targetRef="E07_End"/>
+    <bpmn:association id="A07_History" sourceRef="DS07_History" targetRef="T07_History"/>
+    <bpmn:textAnnotation id="ANN07_RULE">
+      <bpmn:text>Pfandregel: Tag 0–14 = 100 %, Tag 15–21 = 75 %, Tag 22–29 = 50 %, ab Tag 30 = 0 %. Pfand und Schadensersatz werden getrennt behandelt.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="A07_Rule" sourceRef="ANN07_RULE" targetRef="T07_DepositRule"/>
+    <bpmn:textAnnotation id="ANN07_TODO">
+      <bpmn:text>TODO: zentralen Rückgabeort, absolute Pfandhöhe, Boxgrößen sowie konkrete Scan-/RFID-/Kameratechnik final festlegen. Material: langlebige lebensmittelechte Mehrwegbox aus Recycling-Kunststoff.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="A07_Todo" sourceRef="ANN07_TODO" targetRef="T07_State"/>
+  </bpmn:process>
+  <bpmn:collaboration id="Collaboration_Process_07V2">
+    <bpmn:participant id="Participant_Process_07V2" name="07 – Retouren &amp; Pfand-Management" processRef="Process_07V2"/>
+    <bpmn:participant id="P07_06" name="06 – Fahrermanagement &amp; Abwicklung"/>
+    <bpmn:participant id="P07_CUST" name="Kunde"/>
+    <bpmn:messageFlow id="M07_To06" sourceRef="T07_Notify06" targetRef="P07_06" name="Rücknahmehinweis" messageRef="Msg_07_Pickup"/>
+    <bpmn:messageFlow id="M07_From06" sourceRef="P07_06" targetRef="T07_Result06" name="Rückgabeergebnis" messageRef="Msg_07_Result"/>
+    <bpmn:messageFlow id="M07_ToCust" sourceRef="T07_CentralInfo" targetRef="P07_CUST" name="Rückgabeort / Frist" messageRef="Msg_07_Central"/>
+    <bpmn:messageFlow id="M07_FromCust" sourceRef="P07_CUST" targetRef="E07_Return" name="Box zurückgegeben" messageRef="Msg_07_Return"/>
+    <bpmn:messageFlow id="M07_FromCustLate" sourceRef="P07_CUST" targetRef="E07_Late" name="Späte Rückgabe" messageRef="Msg_07_Return"/>
+  </bpmn:collaboration>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_Collaboration_Process_07V2">
+    <bpmndi:BPMNPlane id="BPMNPlane_Collaboration_Process_07V2" bpmnElement="Collaboration_Process_07V2">
+      <bpmndi:BPMNShape id="Participant_Process_07V2_di" bpmnElement="Participant_Process_07V2" isHorizontal="true">
+        <dc:Bounds x="100" y="220" width="7618" height="696"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="L07_SYS_di" bpmnElement="L07_SYS" isHorizontal="true">
+        <dc:Bounds x="130" y="220" width="7588" height="288"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="L07_OPS_di" bpmnElement="L07_OPS" isHorizontal="true">
+        <dc:Bounds x="130" y="508" width="7588" height="408"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="P07_06_di" bpmnElement="P07_06" isHorizontal="true">
+        <dc:Bounds x="100" y="80" width="7618" height="70"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="P07_CUST_di" bpmnElement="P07_CUST" isHorizontal="true">
+        <dc:Bounds x="100" y="1010" width="7618" height="70"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="S07_di" bpmnElement="S07">
+        <dc:Bounds x="242" y="286" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Assign_di" bpmnElement="T07_Assign">
+        <dc:Bounds x="410" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Monitor_di" bpmnElement="T07_Monitor">
+        <dc:Bounds x="640" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G07_Next_di" bpmnElement="G07_Next">
+        <dc:Bounds x="925" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Sched_di" bpmnElement="T07_Sched">
+        <dc:Bounds x="1100" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Notify06_di" bpmnElement="T07_Notify06">
+        <dc:Bounds x="1330" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Result06_di" bpmnElement="T07_Result06">
+        <dc:Bounds x="1560" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G07_Returned_di" bpmnElement="G07_Returned">
+        <dc:Bounds x="1845" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Further_di" bpmnElement="T07_Further">
+        <dc:Bounds x="2020" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G07_Further_di" bpmnElement="G07_Further">
+        <dc:Bounds x="2305" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_CentralInfo_di" bpmnElement="T07_CentralInfo">
+        <dc:Bounds x="2480" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G07_Wait_di" bpmnElement="G07_Wait">
+        <dc:Bounds x="2765" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="E07_Return_di" bpmnElement="E07_Return">
+        <dc:Bounds x="3002" y="286" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="E07_Day30_di" bpmnElement="E07_Day30">
+        <dc:Bounds x="3002" y="406" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Retain_di" bpmnElement="T07_Retain">
+        <dc:Bounds x="3170" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="E07_Late_di" bpmnElement="E07_Late">
+        <dc:Bounds x="3462" y="286" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G07_MergeReturn_di" bpmnElement="G07_MergeReturn">
+        <dc:Bounds x="3685" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Scan_di" bpmnElement="T07_Scan">
+        <dc:Bounds x="3860" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_History_di" bpmnElement="T07_History">
+        <dc:Bounds x="4090" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_State_di" bpmnElement="T07_State">
+        <dc:Bounds x="4320" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G07_Split_di" bpmnElement="G07_Split">
+        <dc:Bounds x="4605" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Duration_di" bpmnElement="T07_Duration">
+        <dc:Bounds x="4780" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_DepositRule_di" bpmnElement="T07_DepositRule">
+        <dc:Bounds x="5010" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_DepositBook_di" bpmnElement="T07_DepositBook">
+        <dc:Bounds x="5240" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Compare_di" bpmnElement="T07_Compare">
+        <dc:Bounds x="4780" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G07_Damage_di" bpmnElement="G07_Damage">
+        <dc:Bounds x="5065" y="567" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_DamageDoc_di" bpmnElement="T07_DamageDoc">
+        <dc:Bounds x="5240" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G07_Cause_di" bpmnElement="G07_Cause">
+        <dc:Bounds x="5525" y="567" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_CustDamage_di" bpmnElement="T07_CustDamage">
+        <dc:Bounds x="5700" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Manual_di" bpmnElement="T07_Manual">
+        <dc:Bounds x="5700" y="674" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G07_DmgMerge_di" bpmnElement="G07_DmgMerge">
+        <dc:Bounds x="5985" y="567" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Reuse_di" bpmnElement="T07_Reuse">
+        <dc:Bounds x="6160" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G07_Treat_di" bpmnElement="G07_Treat">
+        <dc:Bounds x="6445" y="567" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Clean_di" bpmnElement="T07_Clean">
+        <dc:Bounds x="6620" y="554" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Repair_di" bpmnElement="T07_Repair">
+        <dc:Bounds x="6620" y="674" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Recycle_di" bpmnElement="T07_Recycle">
+        <dc:Bounds x="6620" y="794" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G07_TreatMerge_di" bpmnElement="G07_TreatMerge">
+        <dc:Bounds x="6905" y="567" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="G07_Join_di" bpmnElement="G07_Join">
+        <dc:Bounds x="7135" y="279" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="T07_Stock_di" bpmnElement="T07_Stock">
+        <dc:Bounds x="7310" y="266" width="160" height="76"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="E07_End_di" bpmnElement="E07_End">
+        <dc:Bounds x="7602" y="286" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DS07_History_di" bpmnElement="DS07_History">
+        <dc:Bounds x="4140" y="394" width="60" height="60"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ANN07_RULE_di" bpmnElement="ANN07_RULE">
+        <dc:Bounds x="4940" y="384" width="300" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ANN07_TODO_di" bpmnElement="ANN07_TODO">
+        <dc:Bounds x="4250" y="672" width="300" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="F07_01_di" bpmnElement="F07_01">
+        <di:waypoint x="278" y="304"/>
+        <di:waypoint x="410" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_02_di" bpmnElement="F07_02">
+        <di:waypoint x="570" y="304"/>
+        <di:waypoint x="640" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_03_di" bpmnElement="F07_03">
+        <di:waypoint x="800" y="304"/>
+        <di:waypoint x="925" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_04_di" bpmnElement="F07_04">
+        <di:waypoint x="975" y="304"/>
+        <di:waypoint x="1100" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_05_di" bpmnElement="F07_05">
+        <di:waypoint x="1260" y="304"/>
+        <di:waypoint x="1330" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_06_di" bpmnElement="F07_06">
+        <di:waypoint x="1490" y="304"/>
+        <di:waypoint x="1560" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_07_di" bpmnElement="F07_07">
+        <di:waypoint x="1720" y="304"/>
+        <di:waypoint x="1845" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_08_di" bpmnElement="F07_08">
+        <di:waypoint x="1895" y="304"/>
+        <di:waypoint x="3685" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_09_di" bpmnElement="F07_09">
+        <di:waypoint x="1895" y="304"/>
+        <di:waypoint x="2020" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_10_di" bpmnElement="F07_10">
+        <di:waypoint x="2180" y="304"/>
+        <di:waypoint x="2305" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_11_di" bpmnElement="F07_11">
+        <di:waypoint x="2330" y="329"/>
+        <di:waypoint x="2330" y="944"/>
+        <di:waypoint x="1180" y="944"/>
+        <di:waypoint x="1180" y="342"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_12_di" bpmnElement="F07_12">
+        <di:waypoint x="2355" y="304"/>
+        <di:waypoint x="2480" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_13_di" bpmnElement="F07_13">
+        <di:waypoint x="975" y="304"/>
+        <di:waypoint x="2480" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_14_di" bpmnElement="F07_14">
+        <di:waypoint x="2640" y="304"/>
+        <di:waypoint x="2765" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_15_di" bpmnElement="F07_15">
+        <di:waypoint x="2815" y="304"/>
+        <di:waypoint x="3002" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_16_di" bpmnElement="F07_16">
+        <di:waypoint x="2815" y="304"/>
+        <di:waypoint x="2908" y="304"/>
+        <di:waypoint x="2908" y="424"/>
+        <di:waypoint x="3002" y="424"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_17_di" bpmnElement="F07_17">
+        <di:waypoint x="3038" y="304"/>
+        <di:waypoint x="3685" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_18_di" bpmnElement="F07_18">
+        <di:waypoint x="3038" y="424"/>
+        <di:waypoint x="3104" y="424"/>
+        <di:waypoint x="3104" y="304"/>
+        <di:waypoint x="3170" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_19_di" bpmnElement="F07_19">
+        <di:waypoint x="3330" y="304"/>
+        <di:waypoint x="3462" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_20_di" bpmnElement="F07_20">
+        <di:waypoint x="3498" y="304"/>
+        <di:waypoint x="3685" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_21_di" bpmnElement="F07_21">
+        <di:waypoint x="3735" y="304"/>
+        <di:waypoint x="3798" y="304"/>
+        <di:waypoint x="3798" y="592"/>
+        <di:waypoint x="3860" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_22_di" bpmnElement="F07_22">
+        <di:waypoint x="4020" y="592"/>
+        <di:waypoint x="4055" y="592"/>
+        <di:waypoint x="4055" y="304"/>
+        <di:waypoint x="4090" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_23_di" bpmnElement="F07_23">
+        <di:waypoint x="4250" y="304"/>
+        <di:waypoint x="4285" y="304"/>
+        <di:waypoint x="4285" y="592"/>
+        <di:waypoint x="4320" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_24_di" bpmnElement="F07_24">
+        <di:waypoint x="4480" y="592"/>
+        <di:waypoint x="4542" y="592"/>
+        <di:waypoint x="4542" y="304"/>
+        <di:waypoint x="4605" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_25_di" bpmnElement="F07_25">
+        <di:waypoint x="4655" y="304"/>
+        <di:waypoint x="4780" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_26_di" bpmnElement="F07_26">
+        <di:waypoint x="4940" y="304"/>
+        <di:waypoint x="5010" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_27_di" bpmnElement="F07_27">
+        <di:waypoint x="5170" y="304"/>
+        <di:waypoint x="5240" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_28_di" bpmnElement="F07_28">
+        <di:waypoint x="5400" y="304"/>
+        <di:waypoint x="7135" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_29_di" bpmnElement="F07_29">
+        <di:waypoint x="4655" y="304"/>
+        <di:waypoint x="4718" y="304"/>
+        <di:waypoint x="4718" y="592"/>
+        <di:waypoint x="4780" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_30_di" bpmnElement="F07_30">
+        <di:waypoint x="4940" y="592"/>
+        <di:waypoint x="5065" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_31_di" bpmnElement="F07_31">
+        <di:waypoint x="5115" y="592"/>
+        <di:waypoint x="6160" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_32_di" bpmnElement="F07_32">
+        <di:waypoint x="5115" y="592"/>
+        <di:waypoint x="5240" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_33_di" bpmnElement="F07_33">
+        <di:waypoint x="5400" y="592"/>
+        <di:waypoint x="5525" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_34_di" bpmnElement="F07_34">
+        <di:waypoint x="5575" y="592"/>
+        <di:waypoint x="5700" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_35_di" bpmnElement="F07_35">
+        <di:waypoint x="5575" y="592"/>
+        <di:waypoint x="5638" y="592"/>
+        <di:waypoint x="5638" y="712"/>
+        <di:waypoint x="5700" y="712"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_36_di" bpmnElement="F07_36">
+        <di:waypoint x="5860" y="592"/>
+        <di:waypoint x="5985" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_37_di" bpmnElement="F07_37">
+        <di:waypoint x="5860" y="712"/>
+        <di:waypoint x="5922" y="712"/>
+        <di:waypoint x="5922" y="592"/>
+        <di:waypoint x="5985" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_38_di" bpmnElement="F07_38">
+        <di:waypoint x="6035" y="592"/>
+        <di:waypoint x="6160" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_39_di" bpmnElement="F07_39">
+        <di:waypoint x="6320" y="592"/>
+        <di:waypoint x="6445" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_40_di" bpmnElement="F07_40">
+        <di:waypoint x="6495" y="592"/>
+        <di:waypoint x="6620" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_41_di" bpmnElement="F07_41">
+        <di:waypoint x="6495" y="592"/>
+        <di:waypoint x="6558" y="592"/>
+        <di:waypoint x="6558" y="712"/>
+        <di:waypoint x="6620" y="712"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_42_di" bpmnElement="F07_42">
+        <di:waypoint x="6495" y="592"/>
+        <di:waypoint x="6558" y="592"/>
+        <di:waypoint x="6558" y="832"/>
+        <di:waypoint x="6620" y="832"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_43_di" bpmnElement="F07_43">
+        <di:waypoint x="6780" y="592"/>
+        <di:waypoint x="6905" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_44_di" bpmnElement="F07_44">
+        <di:waypoint x="6780" y="712"/>
+        <di:waypoint x="6842" y="712"/>
+        <di:waypoint x="6842" y="592"/>
+        <di:waypoint x="6905" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_45_di" bpmnElement="F07_45">
+        <di:waypoint x="6780" y="832"/>
+        <di:waypoint x="6842" y="832"/>
+        <di:waypoint x="6842" y="592"/>
+        <di:waypoint x="6905" y="592"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_46_di" bpmnElement="F07_46">
+        <di:waypoint x="6955" y="592"/>
+        <di:waypoint x="7045" y="592"/>
+        <di:waypoint x="7045" y="304"/>
+        <di:waypoint x="7135" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_47_di" bpmnElement="F07_47">
+        <di:waypoint x="7185" y="304"/>
+        <di:waypoint x="7310" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="F07_48_di" bpmnElement="F07_48">
+        <di:waypoint x="7470" y="304"/>
+        <di:waypoint x="7602" y="304"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="A07_History_di" bpmnElement="A07_History">
+        <di:waypoint x="4170" y="394"/>
+        <di:waypoint x="4170" y="342"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="A07_Rule_di" bpmnElement="A07_Rule">
+        <di:waypoint x="5090" y="384"/>
+        <di:waypoint x="5090" y="342"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="A07_Todo_di" bpmnElement="A07_Todo">
+        <di:waypoint x="4400" y="672"/>
+        <di:waypoint x="4400" y="630"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="M07_To06_di" bpmnElement="M07_To06">
+        <di:waypoint x="1410" y="266"/>
+        <di:waypoint x="1410" y="150"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="M07_From06_di" bpmnElement="M07_From06">
+        <di:waypoint x="1640" y="150"/>
+        <di:waypoint x="1640" y="266"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="M07_ToCust_di" bpmnElement="M07_ToCust">
+        <di:waypoint x="2560" y="342"/>
+        <di:waypoint x="2560" y="1010"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="M07_FromCust_di" bpmnElement="M07_FromCust">
+        <di:waypoint x="3020" y="1010"/>
+        <di:waypoint x="3020" y="322"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="M07_FromCustLate_di" bpmnElement="M07_FromCustLate">
+        <di:waypoint x="3480" y="1010"/>
+        <di:waypoint x="3480" y="322"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmn:message id="Msg_07_Pickup" name="Pfandbox bei Lieferung zurücknehmen"/>
+  <bpmn:message id="Msg_07_Result" name="Rückgabeergebnis"/>
+  <bpmn:message id="Msg_07_Central" name="Zentraler Rückgabeort / Frist"/>
+  <bpmn:message id="Msg_07_Return" name="Box zentral zurückgegeben"/>
+  <bpmn:dataStore id="DS07_History_def" name="Box-Historie"/>
+</bpmn:definitions>
