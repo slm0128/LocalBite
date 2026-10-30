@@ -27,11 +27,10 @@ Bewertung [Selim]
 
 ----
 
+# Sequenz Diagramm
 
-Use Case Diagramm:
-
-Kundenkonto anlegen - Selim
-Produktangebot verwalten - Leon
-Bestellung aufgeben - Mika
-Spenden tätigen / Bewertung abgeben - Esra
-Tierpartnerschaft verwalten - Aaron
+* Kundenkonto anlegen - Selim
+* Produktangebot verwalten - Leon
+* Bestellung aufgeben - Mika
+* Spenden tätigen oder Bewertung abgeben - Esra
+* Tierpartnerschaft verwalten - Aaron
