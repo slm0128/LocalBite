@@ -29,6 +29,7 @@ Bewertung [Selim]
 
 # Sequenz Diagramm
 
+
 * Kundenkonto anlegen - Selim
 * Produktangebot verwalten - Leon
 * Bestellung aufgeben - Mika
