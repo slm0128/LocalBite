@@ -1,6 +1,6 @@
 # 📌 Checkliste & Übersicht: Fallstudie Systemanalyse
 
-~Schaut euch aber noch die PDF Datei "Ablauf-Fallstudie 2026" sicherheitshalber an~ 
+_Schaut euch aber noch die PDF Datei "Ablauf-Fallstudie 2026" sicherheitshalber an_ 
 
 **📅 Abgabe-Deadline:** 13.11.2026, 23:59 Uhr (über Moodle-Upload-Link)
 **⚠️ Wichtig:** Am Ende muss *pro Person* eine individuelle, archivierbare Version der vollständigen Prüfungsleistung in Moodle vorliegen!
