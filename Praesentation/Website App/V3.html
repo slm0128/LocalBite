@@ -1,0 +1,3221 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LocalBite — Regionale Frische, direkt vom Hof</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & Fraunces -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: {
+              50: '#FBF9F5',
+              100: '#F4F0E8',
+              200: '#E6E0D3',
+              300: '#D5CDBE',
+            },
+            forest: {
+              50: '#EDF4F0',
+              100: '#D3E5DB',
+              500: '#2D6A4F',
+              600: '#1F4D36',
+              700: '#173A28',
+              800: '#10281C',
+            },
+            terracotta: {
+              50: '#FDF4EF',
+              100: '#F9E2D4',
+              500: '#D97742',
+              600: '#C05E2B',
+            },
+            charcoal: '#1C2420'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Fraunces"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FBF9F5;
+      color: #1C2420;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+    .font-editorial {
+      font-family: 'Fraunces', serif;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F0E8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D5CDBE;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #1F4D36;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.85); opacity: 0.8; }
+      70% { transform: scale(1.75); opacity: 0; }
+      100% { transform: scale(1.75); opacity: 0; }
+    }
+    .pin-pulse::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 9999px;
+      background-color: #1F4D36;
+      animation: pulse-ring 2.2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+      z-index: -1;
+    }
+    .fade-enter {
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-forest-600 selection:text-white">
+
+  <!-- ===================================================================== -->
+  <!-- MAIN WEBSITE HEADER                                                   -->
+  <!-- ===================================================================== -->
+  <header class="bg-sand-50/95 backdrop-blur-md border-b border-sand-200 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between gap-4">
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3 cursor-pointer group shrink-0" onclick="navigateLogoClick()">
+        <div class="w-10 h-10 rounded-xl bg-forest-600 flex items-center justify-center text-white shadow-sm group-hover:bg-forest-700 transition">
+          <i data-lucide="sprout" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-editorial text-2xl font-bold tracking-tight text-charcoal">LocalBite</span>
+            <span id="header-role-badge" class="hidden text-[11px] font-semibold px-2.5 py-0.5 rounded-full"></span>
+          </div>
+          <p class="text-[11px] text-gray-500 hidden sm:block">Vom Hof direkt auf deinen Tisch</p>
+        </div>
+      </div>
+
+      <!-- Center Navigation Links (Dynamic per Role: Visitor / Customer / Farmer) -->
+      <nav id="main-nav" class="flex items-center gap-1 sm:gap-1.5 overflow-x-auto py-1 max-w-full">
+        <!-- Populated via JS -->
+      </nav>
+
+      <!-- Right Account / Auth Area -->
+      <div id="header-account-area" class="flex items-center gap-2.5 shrink-0 relative">
+        <!-- Populated via JS -->
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- MAIN CONTENT AREA                                                     -->
+  <!-- ===================================================================== -->
+  <main class="flex-1">
+
+    <!-- =================================================================== -->
+    <!-- PUBLIC / CUSTOMER VIEW 1: STARTSEITE (LANDING PAGE)                 -->
+    <!-- =================================================================== -->
+    <section id="page-home" class="page-section fade-enter">
+      <!-- Hero Banner -->
+      <div class="relative overflow-hidden border-b border-sand-200 bg-gradient-to-b from-sand-50 via-sand-50 to-sand-100/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14 lg:py-24 grid lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-forest-50 border border-forest-100 text-forest-700 text-xs font-semibold">
+              <i data-lucide="leaf" class="w-3.5 h-3.5 text-forest-600"></i>
+              <span>100 % Direktvermarktung aus deiner Region</span>
+            </div>
+            <h1 class="font-editorial text-4xl sm:text-5xl lg:text-6xl font-semibold text-charcoal leading-[1.1] tracking-tight">
+              Echte Ernte von Nachbarhöfen – wöchentlich frisch vor deine Tür.
+            </h1>
+            <p class="text-base sm:text-lg text-gray-600 max-w-2xl leading-relaxed">
+              Mit <strong>LocalBite</strong> stellst du dir deine individuelle Wochenbox direkt aus dem Angebot lokaler Bauernhöfe zusammen, übernimmst nachhaltige Tier-Partnerschaften mit exklusivem Hofrabatt und entdeckst Hof-Gastronomie in deiner Nähe.
+            </p>
+
+            <div class="pt-2 flex flex-col sm:flex-row gap-3.5">
+              <button onclick="navigateTo('boxes')" class="px-6 py-3.5 rounded-xl bg-forest-600 hover:bg-forest-700 text-white font-semibold shadow-sm transition flex items-center justify-center gap-2.5 text-sm">
+                <i data-lucide="shopping-basket" class="w-4 h-4"></i>
+                <span>Wochenbox zusammenstellen</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+              <button onclick="navigateTo('map')" class="px-6 py-3.5 rounded-xl bg-white hover:bg-sand-100 text-charcoal border border-sand-300 font-semibold shadow-sm transition flex items-center justify-center gap-2.5 text-sm">
+                <i data-lucide="map-pin" class="w-4 h-4 text-terracotta-500"></i>
+                <span>Partnerhöfe auf der Karte entdecken</span>
+              </button>
+            </div>
+
+            <!-- Trust Metrics -->
+            <div class="pt-6 border-t border-sand-200 grid grid-cols-3 gap-4 max-w-lg">
+              <div>
+                <p class="font-editorial text-2xl font-bold text-charcoal" id="stat-farms-count">4 Höfe</p>
+                <p class="text-xs text-gray-500">im Umkreis von 30 km</p>
+              </div>
+              <div>
+                <p class="font-editorial text-2xl font-bold text-charcoal">Morgens</p>
+                <p class="text-xs text-gray-500">geerntet, abends geliefert</p>
+              </div>
+              <div>
+                <p class="font-editorial text-2xl font-bold text-forest-600">Bis 15 %</p>
+                <p class="text-xs text-gray-500">Vorteil als Tierpartner</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Visual Feature Card -->
+          <div class="lg:col-span-5">
+            <div class="bg-white rounded-3xl border border-sand-200 shadow-xl overflow-hidden">
+              <div class="relative h-56 bg-sand-200">
+                <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80" alt="Frische regionale Ernte" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent"></div>
+                <div class="absolute bottom-4 left-5 right-5 text-white flex items-end justify-between">
+                  <div>
+                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/90 text-white text-[10px] font-bold uppercase tracking-wider">Frisch diese Woche</span>
+                    <h3 class="font-editorial text-2xl font-semibold mt-1">Erntefrisch- & Hof-Gastro Boxen</h3>
+                  </div>
+                  <span class="text-sm font-bold bg-white/20 backdrop-blur-md px-3 py-1 rounded-xl">ab 19,00 €</span>
+                </div>
+              </div>
+
+              <div class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="p-3.5 rounded-2xl bg-sand-50 border border-sand-200 flex items-start gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-forest-50 text-forest-600 flex items-center justify-center shrink-0">
+                      <i data-lucide="carrot" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                      <p class="text-xs font-semibold text-charcoal">Frei wählbar</p>
+                      <p class="text-[11px] text-gray-500 mt-0.5">Jede Woche flexibel anpassen oder pausieren</p>
+                    </div>
+                  </div>
+                  <div class="p-3.5 rounded-2xl bg-sand-50 border border-sand-200 flex items-start gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-terracotta-50 text-terracotta-600 flex items-center justify-center shrink-0">
+                      <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                      <p class="text-xs font-semibold text-charcoal">Animal-Sharing</p>
+                      <p class="text-[11px] text-gray-500 mt-0.5">Weidetiere fördern & dauerhaft sparen</p>
+                    </div>
+                  </div>
+                  <div class="p-3.5 rounded-2xl bg-sand-50 border border-sand-200 flex items-start gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-forest-50 text-forest-600 flex items-center justify-center shrink-0">
+                      <i data-lucide="utensils" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                      <p class="text-xs font-semibold text-charcoal">Hof-Gastronomie</p>
+                      <p class="text-[11px] text-gray-500 mt-0.5">Gemeinsames Kochen direkt beim Erzeuger</p>
+                    </div>
+                  </div>
+                  <div class="p-3.5 rounded-2xl bg-sand-50 border border-sand-200 flex items-start gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-terracotta-50 text-terracotta-600 flex items-center justify-center shrink-0">
+                      <i data-lucide="truck" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                      <p class="text-xs font-semibold text-charcoal">Grüne Logistik</p>
+                      <p class="text-[11px] text-gray-500 mt-0.5">Mehrweg-Thermobox & E-Shuttle Zustellung</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pt-2 flex items-center justify-between text-xs text-gray-500 border-t border-sand-100">
+                  <span>Du führst selbst einen landwirtschaftlichen Betrieb?</span>
+                  <button onclick="openAuth('farmer', 'register')" class="font-semibold text-terracotta-600 hover:underline flex items-center gap-1">
+                    <span>Partnerhof werden</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How LocalBite Works -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-xs font-semibold uppercase tracking-widest text-forest-600">Transparenter Kreislauf</span>
+          <h2 class="font-editorial text-3xl sm:text-4xl font-semibold text-charcoal mt-2">So funktioniert LocalBite</h2>
+          <p class="text-sm text-gray-600 mt-2">Wir verbinden den Komfort moderner Kochboxen mit echter Wertschöpfung für die Höfe unserer Region.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-2xl border border-sand-200 p-7 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-forest-50 text-forest-600 flex items-center justify-center mb-5">
+                <i data-lucide="box" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-editorial text-xl font-semibold text-charcoal mb-2">1. Wochenbox individuell füllen</h3>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Wähle zwischen Single-, Paar-, Familien- oder Hof-Gastro-Kochbox. Bestücke sie frei mit tagesfrischem Gemüse, Rohmilchkäse, Sauerteigbrot und Hof-Spezialitäten.
+              </p>
+            </div>
+            <button onclick="navigateTo('boxes')" class="mt-6 text-xs font-semibold text-forest-600 hover:text-forest-700 flex items-center gap-1.5">
+              <span>Zu den Wochenboxen</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-sand-200 p-7 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-terracotta-50 text-terracotta-600 flex items-center justify-center mb-5">
+                <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-editorial text-xl font-semibold text-charcoal mb-2">2. Tier-Partnerschaft übernehmen</h3>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Unterstütze Weiderinder, Hühnermobile oder Edelziegen auf Partnerhöfen mit einem monatlichen Beitrag und erhalte automatisch bis zu 15 % Rabatt auf deinen Einkauf.
+              </p>
+            </div>
+            <button onclick="navigateTo('animals')" class="mt-6 text-xs font-semibold text-terracotta-600 hover:text-terracotta-500 flex items-center gap-1.5">
+              <span>Tiere kennenlernen</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-sand-200 p-7 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-forest-50 text-forest-600 flex items-center justify-center mb-5">
+                <i data-lucide="map" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-editorial text-xl font-semibold text-charcoal mb-2">3. Höfe & Gastronomie erleben</h3>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Sieh auf der interaktiven Karte genau, woher deine Lebensmittel stammen, besuche deine Patentiere auf der Weide oder melde dich zum Community-Kochen an.
+              </p>
+            </div>
+            <button onclick="navigateTo('map')" class="mt-6 text-xs font-semibold text-forest-600 hover:text-forest-700 flex items-center gap-1.5">
+              <span>Interaktive Hof-Karte öffnen</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dual Call-To-Action Banner for Customers & Farmers -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
+        <div class="bg-forest-800 text-white rounded-3xl p-8 sm:p-12 grid lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-8 space-y-3">
+            <span class="text-xs uppercase tracking-widest text-emerald-300 font-semibold">Gemeinsam für regionale Landwirtschaft</span>
+            <h3 class="font-editorial text-2xl sm:text-3xl font-semibold">Werde Teil von LocalBite – als Genießer oder als Erzeugerhof</h3>
+            <p class="text-xs sm:text-sm text-sand-200 max-w-2xl leading-relaxed">
+              Melde dich als Kunde an, um deine Lieferungen zu verwalten, oder registriere deinen landwirtschaftlichen Betrieb, um eigene Hofprodukte, Tier-Partnerschaften und Hof-Events direkt anzubieten.
+            </p>
+          </div>
+          <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+            <button onclick="openAuth('customer', 'register')" class="w-full py-3.5 px-5 rounded-xl bg-white hover:bg-sand-100 text-charcoal font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-2">
+              <i data-lucide="user-plus" class="w-4 h-4 text-forest-600"></i>
+              <span>Als Kunde registrieren</span>
+            </button>
+            <button onclick="openAuth('farmer', 'register')" class="w-full py-3.5 px-5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-2">
+              <i data-lucide="tractor" class="w-4 h-4"></i>
+              <span>Als Landwirt / Partnerhof starten</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- AUTHENTICATION VIEW: LOGIN & REGISTRIERUNG (KUNDE ODER LANDWIRT)    -->
+    <!-- =================================================================== -->
+    <section id="page-auth" class="page-section hidden fade-enter py-12 px-4 sm:px-6">
+      <div class="max-w-xl mx-auto">
+        <div class="bg-white rounded-3xl border border-sand-200 shadow-xl overflow-hidden">
+          <!-- Role Selector (Kunde vs. Landwirt) -->
+          <div class="p-2 bg-sand-100 border-b border-sand-200 grid grid-cols-2 gap-2">
+            <button type="button" id="auth-role-btn-customer" onclick="switchAuthRole('customer')" class="py-3 px-4 rounded-2xl text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-2">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+              <span>Kunde</span>
+            </button>
+            <button type="button" id="auth-role-btn-farmer" onclick="switchAuthRole('farmer')" class="py-3 px-4 rounded-2xl text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-2">
+              <i data-lucide="tractor" class="w-4 h-4"></i>
+              <span>Landwirt / Partnerhof</span>
+            </button>
+          </div>
+
+          <div class="p-6 sm:p-8 space-y-6">
+            <!-- Header & Mode Switch (Anmelden vs. Registrieren) -->
+            <div class="flex flex-wrap items-center justify-between gap-4 border-b border-sand-100 pb-5">
+              <div>
+                <span id="auth-role-tag" class="text-[11px] font-semibold uppercase tracking-wider text-forest-600">Kunden-Konto</span>
+                <h2 id="auth-title" class="font-editorial text-2xl sm:text-3xl font-semibold text-charcoal mt-0.5">Willkommen zurück</h2>
+              </div>
+              <div class="inline-flex rounded-xl bg-sand-100 p-1 text-xs font-semibold">
+                <button type="button" id="auth-tab-login" onclick="switchAuthMode('login')" class="px-3.5 py-1.5 rounded-lg transition">Anmelden</button>
+                <button type="button" id="auth-tab-register" onclick="switchAuthMode('register')" class="px-3.5 py-1.5 rounded-lg transition">Neu registrieren</button>
+              </div>
+            </div>
+
+            <!-- 1. LOGIN FORM (For both Customer & Farmer) -->
+            <form id="form-login" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1.5">E-Mail-Adresse</label>
+                <input type="email" id="login-email-input" required class="w-full px-4 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600 bg-sand-50/40" placeholder="name@beispiel.de" />
+              </div>
+              <div>
+                <div class="flex justify-between items-center mb-1.5">
+                  <label class="text-xs font-semibold text-gray-700">Passwort</label>
+                  <span class="text-[11px] text-gray-400">Beliebige Eingabe möglich</span>
+                </div>
+                <input type="password" id="login-password-input" required value="localbite2026" class="w-full px-4 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600 bg-sand-50/40" />
+              </div>
+
+              <!-- Quick Account Picker for effortless testing -->
+              <div id="login-quick-account-box" class="p-3.5 rounded-xl bg-sand-50 border border-sand-200 text-xs flex items-center justify-between gap-2">
+                <!-- Populated dynamically via JS -->
+              </div>
+
+              <button type="submit" id="login-submit-btn" class="w-full py-3.5 rounded-xl bg-forest-600 hover:bg-forest-700 text-white font-semibold text-sm shadow-sm transition flex items-center justify-center gap-2">
+                <i data-lucide="log-in" class="w-4 h-4"></i>
+                <span id="login-submit-text">Als Kunde anmelden</span>
+              </button>
+            </form>
+
+            <!-- 2. CUSTOMER REGISTRATION FORM -->
+            <form id="form-register-customer" onsubmit="handleCustomerRegisterSubmit(event)" class="hidden space-y-4">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Vor- und Nachname *</label>
+                  <input type="text" id="reg-cust-name" required placeholder="z. B. Clara Weber" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">E-Mail-Adresse *</label>
+                  <input type="email" id="reg-cust-email" required placeholder="clara.weber@posteo.de" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-3 gap-4">
+                <div class="sm:col-span-2">
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Straße & Hausnummer *</label>
+                  <input type="text" id="reg-cust-street" required placeholder="Waldstraße 42" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">PLZ & Ort *</label>
+                  <input type="text" id="reg-cust-city" required placeholder="76133 Karlsruhe" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Abstell- / Lieferpräferenz</label>
+                  <select id="reg-cust-pref" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm bg-white focus:outline-none focus:border-forest-600">
+                    <option value="Vor die Haustür (Mehrweg-Thermobox)">Vor die Haustür (Thermobox)</option>
+                    <option value="Autonome Smart-Box / Garagen-Code">Smart-Box / Garagen-Code</option>
+                    <option value="Persönliche Übergabe">Persönliche Übergabe</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Passwort wählen *</label>
+                  <input type="password" required value="localbite2026" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-forest-50/70 border border-forest-100 flex items-start gap-2.5">
+                <input type="checkbox" id="reg-cust-pledge" checked class="mt-1 rounded text-forest-600" />
+                <label for="reg-cust-pledge" class="text-xs text-gray-700 leading-relaxed">
+                  Ich nehme am kostenfreien <strong>LocalBite Mehrweg-Pfandsystem</strong> teil (Isolierboxen & Gläser werden bei der Folgezustellung abgeholt).
+                </label>
+              </div>
+
+              <button type="submit" class="w-full py-3.5 rounded-xl bg-forest-600 hover:bg-forest-700 text-white font-semibold text-sm shadow-sm transition flex items-center justify-center gap-2">
+                <i data-lucide="user-check" class="w-4 h-4"></i>
+                <span>Kundenkonto anlegen & weiter zur Wochenbox</span>
+              </button>
+            </form>
+
+            <!-- 3. FARMER REGISTRATION FORM -->
+            <form id="form-register-farmer" onsubmit="handleFarmerRegisterSubmit(event)" class="hidden space-y-4">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Name des Hofs (Betriebsname) *</label>
+                  <input type="text" id="reg-farm-name" required placeholder="z. B. Biohof Sonnenhalde" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Inhaber/in *</label>
+                  <input type="text" id="reg-farm-owner" required placeholder="z. B. Lukas & Miriam Brenner" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">E-Mail-Adresse *</label>
+                  <input type="email" id="reg-farm-email" required placeholder="hof@sonnenhalde-bio.de" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Hof-Standort (PLZ & Ort) *</label>
+                  <input type="text" id="reg-farm-address" required placeholder="Sonnenhalde 1, 75015 Bretten" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+                </div>
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Bewirtschaftungsart *</label>
+                  <select id="reg-farm-cert" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm bg-white focus:outline-none focus:border-forest-600">
+                    <option value="Bioland Zertifiziert">Bioland</option>
+                    <option value="Demeter Hof">Demeter</option>
+                    <option value="Naturland">Naturland</option>
+                    <option value="Regional-Traditionell">Regional-Traditionell</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Hof-Schwerpunkt *</label>
+                  <select id="reg-farm-category" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm bg-white focus:outline-none focus:border-forest-600">
+                    <option value="Weidehaltung & Tierpartnerschaft">Weidehaltung & Tierpartnerschaft</option>
+                    <option value="Gemüse & Ackerbau">Gemüse & Ackerbau</option>
+                    <option value="Milchvieh & Käserei">Milchvieh & Käserei</option>
+                    <option value="Hof-Gastronomie & Obst">Hof-Gastronomie & Obst</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Passwort festlegen *</label>
+                <input type="password" required value="hofportal2026" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+              </div>
+
+              <button type="submit" class="w-full py-3.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold text-sm shadow-sm transition flex items-center justify-center gap-2">
+                <i data-lucide="tractor" class="w-4 h-4"></i>
+                <span>Partnerhof registrieren & Hof-Portal öffnen</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- CUSTOMER VIEW 2: WOCHENBOXEN & HOFLADEN (INKL. MEINE ABOS)          -->
+    <!-- =================================================================== -->
+    <section id="page-boxes" class="page-section hidden fade-enter max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+      <!-- Page Title & Active Sponsorship Banner -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-forest-600">Frisch vom Feld & aus der Hofkäserei</span>
+          <h1 class="font-editorial text-3xl sm:text-4xl font-semibold text-charcoal mt-1">Wochenbox & Hofladen</h1>
+          <p class="text-xs sm:text-sm text-gray-600 mt-1">Wähle deine Box-Größe und stelle dir deine Lieblingserzeugnisse unserer regionalen Partnerhöfe zusammen.</p>
+        </div>
+
+        <div id="shop-sponsorship-banner" class="hidden px-4 py-2.5 rounded-2xl bg-terracotta-50 border border-terracotta-100 text-terracotta-600 text-xs font-medium flex items-center gap-2.5 shadow-sm">
+          <i data-lucide="award" class="w-4 h-4 shrink-0"></i>
+          <span id="shop-sponsorship-text">Tierpartner-Vorteil aktiv: 15 % Rabatt wird im Warenkorb abgezogen.</span>
+        </div>
+      </div>
+
+      <!-- Active Subscriptions / Orders Bar (Visible if Customer has placed orders) -->
+      <div id="customer-active-orders-box" class="hidden bg-white rounded-2xl border border-forest-100 shadow-sm p-5 space-y-4">
+        <div class="flex items-center justify-between border-b border-sand-100 pb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <h3 class="font-editorial text-lg font-semibold text-charcoal">Deine aktiven Wochenbox-Abos & Bestellungen</h3>
+          </div>
+          <span class="text-xs text-gray-500">Jederzeit flexibel pausierbar</span>
+        </div>
+        <div id="customer-orders-list" class="grid md:grid-cols-2 gap-4">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Main Configurator & Checkout Split Grid -->
+      <div class="grid lg:grid-cols-12 gap-8 items-start">
+        <!-- Left 8 Cols: Box Models & Farm Products -->
+        <div class="lg:col-span-8 space-y-6">
+          <!-- Step A: Abo-Modell & Lieferintervall -->
+          <div class="bg-white rounded-2xl border border-sand-200 p-5 sm:p-6 shadow-sm space-y-5">
+            <div class="flex items-center justify-between">
+              <h2 class="font-editorial text-xl font-semibold text-charcoal">1. Abo-Modell wählen</h2>
+              <span class="text-xs text-gray-500">Inklusive Mehrweg-Pfandbox</span>
+            </div>
+
+            <div id="box-models-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              <!-- Populated via JS (Single-Box, Paar-Box, Familien-Box, Hof-Gastronomie Kochbox) -->
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4 pt-4 border-t border-sand-100">
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <label class="block text-xs font-semibold text-gray-700">Lieferintervall (max. Mo, Mi & Fr – frei wählbar)</label>
+                  <span id="box-interval-summary" class="text-[11px] font-semibold text-forest-700">3× wöchentlich</span>
+                </div>
+                <div id="box-interval-days" class="grid grid-cols-3 gap-2 text-xs">
+                  <label class="cursor-pointer">
+                    <input type="checkbox" name="box_delivery_days" value="Montags" checked onchange="toggleDeliveryDay(this)" class="peer sr-only" />
+                    <div class="py-2.5 px-2 rounded-xl border border-sand-300 text-center font-medium bg-white hover:bg-sand-50 peer-checked:border-forest-600 peer-checked:bg-forest-50 peer-checked:text-forest-700 transition">Montags</div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="checkbox" name="box_delivery_days" value="Mittwochs" checked onchange="toggleDeliveryDay(this)" class="peer sr-only" />
+                    <div class="py-2.5 px-2 rounded-xl border border-sand-300 text-center font-medium bg-white hover:bg-sand-50 peer-checked:border-forest-600 peer-checked:bg-forest-50 peer-checked:text-forest-700 transition">Mittwochs</div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="checkbox" name="box_delivery_days" value="Freitags" checked onchange="toggleDeliveryDay(this)" class="peer sr-only" />
+                    <div class="py-2.5 px-2 rounded-xl border border-sand-300 text-center font-medium bg-white hover:bg-sand-50 peer-checked:border-forest-600 peer-checked:bg-forest-50 peer-checked:text-forest-700 transition">Freitags</div>
+                  </label>
+                </div>
+                <input type="hidden" id="box-interval-select" value="Montags, Mittwochs & Freitags" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1.5">Zustellart</label>
+                <select id="box-delivery-mode" onchange="updateCartConfig()" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-xs font-medium bg-white focus:outline-none focus:border-forest-600">
+                  <option value="Autonomer E-Shuttle (Thermobox)">Autonomer E-Shuttle (gekühlte Thermobox)</option>
+                  <option value="Regionaler Lastenrad-Kurier">Regionaler E-Lastenrad-Kurier</option>
+                  <option value="Abholung direkt am Partnerhof">Abholung direkt am Partnerhof</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step B: Saisonale Hofprodukte für die Box -->
+          <div class="bg-white rounded-2xl border border-sand-200 p-5 sm:p-6 shadow-sm space-y-5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h2 class="font-editorial text-xl font-semibold text-charcoal">2. Saisonale Hof-Erzeugnisse in deiner Box</h2>
+                <p class="text-xs text-gray-500 mt-0.5">Stelle dir deine frischen Produkte direkt von den Partnerhöfen zusammen.</p>
+              </div>
+              <button onclick="navigateTo('animals')" class="text-xs font-semibold text-terracotta-600 hover:underline flex items-center gap-1">
+                <i data-lucide="heart-handshake" class="w-3.5 h-3.5"></i>
+                <span>Mit Tier-Partnerschaft bis 15 % sparen</span>
+              </button>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 border-b border-sand-100">
+              <button onclick="setProductCategoryFilter('Alle')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-forest-600 text-white">Alle Erzeugnisse</button>
+              <button onclick="setProductCategoryFilter('Gemüse & Obst')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-sand-100 text-gray-700 hover:bg-sand-200">Gemüse & Obst</button>
+              <button onclick="setProductCategoryFilter('Milch & Käse')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-sand-100 text-gray-700 hover:bg-sand-200">Milch & Käse</button>
+              <button onclick="setProductCategoryFilter('Brot, Eier & Honig')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-sand-100 text-gray-700 hover:bg-sand-200">Brot, Eier & Honig</button>
+              <button onclick="setProductCategoryFilter('Hof-Spezialitäten')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-sand-100 text-gray-700 hover:bg-sand-200">Hof-Spezialitäten</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="shop-products-grid" class="grid sm:grid-cols-2 gap-3.5">
+              <!-- Populated dynamically via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 4 Cols: Sticky Cart & Checkout -->
+        <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-4">
+          <div class="bg-white rounded-2xl border border-sand-200 shadow-md p-5 sm:p-6">
+            <div class="flex items-center justify-between border-b border-sand-100 pb-3.5 mb-4">
+              <div>
+                <h3 class="font-editorial text-xl font-semibold text-charcoal">Dein Warenkorb</h3>
+                <p id="cart-subtitle" class="text-xs text-gray-500">Paar-Box · Montags, Mittwochs & Freitags</p>
+              </div>
+              <span id="cart-badge-count" class="px-2.5 py-1 rounded-full bg-forest-50 text-forest-700 text-xs font-bold">4 Produkte</span>
+            </div>
+
+            <!-- Selected Cart Items -->
+            <div id="cart-items-container" class="space-y-2.5 max-h-60 overflow-y-auto pr-1 mb-4 divide-y divide-sand-100">
+              <!-- Populated via JS -->
+            </div>
+
+            <!-- Totals Breakdown -->
+            <div class="space-y-2 pt-3 border-t border-sand-200 text-xs">
+              <div class="flex justify-between text-gray-600">
+                <span id="cart-plan-name-row">Basis-Box & Ernte-Anteil</span>
+                <span id="cart-base-price" class="font-medium">24,00 €</span>
+              </div>
+              <div class="flex justify-between text-gray-600">
+                <span>Individuelle Hof-Erzeugnisse</span>
+                <span id="cart-items-price" class="font-medium">17,80 €</span>
+              </div>
+              <div id="cart-discount-row" class="hidden flex justify-between text-terracotta-600 font-semibold">
+                <span class="flex items-center gap-1"><i data-lucide="award" class="w-3.5 h-3.5"></i> Tierpartner-Rabatt</span>
+                <span id="cart-discount-value">- 6,27 €</span>
+              </div>
+              <div class="flex justify-between text-gray-500">
+                <span>Mehrweg-Pfandbox & E-Logistik</span>
+                <span class="text-forest-600 font-medium">Kostenfrei</span>
+              </div>
+              <div class="flex justify-between text-base font-bold text-charcoal pt-2 border-t border-sand-200">
+                <span>Gesamtbetrag pro Lieferung</span>
+                <span id="cart-total-price">35,53 €</span>
+              </div>
+            </div>
+
+            <!-- Checkout Form -->
+            <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" class="mt-5 pt-4 border-t border-sand-200 space-y-3.5">
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">Lieferadresse & Empfänger *</label>
+                <input type="text" id="checkout-name-input" required placeholder="Vor- und Nachname" class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs bg-white mb-2" />
+                <input type="text" id="checkout-address-input" required placeholder="Straße, Hausnummer, PLZ & Ort" class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs bg-white" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1.5">Zahlungsart</label>
+                <div class="grid grid-cols-3 gap-2 text-xs">
+                  <label class="cursor-pointer">
+                    <input type="radio" name="pay_method" value="SEPA-Lastschrift" checked onchange="switchPaymentMethod(this.value)" class="peer sr-only" />
+                    <div class="py-2 px-2 rounded-xl border border-sand-300 text-center font-medium peer-checked:border-forest-600 peer-checked:bg-forest-50 peer-checked:text-forest-700">SEPA</div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="pay_method" value="Kreditkarte" onchange="switchPaymentMethod(this.value)" class="peer sr-only" />
+                    <div class="py-2 px-2 rounded-xl border border-sand-300 text-center font-medium peer-checked:border-forest-600 peer-checked:bg-forest-50 peer-checked:text-forest-700">Karte</div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="pay_method" value="PayPal" onchange="switchPaymentMethod(this.value)" class="peer sr-only" />
+                    <div class="py-2 px-2 rounded-xl border border-sand-300 text-center font-medium peer-checked:border-forest-600 peer-checked:bg-forest-50 peer-checked:text-forest-700">PayPal</div>
+                  </label>
+                </div>
+              </div>
+
+              <div id="checkout-payment-field">
+                <input type="text" required value="DE89 3704 0044 0532 0130 00" class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs font-mono bg-sand-50" placeholder="IBAN" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-gray-500 mb-1">Abstellhinweis für den Fahrer (optional)</label>
+                <input type="text" id="checkout-note-input" placeholder="z. B. Thermobox bitte unter das Vordach stellen" class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs bg-white" />
+              </div>
+
+              <button type="submit" id="checkout-submit-btn" class="w-full py-3.5 rounded-xl bg-forest-600 hover:bg-forest-700 text-white font-semibold text-sm shadow-sm transition flex items-center justify-center gap-2">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                <span>Wochenbox verbindlich bestellen</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- CUSTOMER VIEW 3: TIER-PARTNERSCHAFTEN (ANIMAL-SHARING)              -->
+    <!-- =================================================================== -->
+    <section id="page-animals" class="page-section hidden fade-enter max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+      <div class="bg-white rounded-3xl border border-sand-200 p-6 sm:p-8 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div class="max-w-2xl space-y-2">
+          <span class="text-xs font-semibold uppercase tracking-wider text-terracotta-600">Animal-Sharing · Direkt vom Partnerhof</span>
+          <h1 class="font-editorial text-3xl sm:text-4xl font-semibold text-charcoal">Tier-Partnerschaften entdecken</h1>
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+            Übernimm einen monatlichen Partnerschafts-Anteil für ein Weidetier deiner Wahl. Du sicherst artgerechte Haltung auf unseren regionalen Höfen und erhältst im Gegenzug <strong>dauerhaft bis zu 15 % Hofrabatt auf alle Wochenbox-Bestellungen</strong> sowie regelmäßige Updates von der Weide.
+          </p>
+        </div>
+        <div class="bg-sand-50 rounded-2xl p-4 border border-sand-200 flex items-center gap-4 shrink-0">
+          <div class="w-11 h-11 rounded-xl bg-forest-600 text-white flex items-center justify-center shrink-0">
+            <i data-lucide="percent" class="w-5 h-5"></i>
+          </div>
+          <div class="text-xs">
+            <p class="font-semibold text-charcoal">Sofortiger Rabatt-Vorteil</p>
+            <p class="text-gray-500 mt-0.5">Wird direkt im Warenkorb deiner Wochenbox hinterlegt.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animals Grid -->
+      <div id="animals-public-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- CUSTOMER VIEW 4: PARTNERHÖFE & INTERAKTIVE KARTE                    -->
+    <!-- =================================================================== -->
+    <section id="page-map" class="page-section hidden fade-enter max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+      <div class="bg-white rounded-2xl border border-sand-200 p-5 sm:p-6 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-forest-600">Transparenz & kurze Wege</span>
+          <h1 class="font-editorial text-3xl font-semibold text-charcoal mt-1">Unsere Partnerhöfe in deiner Region</h1>
+          <p class="text-xs sm:text-sm text-gray-600 mt-0.5">Klicke auf einen Hof-Pin, um Hofprodukte anzusehen oder eine Anfrage für Hofbesuche und Community-Kochen zu senden.</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="flex flex-wrap items-center gap-3">
+          <select id="map-category-select" onchange="renderFarmsMap()" class="px-3.5 py-2 rounded-xl border border-sand-300 text-xs font-medium bg-sand-50 focus:outline-none focus:border-forest-600">
+            <option value="Alle">Alle Hof-Schwerpunkte</option>
+            <option value="Weidehaltung & Tierpartnerschaft">Weidehaltung & Tierpartnerschaft</option>
+            <option value="Gemüse & Ackerbau">Gemüse & Ackerbau</option>
+            <option value="Milchvieh & Käserei">Milchvieh & Käserei</option>
+            <option value="Hof-Gastronomie & Obst">Hof-Gastronomie & Obst</option>
+          </select>
+
+          <div class="relative">
+            <i data-lucide="search" class="w-3.5 h-3.5 text-gray-400 absolute left-3 top-2.5"></i>
+            <input type="text" id="map-search-query" oninput="renderFarmsMap()" placeholder="Hof oder Erzeugnis suchen..." class="pl-8 pr-3 py-2 rounded-xl border border-sand-300 text-xs bg-sand-50 focus:outline-none focus:border-forest-600 w-48" />
+          </div>
+
+          <div class="flex items-center gap-2 bg-sand-50 px-3 py-1.5 rounded-xl border border-sand-200">
+            <span class="text-[11px] font-semibold text-gray-600">Umkreis: <strong id="map-radius-text" class="text-forest-700">35 km</strong></span>
+            <input type="range" id="map-radius-range" min="5" max="50" step="5" value="35" oninput="renderFarmsMap()" class="w-20 accent-forest-600 cursor-pointer" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Map & Farm Inspector Grid -->
+      <div class="grid lg:grid-cols-12 gap-6 items-start">
+        <!-- Left 7 Cols: Interactive Vector Map -->
+        <div class="lg:col-span-7 bg-white rounded-2xl border border-sand-200 shadow-sm overflow-hidden">
+          <div class="px-4 py-3 border-b border-sand-100 flex items-center justify-between text-xs text-gray-500 bg-sand-50/50">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-600 inline-block"></span>
+              <span>Liefergebiet rund um: <strong id="map-user-city" class="text-charcoal">76133 Karlsruhe</strong></span>
+            </div>
+            <span id="map-count-badge" class="font-semibold text-forest-700">4 Partnerhöfe</span>
+          </div>
+
+          <div class="relative w-full h-[440px] sm:h-[500px] bg-[#EEF2EB] overflow-hidden select-none">
+            <svg viewBox="0 0 800 520" class="w-full h-full object-cover" preserveAspectRatio="xMidYMid slice">
+              <path d="M0,0 L800,0 L800,520 L0,520 Z" fill="#EEF2EB" />
+              <path d="M-40,80 Q180,20 340,140 T780,90 L820,0 L-40,0 Z" fill="#E3ECE0" />
+              <path d="M480,320 Q620,250 790,340 L800,520 L420,520 Z" fill="#E1EAE0" />
+              <path d="M20,380 Q150,310 290,420 T520,490 L0,520 Z" fill="#E5EDE2" />
+
+              <g stroke="#DCE4D8" stroke-width="1">
+                <line x1="0" y1="100" x2="800" y2="100" />
+                <line x1="0" y1="200" x2="800" y2="200" />
+                <line x1="0" y1="300" x2="800" y2="300" />
+                <line x1="0" y1="400" x2="800" y2="400" />
+                <line x1="160" y1="0" x2="160" y2="520" />
+                <line x1="320" y1="0" x2="320" y2="520" />
+                <line x1="480" y1="0" x2="480" y2="520" />
+                <line x1="640" y1="0" x2="640" y2="520" />
+              </g>
+
+              <path d="M110,0 C140,140 90,260 155,390 C180,445 160,490 190,520" fill="none" stroke="#C5DFEA" stroke-width="18" stroke-linecap="round" />
+              <path d="M155,390 C280,370 430,410 610,330" fill="none" stroke="#CFE5EE" stroke-width="8" stroke-linecap="round" />
+
+              <path d="M140,0 L410,260 L780,440" fill="none" stroke="#FFFFFF" stroke-width="5" opacity="0.85" />
+              <path d="M60,460 L410,260 L680,70" fill="none" stroke="#FFFFFF" stroke-width="4" opacity="0.85" />
+              <path d="M410,260 L430,520" fill="none" stroke="#FFFFFF" stroke-width="3.5" opacity="0.7" />
+
+              <text x="55" y="60" fill="#7D8F82" font-size="11" font-weight="600" letter-spacing="1.5">RHEINEBENE</text>
+              <text x="580" y="75" fill="#7D8F82" font-size="11" font-weight="600" letter-spacing="1.5">KRAICHGAU HÜGELLAND</text>
+              <text x="560" y="465" fill="#7D8F82" font-size="11" font-weight="600" letter-spacing="1.5">NORDSCHWARZWALD</text>
+
+              <circle id="map-svg-radius" cx="400" cy="260" r="210" fill="rgba(31, 77, 54, 0.05)" stroke="#1F4D36" stroke-width="1.5" stroke-dasharray="6 6" />
+            </svg>
+
+            <!-- User Location Pin -->
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center pointer-events-none">
+              <div class="w-8 h-8 rounded-full bg-blue-600 border-2 border-white shadow-lg flex items-center justify-center text-white">
+                <i data-lucide="home" class="w-4 h-4"></i>
+              </div>
+              <span class="mt-1 px-2 py-0.5 rounded bg-charcoal/85 text-white text-[10px] font-semibold whitespace-nowrap">Lieferort</span>
+            </div>
+
+            <!-- Farm Pins Layer -->
+            <div id="map-pins-container" class="absolute inset-0"></div>
+          </div>
+
+          <div id="map-bottom-pills" class="p-3 bg-sand-50 border-t border-sand-200 flex items-center gap-2 overflow-x-auto"></div>
+        </div>
+
+        <!-- Right 5 Cols: Selected Farm Detail & Inquiry Form -->
+        <div class="lg:col-span-5" id="map-detail-sidebar"></div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- FARMER PORTAL VIEW 1: MEIN BETRIEBSPROFIL & STANDORT                -->
+    <!-- =================================================================== -->
+    <section id="page-farmer-profile" class="page-section hidden fade-enter max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-terracotta-600">Hof-Portal · Betriebsdaten</span>
+          <h1 class="font-editorial text-3xl font-semibold text-charcoal mt-1">Mein Betriebsprofil & Standort</h1>
+          <p class="text-xs sm:text-sm text-gray-600 mt-0.5">Pflege die öffentlichen Angaben deines Hofes und positioniere deinen Pin auf der regionalen Karte.</p>
+        </div>
+        <button onclick="navigateTo('map')" class="px-4 py-2 rounded-xl bg-white hover:bg-sand-100 text-charcoal border border-sand-300 text-xs font-semibold transition flex items-center gap-1.5 self-start sm:self-auto">
+          <i data-lucide="map" class="w-3.5 h-3.5 text-forest-600"></i>
+          <span>Öffentliche Hof-Karte ansehen</span>
+        </button>
+      </div>
+
+      <form onsubmit="saveFarmerProfileForm(event)" class="grid lg:grid-cols-12 gap-8 items-start">
+        <!-- Left 7 Cols: Farm Master Data -->
+        <div class="lg:col-span-7 bg-white rounded-2xl border border-sand-200 p-6 sm:p-7 shadow-sm space-y-5">
+          <h2 class="font-editorial text-xl font-semibold text-charcoal border-b border-sand-100 pb-3">Stammdaten & Hofbeschreibung</h2>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Name des Hofs (Betriebsname) *</label>
+              <input type="text" id="fp-name" required class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Inhaber/in *</label>
+              <input type="text" id="fp-owner" required class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Kontakt E-Mail *</label>
+              <input type="email" id="fp-email" required class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Telefonnummer *</label>
+              <input type="text" id="fp-phone" required class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Bewirtschaftungsart / Zertifizierung</label>
+              <select id="fp-cert" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm bg-white focus:outline-none focus:border-forest-600">
+                <option value="Bioland Zertifiziert">Bioland Zertifiziert</option>
+                <option value="Demeter Hof">Demeter Hof</option>
+                <option value="Naturland">Naturland</option>
+                <option value="Regional-Traditionell">Regional-Traditionell</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Hof-Schwerpunkt</label>
+              <select id="fp-category" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm bg-white focus:outline-none focus:border-forest-600">
+                <option value="Weidehaltung & Tierpartnerschaft">Weidehaltung & Tierpartnerschaft</option>
+                <option value="Gemüse & Ackerbau">Gemüse & Ackerbau</option>
+                <option value="Milchvieh & Käserei">Milchvieh & Käserei</option>
+                <option value="Hof-Gastronomie & Obst">Hof-Gastronomie & Obst</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Anschrift (Straße, PLZ & Ort) *</label>
+              <input type="text" id="fp-address" required class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Hofladen- & Besuchszeiten</label>
+              <input type="text" id="fp-hours" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Über unseren Hof (Vorstellung für Kunden) *</label>
+            <textarea id="fp-bio" rows="4" required class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm leading-relaxed focus:outline-none focus:border-forest-600"></textarea>
+          </div>
+
+          <div class="pt-2 flex justify-end">
+            <button type="submit" class="px-6 py-3 rounded-xl bg-forest-600 hover:bg-forest-700 text-white font-semibold text-sm shadow-sm transition flex items-center gap-2">
+              <i data-lucide="save" class="w-4 h-4"></i>
+              <span>Betriebsprofil speichern</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right 5 Cols: Interactive Map Pin Positioning -->
+        <div class="lg:col-span-5 bg-white rounded-2xl border border-sand-200 p-6 shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="font-editorial text-xl font-semibold text-charcoal">Karten-Standort festlegen</h2>
+            <span id="fp-distance-badge" class="px-2.5 py-1 rounded-full bg-forest-50 text-forest-700 text-xs font-semibold">18 km Radius</span>
+          </div>
+          <p class="text-xs text-gray-500">Klicke direkt in die Karte, um die genaue Position deines Hof-Pins für die Umkreissuche der Kunden zu setzen.</p>
+
+          <div id="fp-pin-map" onclick="handleFarmerPinClick(event)" class="relative w-full h-64 rounded-2xl bg-[#E8EFE5] border border-sand-300 overflow-hidden cursor-crosshair select-none">
+            <svg viewBox="0 0 400 240" class="w-full h-full object-cover pointer-events-none">
+              <path d="M0,0 L400,0 L400,240 L0,240 Z" fill="#E8EFE5" />
+              <path d="M60,0 C80,90 50,150 90,240" fill="none" stroke="#C5DFEA" stroke-width="10" />
+              <path d="M70,0 L200,120 L390,210" fill="none" stroke="#FFFFFF" stroke-width="3" />
+              <path d="M30,210 L200,120 L340,35" fill="none" stroke="#FFFFFF" stroke-width="2.5" />
+              <circle cx="200" cy="120" r="90" fill="rgba(31,77,54,0.05)" stroke="#1F4D36" stroke-dasharray="4 4" />
+            </svg>
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-blue-600 border border-white pointer-events-none"></div>
+            <div id="fp-pin-marker" class="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-all duration-200" style="left: 62%; top: 34%;">
+              <div class="px-3 py-1 rounded-full bg-terracotta-500 text-white text-xs font-bold shadow-lg flex items-center gap-1.5 border-2 border-white whitespace-nowrap">
+                <i data-lucide="tractor" class="w-3.5 h-3.5"></i>
+                <span id="fp-pin-label">Biohof Sonnenhalde</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 pt-1">
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1">Entfernung zum Lieferzentrum (km)</label>
+              <input type="number" id="fp-distance-input" min="2" max="50" class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs font-semibold" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1">Karten-Koordinaten</label>
+              <input type="text" id="fp-coords-display" readonly class="w-full px-3 py-2 rounded-xl border border-sand-200 bg-sand-50 text-xs font-mono text-gray-500" />
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- FARMER PORTAL VIEW 2: HOFANGEBOT & WOCHENBOX-PRODUKTE               -->
+    <!-- =================================================================== -->
+    <section id="page-farmer-products" class="page-section hidden fade-enter max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-terracotta-600">Hof-Portal · Direktvermarktung</span>
+          <h1 class="font-editorial text-3xl font-semibold text-charcoal mt-1">Hofangebot & Wochenbox-Produkte</h1>
+          <p class="text-xs sm:text-sm text-gray-600 mt-0.5">Stelle frische Erzeugnisse deines Hofes ein. Alle Produkte stehen Kunden sofort für ihre Wochenbox zur Verfügung.</p>
+        </div>
+        <span id="fp-products-counter" class="px-3.5 py-1.5 rounded-full bg-forest-50 text-forest-700 text-xs font-semibold border border-forest-100 self-start sm:self-auto">4 aktive Hofprodukte</span>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-8 items-start">
+        <!-- Left 5 Cols: Add New Farm Product Form -->
+        <div class="lg:col-span-5 bg-white rounded-2xl border border-sand-200 p-6 shadow-sm space-y-4">
+          <h2 class="font-editorial text-xl font-semibold text-charcoal">Neues Hofprodukt anlegen</h2>
+          <form onsubmit="handleAddProductSubmit(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Produktbezeichnung *</label>
+              <input type="text" id="new-prod-title" required placeholder="z. B. Gereifter Rohmilch-Bergkäse" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1">Warengruppe *</label>
+              <select id="new-prod-cat" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm bg-white focus:outline-none focus:border-forest-600">
+                <option value="Gemüse & Obst">Gemüse & Obst</option>
+                <option value="Milch & Käse">Milch & Käse</option>
+                <option value="Brot, Eier & Honig">Brot, Eier & Honig</option>
+                <option value="Hof-Spezialitäten">Hof-Spezialitäten</option>
+              </select>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Verkaufseinheit *</label>
+                <input type="text" id="new-prod-unit" required placeholder="z. B. 250g Stück / 1 L" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Hofpreis (€) *</label>
+                <input type="number" id="new-prod-price" step="0.10" min="0.50" required placeholder="4.80" class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-sm focus:outline-none focus:border-forest-600" />
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-sand-50 border border-sand-200 space-y-2.5">
+              <label class="flex items-center gap-2 cursor-pointer text-xs font-semibold text-charcoal">
+                <input type="checkbox" id="new-prod-empty" onchange="toggleNewProductEmptyField()" class="rounded text-terracotta-600 focus:ring-terracotta-500" />
+                <span>Produkt aktuell leer / ausverkauft</span>
+              </label>
+              <div id="new-prod-restock-wrap" class="hidden">
+                <label class="block text-[11px] font-semibold text-gray-600 mb-1">Voraussichtlich wieder verfügbar ab</label>
+                <input type="text" id="new-prod-restock" placeholder="z. B. Donnerstag, 05.11.2026 oder nächste Woche" class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs bg-white focus:outline-none focus:border-forest-600" />
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-xl bg-forest-600 hover:bg-forest-700 text-white font-semibold text-sm shadow-sm transition flex items-center justify-center gap-2">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i>
+              <span>Produkt im Hofladen veröffentlichen</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Right 7 Cols: Existing Products List (Editable & Deletable) -->
+        <div class="lg:col-span-7 bg-white rounded-2xl border border-sand-200 p-6 shadow-sm space-y-4">
+          <h2 class="font-editorial text-xl font-semibold text-charcoal">Gelistete Erzeugnisse deines Hofes</h2>
+          <div id="farmer-products-table" class="space-y-3">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- FARMER PORTAL VIEW 3: TIER-PARTNERSCHAFTEN VERWALTEN                -->
+    <!-- =================================================================== -->
+    <section id="page-farmer-animals" class="page-section hidden fade-enter max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-terracotta-600">Hof-Portal · Animal-Sharing</span>
+          <h1 class="font-editorial text-3xl font-semibold text-charcoal mt-1">Tier-Partnerschaften verwalten</h1>
+          <p class="text-xs sm:text-sm text-gray-600 mt-0.5">Lege neue Tiere mit Foto an, aktualisiere Steckbriefe und teile aktuelle Nachrichten direkt von der Weide.</p>
+        </div>
+      </div>
+
+      <!-- Create New Animal Form Card -->
+      <div class="bg-white rounded-2xl border border-sand-200 p-6 shadow-sm">
+        <h2 class="font-editorial text-xl font-semibold text-charcoal mb-4 flex items-center gap-2">
+          <i data-lucide="plus-circle" class="w-5 h-5 text-terracotta-500"></i>
+          <span>Neues Tier für Animal-Sharing eintragen</span>
+        </h2>
+
+        <form onsubmit="handleAddAnimalSubmit(event)" class="grid sm:grid-cols-12 gap-4">
+          <div class="sm:col-span-3">
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Name des Tieres *</label>
+            <input type="text" id="fa-new-name" required placeholder="z. B. Lotte" class="w-full px-3.5 py-2 rounded-xl border border-sand-300 text-xs focus:outline-none focus:border-forest-600" />
+          </div>
+          <div class="sm:col-span-3">
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Tierart & Rasse *</label>
+            <input type="text" id="fa-new-species" required placeholder="z. B. Hinterwälder Weiderind" class="w-full px-3.5 py-2 rounded-xl border border-sand-300 text-xs focus:outline-none focus:border-forest-600" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Beitrag (€/Monat) *</label>
+            <input type="number" id="fa-new-price" min="10" max="250" value="25" required class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Kundenrabatt (%) *</label>
+            <input type="number" id="fa-new-discount" min="5" max="30" value="15" required class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Max. Anteile *</label>
+            <input type="number" id="fa-new-shares" min="1" max="30" value="10" required class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs" />
+          </div>
+
+          <div class="sm:col-span-8">
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Steckbrief & Mehrwert für Partner *</label>
+            <input type="text" id="fa-new-desc" required placeholder="z. B. Lotte grast auf unseren Streuobstwiesen. Partner erhalten 15 % Hofrabatt auf alle Milch- und Käseerzeugnisse." class="w-full px-3.5 py-2 rounded-xl border border-sand-300 text-xs" />
+          </div>
+
+          <div class="sm:col-span-4">
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Tierfoto auswählen (Upload)</label>
+            <input type="file" id="fa-new-photo" accept="image/*" onchange="handleNewAnimalPhotoSelect(event)" class="w-full text-xs text-gray-600 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-forest-50 file:text-forest-700 hover:file:bg-forest-100" />
+          </div>
+
+          <div class="sm:col-span-12 flex items-center justify-between pt-2 border-t border-sand-100">
+            <div id="fa-new-photo-preview" class="hidden flex items-center gap-2 text-xs text-forest-700 font-medium">
+              <img id="fa-new-photo-img" src="" alt="Vorschau" class="w-9 h-9 rounded-lg object-cover border border-sand-300" />
+              <span>Eigenes Tierfoto bereit zum Veröffentlichen</span>
+            </div>
+            <button type="submit" class="ml-auto px-5 py-2.5 rounded-xl bg-terracotta-500 hover:bg-terracotta-600 text-white text-xs font-semibold shadow-sm transition flex items-center gap-2">
+              <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+              <span>Tierprofil veröffentlichen</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Existing Animal Profiles Editor Grid -->
+      <div id="farmer-animals-grid" class="grid lg:grid-cols-2 gap-6">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- FARMER PORTAL VIEW 4: KUNDENANFRAGEN & BESTELLUNGEN                 -->
+    <!-- =================================================================== -->
+    <section id="page-farmer-inquiries" class="page-section hidden fade-enter max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-terracotta-600">Hof-Portal · Postfach & Aufträge</span>
+          <h1 class="font-editorial text-3xl font-semibold text-charcoal mt-1">Kundenanfragen & Bestellungen</h1>
+          <p class="text-xs sm:text-sm text-gray-600 mt-0.5">Verwalte eingehende Wochenbox-Bestellungen, neue Tier-Partnerschaften sowie Anfragen für Hofbesuche.</p>
+        </div>
+
+        <div class="inline-flex bg-white p-1 rounded-xl border border-sand-200 shadow-sm text-xs font-medium">
+          <button onclick="setFarmerInboxFilter('Alle')" class="inbox-tab px-3 py-1.5 rounded-lg bg-charcoal text-white font-semibold">Alle</button>
+          <button onclick="setFarmerInboxFilter('Offen')" class="inbox-tab px-3 py-1.5 rounded-lg text-gray-600 hover:text-charcoal">Offen</button>
+          <button onclick="setFarmerInboxFilter('Angenommen')" class="inbox-tab px-3 py-1.5 rounded-lg text-gray-600 hover:text-charcoal">Angenommen</button>
+          <button onclick="setFarmerInboxFilter('Beantwortet')" class="inbox-tab px-3 py-1.5 rounded-lg text-gray-600 hover:text-charcoal">Beantwortet</button>
+          <button onclick="setFarmerInboxFilter('Abgelehnt')" class="inbox-tab px-3 py-1.5 rounded-lg text-gray-600 hover:text-charcoal">Abgelehnt</button>
+        </div>
+      </div>
+
+      <!-- KPI Overview Row -->
+      <div id="farmer-inbox-kpis" class="grid sm:grid-cols-4 gap-4"></div>
+
+      <!-- Inbox Items List -->
+      <div id="farmer-inbox-list" class="space-y-4"></div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL: TIER-PARTNERSCHAFT BUCHEN                                      -->
+  <!-- ===================================================================== -->
+  <div id="modal-animal-booking" class="hidden fixed inset-0 z-50 bg-charcoal/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-sand-200 max-w-lg w-full p-6 sm:p-7 shadow-2xl space-y-5 fade-enter">
+      <div class="flex items-start justify-between gap-4 border-b border-sand-100 pb-4">
+        <div>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-terracotta-600">Animal-Sharing Vereinbarung</span>
+          <h3 id="modal-animal-heading" class="font-editorial text-2xl font-semibold text-charcoal mt-0.5">Partnerschaft übernehmen</h3>
+          <p id="modal-animal-sub" class="text-xs text-gray-500">Biohof Sonnenhalde · 15 % Hofrabatt inklusive</p>
+        </div>
+        <button onclick="closeAnimalBookingModal()" class="p-1.5 rounded-lg text-gray-400 hover:text-charcoal hover:bg-sand-100">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="submitAnimalBooking(event)" class="space-y-4">
+        <input type="hidden" id="modal-animal-id" />
+
+        <div class="grid sm:grid-cols-2 gap-3.5">
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Gewünschte Anteile</label>
+            <select id="modal-animal-shares" class="w-full px-3 py-2.5 rounded-xl border border-sand-300 text-xs font-medium bg-white">
+              <option value="1">1 Partnerschafts-Anteil (Standard)</option>
+              <option value="2">2 Anteile (Familien-Patenschaft)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-700 mb-1">Laufzeit</label>
+            <select id="modal-animal-duration" class="w-full px-3 py-2.5 rounded-xl border border-sand-300 text-xs font-medium bg-white">
+              <option value="Flexibel (monatlich kündbar)">Flexibel (monatlich kündbar)</option>
+              <option value="6 Monate Weidesaison">6 Monate Weidesaison</option>
+              <option value="12 Monate Jahrespartnerschaft">12 Monate Jahrespartnerschaft</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Persönliche Nachricht oder Besuchswunsch an den Hof</label>
+          <textarea id="modal-animal-note" rows="3" required class="w-full px-3.5 py-2.5 rounded-xl border border-sand-300 text-xs focus:outline-none focus:border-forest-600"></textarea>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-forest-50 border border-forest-100 text-xs text-forest-800 space-y-1">
+          <div class="font-semibold flex items-center gap-1.5">
+            <i data-lucide="check-circle" class="w-4 h-4 text-forest-600"></i>
+            <span>Sofortiger Partner-Vorteil:</span>
+          </div>
+          <p class="text-[11px] text-gray-600">Dein Rabatt wird ab sofort automatisch bei jeder Wochenbox-Bestellung im Warenkorb abgezogen.</p>
+        </div>
+
+        <div class="flex justify-end gap-3 pt-2">
+          <button type="button" onclick="closeAnimalBookingModal()" class="px-4 py-2.5 rounded-xl bg-sand-100 hover:bg-sand-200 text-charcoal text-xs font-semibold">Abbrechen</button>
+          <button type="submit" class="px-5 py-2.5 rounded-xl bg-forest-600 hover:bg-forest-700 text-white text-xs font-semibold shadow-sm flex items-center gap-2">
+            <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+            <span>Partnerschaft verbindlich starten</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TOAST NOTIFICATION CONTAINER                                          -->
+  <!-- ===================================================================== -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+  <!-- ===================================================================== -->
+  <!-- FOOTER                                                                -->
+  <!-- ===================================================================== -->
+  <footer class="bg-white border-t border-sand-200 mt-20 py-10 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-forest-600 text-white flex items-center justify-center">
+          <i data-lucide="sprout" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <span class="font-editorial font-bold text-charcoal text-base">LocalBite</span>
+          <p class="text-[11px] text-gray-400">Das Farm-to-Table Abo-System · Regionale Frische direkt vom Hof</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-5">
+        <button onclick="navigateTo('home')" class="hover:text-charcoal transition">Startseite</button>
+        <button onclick="navigateTo('boxes')" class="hover:text-charcoal transition">Wochenboxen</button>
+        <button onclick="navigateTo('animals')" class="hover:text-charcoal transition">Tier-Partnerschaften</button>
+        <button onclick="navigateTo('map')" class="hover:text-charcoal transition">Partnerhöfe</button>
+        <button onclick="openAuth('farmer', 'login')" class="hover:text-terracotta-600 font-medium transition">Hof-Portal Login</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- APPLICATION LOGIC & PERSISTENT STATE                                  -->
+  <!-- ===================================================================== -->
+  <script>
+    const STORAGE_KEY = 'localbite_production_app_v2';
+
+    function getDefaultState() {
+      return {
+        session: {
+          // null (Visitor), 'customer' (Logged-in Customer), 'farmer' (Logged-in Farmer)
+          role: null,
+          currentPage: 'home', // 'home' | 'auth' | 'boxes' | 'animals' | 'map' | 'farmer-profile' | 'farmer-products' | 'farmer-animals' | 'farmer-inquiries'
+          authRoleTab: 'customer',
+          authModeTab: 'login',
+          productCategoryFilter: 'Alle',
+          selectedMapFarmId: 'farm-1',
+          farmerInboxFilter: 'Alle'
+        },
+        customer: {
+          name: 'Clara Weber',
+          email: 'clara.weber@posteo.de',
+          street: 'Waldstraße 42',
+          city: '76133 Karlsruhe',
+          deliveryPref: 'Vor die Haustür (Mehrweg-Thermobox)',
+          activeSponsorshipIds: ['animal-1'],
+          cart: {
+            planId: 'plan-pair',
+            deliveryDays: ['Montags', 'Mittwochs', 'Freitags'],
+            interval: 'Montags, Mittwochs & Freitags',
+            deliveryMode: 'Autonomer E-Shuttle (Thermobox)',
+            items: {
+              'prod-1': 1,
+              'prod-2': 1,
+              'prod-3': 1,
+              'prod-5': 1
+            }
+          },
+          orders: [
+            {
+              id: 'LB-7824',
+              planName: 'Paar-Box',
+              interval: 'Wöchentlich (Donnerstags)',
+              total: '33,49 €',
+              createdAt: 'Aktiv seit 14.10.2026',
+              paused: false,
+              itemsSummary: '1x Heumilch-Bergkäse, 1x Bunte Erntemöhren, 1x Holzofen-Sauerteigbrot'
+            }
+          ]
+        },
+        activeFarmId: 'farm-1',
+        farms: [
+          {
+            id: 'farm-1',
+            name: 'Biohof Sonnenhalde',
+            owner: 'Lukas & Miriam Brenner',
+            email: 'hof@sonnenhalde-bio.de',
+            phone: '+49 7252 84910',
+            category: 'Weidehaltung & Tierpartnerschaft',
+            cert: 'Bioland Zertifiziert',
+            address: 'Sonnenhalde 1, 75015 Bretten',
+            distanceKm: 18,
+            hours: 'Fr 14–18 Uhr & Sa 9–13 Uhr',
+            mapX: 62,
+            mapY: 34,
+            bio: 'Familiengeführter Bioland-Hof im Kraichgau. Wir verbinden artgerechte Mutterkuh-Weidehaltung mit handwerklicher Hofkäserei und buntem Feldgemüse für die LocalBite Wochenboxen.'
+          },
+          {
+            id: 'farm-2',
+            name: 'Gärtnerei & Streuobstgut Talwiese',
+            owner: 'Familie Kästner',
+            email: 'kontakt@gut-talwiese.de',
+            phone: '+49 7243 39201',
+            category: 'Gemüse & Ackerbau',
+            cert: 'Demeter Hof',
+            address: 'Talwiesenweg 8, 76275 Ettlingen',
+            distanceKm: 11,
+            hours: 'Do & Fr 15–18:30 Uhr',
+            mapX: 38,
+            mapY: 66,
+            bio: 'Über 45 alte Gemüsesorten aus regenerativem Bodenaufbau sowie naturtrübe Streuobst-Säfte direkt aus dem Albtal.'
+          },
+          {
+            id: 'farm-3',
+            name: 'Ziegenkäserei & Hofbäckerei Waldblick',
+            owner: 'Hannah & Jonas Roth',
+            email: 'hallo@hof-waldblick.de',
+            phone: '+49 7083 51190',
+            category: 'Milchvieh & Käserei',
+            cert: 'Naturland',
+            address: 'Bergweg 14, 76332 Bad Herrenalb',
+            distanceKm: 27,
+            hours: 'Sa 10–16 Uhr (Hofcafé)',
+            mapX: 54,
+            mapY: 78,
+            bio: 'Holzofen-Sauerteigbrot und handgeschöpfter Ziegenfrischkäse von unseren Bergwiesen im Nordschwarzwald.'
+          },
+          {
+            id: 'farm-4',
+            name: 'Hofgut Kraichgau-Gastro & Obst',
+            owner: 'Stefan Lindner',
+            email: 'gastro@kraichgau-hofgut.de',
+            phone: '+49 721 98120',
+            category: 'Hof-Gastronomie & Obst',
+            cert: 'Bioland Zertifiziert',
+            address: 'Am Schlosspark 3, 76227 Karlsruhe-Durlach',
+            distanceKm: 7,
+            hours: 'Mi–So Community-Kochen & Abholung',
+            mapX: 46,
+            mapY: 42,
+            bio: 'Unsere Hofküche bereitet wöchentlich frische Kochbox-Komponenten vor und lädt freitags zum gemeinsamen Farm-to-Table Kochen ein.'
+          }
+        ],
+        boxPlans: [
+          {
+            id: 'plan-single',
+            name: 'Single-Box',
+            badge: '1 Person',
+            basePrice: 17.50,
+            desc: 'Kompakte Ernteauswahl für 1 Person mit frischem Saisongemüse & Hof-Basisprodukten.'
+          },
+          {
+            id: 'plan-pair',
+            name: 'Paar-Box',
+            badge: 'Bestseller · 2 Pers.',
+            basePrice: 24.00,
+            desc: 'Ideale Wochenversorgung für 2 Personen direkt von unseren Nachbarhöfen.'
+          },
+          {
+            id: 'plan-family',
+            name: 'Familien-Box',
+            badge: '3–5 Personen',
+            basePrice: 34.00,
+            desc: 'Großzügige Erntebox für die ganze Familie inklusive Obst, Brot & Molkereiprodukten.'
+          },
+          {
+            id: 'plan-gastro',
+            name: 'Hof-Gastro Kochbox',
+            badge: 'Inkl. Hof-Rezepten',
+            basePrice: 29.50,
+            desc: '3 saisonale Hof-Gerichte mit vorbereiteten Manufaktur-Saucen & frischen Kräutern.'
+          }
+        ],
+        products: [
+          {
+            id: 'prod-1',
+            farmId: 'farm-1',
+            name: 'Heumilch-Bergkäse (6 Mon. gereift)',
+            category: 'Milch & Käse',
+            unit: '250g Keil',
+            price: 5.40,
+            isNew: false,
+            outOfStock: false,
+            restockDate: ''
+          },
+          {
+            id: 'prod-2',
+            farmId: 'farm-2',
+            name: 'Bunte Erntemöhren & junger Spinat',
+            category: 'Gemüse & Obst',
+            unit: '750g Bund',
+            price: 3.80,
+            isNew: false,
+            outOfStock: false,
+            restockDate: ''
+          },
+          {
+            id: 'prod-3',
+            farmId: 'farm-3',
+            name: 'Holzofen-Urkorn-Sauerteigbrot',
+            category: 'Brot, Eier & Honig',
+            unit: '800g Laib',
+            price: 5.20,
+            isNew: false,
+            outOfStock: false,
+            restockDate: ''
+          },
+          {
+            id: 'prod-4',
+            farmId: 'farm-1',
+            name: 'Frische Weidemilch (Mehrweg-Glas)',
+            category: 'Milch & Käse',
+            unit: '1 Liter Flasche',
+            price: 2.10,
+            isNew: false,
+            outOfStock: true,
+            restockDate: 'Donnerstag, 05.11.2026'
+          },
+          {
+            id: 'prod-5',
+            farmId: 'farm-1',
+            name: '6er Freiland-Eier vom Mobilstall',
+            category: 'Brot, Eier & Honig',
+            unit: '6 Stück',
+            price: 3.40,
+            isNew: false,
+            outOfStock: false,
+            restockDate: ''
+          },
+          {
+            id: 'prod-6',
+            farmId: 'farm-4',
+            name: 'Eingekochtes Hof-Tomatensugo & Kräuterpesto',
+            category: 'Hof-Spezialitäten',
+            unit: '2x 250ml Glas',
+            price: 6.50,
+            isNew: false,
+            outOfStock: false,
+            restockDate: ''
+          },
+          {
+            id: 'prod-7',
+            farmId: 'farm-2',
+            name: 'Knackige Salatherzen & Radieschen',
+            category: 'Gemüse & Obst',
+            unit: '2 Köpfe + Bund',
+            price: 3.50,
+            isNew: false,
+            outOfStock: false,
+            restockDate: ''
+          },
+          {
+            id: 'prod-8',
+            farmId: 'farm-3',
+            name: 'Cremiger Ziegenfrischkäse mit Wildkräutern',
+            category: 'Milch & Käse',
+            unit: '180g Glas',
+            price: 4.60,
+            isNew: false,
+            outOfStock: false,
+            restockDate: ''
+          }
+        ],
+        animals: [
+          {
+            id: 'animal-1',
+            farmId: 'farm-1',
+            name: 'Alma',
+            species: 'Allgäuer Braunvieh (Weidekuh)',
+            monthlyPrice: 25,
+            discountPercent: 15,
+            totalShares: 10,
+            bookedShares: 7,
+            statusUpdate: 'Frisches Kleegras auf der oberen Sonnenhalde – Alma genießt die Sonne auf der Weide!',
+            updatedAt: 'Heute, 08:30 Uhr',
+            description: 'Alma ist unsere gutmütige Leitkuh. Als Tierpartner erhältst du 15 % Sofortrabatt auf alle Hof-Erzeugnisse sowie monatlich ein Reifekäse-Paket.',
+            imageUrl: 'https://images.unsplash.com/photo-1546445317-29f4545e9d53?auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            id: 'animal-2',
+            farmId: 'farm-1',
+            name: 'Berta & Schar',
+            species: 'Zweinutzungshühner im Mobilstall',
+            monthlyPrice: 15,
+            discountPercent: 10,
+            totalShares: 12,
+            bookedShares: 8,
+            statusUpdate: 'Unser Hühnermobil wurde gestern auf die frische Streuobstwiese versetzt.',
+            updatedAt: 'Gestern, 17:15 Uhr',
+            description: 'Unsere Hühner ziehen jede Woche auf frisches Grün. Partner erhalten 10 % Rabatt auf die gesamte Wochenbox und wöchentlich frische Freilandeier.',
+            imageUrl: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            id: 'animal-3',
+            farmId: 'farm-3',
+            name: 'Smilla & Flocke',
+            species: 'Bunte Deutsche Edelziege',
+            monthlyPrice: 20,
+            discountPercent: 12,
+            totalShares: 8,
+            bookedShares: 5,
+            statusUpdate: 'Nach dem Melken geht es direkt auf die Kräuterhang-Weide am Waldrand.',
+            updatedAt: 'Vor 2 Tagen',
+            description: 'Unterstütze unsere Landschaftspflege im Nordschwarzwald und sichere dir 12 % Rabatt auf Ziegenkäse & Holzofenbrot.',
+            imageUrl: 'https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&w=800&q=80'
+          }
+        ],
+        inquiries: [
+          {
+            id: 'inq-101',
+            customerName: 'Clara Weber',
+            customerEmail: 'clara.weber@posteo.de',
+            farmId: 'farm-1',
+            type: 'Tierpartnerschaft',
+            subject: 'Partnerschafts-Anteil für Weidekuh Alma (1 Anteil)',
+            message: 'Hallo liebes Sonnenhalde-Team! Ich habe einen Anteil für Alma übernommen und würde sie gerne nächsten Samstag beim Hofverkauf besuchen.',
+            createdAt: 'Vor 25 Minuten',
+            status: 'Offen',
+            farmerReply: ''
+          },
+          {
+            id: 'inq-102',
+            customerName: 'Markus Vance',
+            customerEmail: 'm.vance@web.de',
+            farmId: 'farm-1',
+            type: 'Hofbesuch / Community-Kochen',
+            subject: 'Anmeldung zum Hof-Gastro Abend (4 Personen)',
+            message: 'Wir würden gerne am kommenden Freitag beim gemeinsamen Farm-to-Table Kochen auf Ihrem Hof teilnehmen. Sind noch 4 Plätze frei?',
+            createdAt: 'Heute, 10:14 Uhr',
+            status: 'Offen',
+            farmerReply: ''
+          },
+          {
+            id: 'inq-103',
+            customerName: 'Sophie Lindemann',
+            customerEmail: 'sophie.l@gmail.com',
+            farmId: 'farm-1',
+            type: 'Sonderbestellung',
+            subject: 'Vorbestellung Rohmilchkäse-Platte für Familienfeier',
+            message: 'Können Sie mir für nächste Woche Donnerstag zusätzlich zur Wochenbox eine gemischte Rohmilchkäse-Platte für 10 Personen zusammenstellen?',
+            createdAt: 'Gestern, 16:40 Uhr',
+            status: 'Angenommen',
+            farmerReply: 'Sehr gerne, liebe Sophie! Wir legen die Platte direkt gekühlt in Ihre Donnerstags-Thermobox.'
+          }
+        ]
+      };
+    }
+
+    let state = loadState();
+    let stagedNewAnimalPhoto = null;
+    let profileDropdownOpen = false;
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed.products)) {
+            parsed.products.forEach(p => {
+              if (typeof p.outOfStock === 'undefined') {
+                p.outOfStock = p.id === 'prod-4';
+                p.restockDate = p.id === 'prod-4' ? 'Donnerstag, 05.11.2026' : '';
+              }
+            });
+          }
+          if (parsed.customer && parsed.customer.cart) {
+            const validDays = ['Montags', 'Mittwochs', 'Freitags'];
+            if (!Array.isArray(parsed.customer.cart.deliveryDays) || parsed.customer.cart.deliveryDays.length === 0) {
+              parsed.customer.cart.deliveryDays = ['Montags', 'Mittwochs', 'Freitags'];
+            } else {
+              parsed.customer.cart.deliveryDays = parsed.customer.cart.deliveryDays.filter(d => validDays.includes(d));
+              if (parsed.customer.cart.deliveryDays.length === 0) {
+                parsed.customer.cart.deliveryDays = ['Montags', 'Mittwochs', 'Freitags'];
+              }
+            }
+            const d = parsed.customer.cart.deliveryDays;
+            parsed.customer.cart.interval = d.length === 1 ? d[0] : (d.length === 2 ? `${d[0]} & ${d[1]}` : `${d[0]}, ${d[1]} & ${d[2]}`);
+          }
+          return parsed;
+        }
+      } catch (e) {
+        console.warn('LocalStorage unavailable:', e);
+      }
+      return getDefaultState();
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        console.warn('Could not save state:', e);
+      }
+    }
+
+    function resetAllAppData() {
+      state = getDefaultState();
+      saveState();
+      profileDropdownOpen = false;
+      renderApp();
+      showToast('Plattform-Daten wurden auf den Ausgangszustand zurückgesetzt.', 'info');
+    }
+
+    function getActiveFarm() {
+      return state.farms.find(f => f.id === state.activeFarmId) || state.farms[0];
+    }
+
+    function getFarmById(id) {
+      return state.farms.find(f => f.id === id) || state.farms[0];
+    }
+
+    // =========================================================================
+    // TOAST NOTIFICATION HELPER
+    // =========================================================================
+    function showToast(message, type = 'success', actionLabel = null, actionFn = null) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const borderCol = type === 'success' ? 'border-forest-500' : 'border-terracotta-500';
+      toast.className = `pointer-events-auto bg-charcoal text-white border-l-4 ${borderCol} p-4 rounded-2xl shadow-xl flex items-start justify-between gap-3 text-xs fade-enter`;
+      toast.innerHTML = `
+        <div class="space-y-1">
+          <div class="font-semibold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full ${type === 'success' ? 'bg-emerald-400' : 'bg-terracotta-500'}"></span>
+            <span>LocalBite</span>
+          </div>
+          <p class="text-sand-100 leading-relaxed">${message}</p>
+          ${actionLabel ? `<button class="mt-1.5 inline-flex items-center gap-1 text-emerald-300 hover:text-emerald-200 font-semibold underline underline-offset-2 toast-act">${actionLabel} →</button>` : ''}
+        </div>
+        <button class="text-gray-400 hover:text-white shrink-0 toast-close">✕</button>
+      `;
+      toast.querySelector('.toast-close').onclick = () => toast.remove();
+      if (actionLabel && actionFn) {
+        toast.querySelector('.toast-act').onclick = () => {
+          actionFn();
+          toast.remove();
+        };
+      }
+      container.appendChild(toast);
+      setTimeout(() => {
+        if (toast.parentNode) toast.remove();
+      }, 5000);
+    }
+
+    // =========================================================================
+    // HEADER & ROLE-BASED NAVIGATION
+    // =========================================================================
+    function navigateLogoClick() {
+      if (state.session.role === 'farmer') {
+        navigateTo('farmer-profile');
+      } else {
+        navigateTo('home');
+      }
+    }
+
+    function navigateTo(pageId) {
+      state.session.currentPage = pageId;
+      profileDropdownOpen = false;
+      saveState();
+      renderApp();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openAuth(role = 'customer', mode = 'login') {
+      state.session.authRoleTab = role;
+      state.session.authModeTab = mode;
+      state.session.currentPage = 'auth';
+      profileDropdownOpen = false;
+      saveState();
+      renderApp();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function logoutUser() {
+      const prevRole = state.session.role;
+      state.session.role = null;
+      state.session.currentPage = 'home';
+      profileDropdownOpen = false;
+      saveState();
+      renderApp();
+      showToast(`Du wurdest erfolgreich ${prevRole === 'farmer' ? 'aus dem Hof-Portal' : ''} abgemeldet.`, 'info');
+    }
+
+    function quickSwitchRole(targetRole) {
+      state.session.role = targetRole;
+      state.session.currentPage = targetRole === 'farmer' ? 'farmer-profile' : 'boxes';
+      profileDropdownOpen = false;
+      saveState();
+      renderApp();
+      if (targetRole === 'farmer') {
+        showToast(`Gewechselt zum Hof-Portal: ${getActiveFarm().name}`, 'success');
+      } else {
+        showToast(`Gewechselt zum Kundenkonto: ${state.customer.name}`, 'success');
+      }
+    }
+
+    function toggleProfileDropdown() {
+      profileDropdownOpen = !profileDropdownOpen;
+      renderHeader();
+    }
+
+    function renderHeader() {
+      const role = state.session.role;
+      const page = state.session.currentPage;
+      const nav = document.getElementById('main-nav');
+      const accountArea = document.getElementById('header-account-area');
+      const roleBadge = document.getElementById('header-role-badge');
+
+      // Update small role badge next to logo
+      if (role === 'customer') {
+        roleBadge.textContent = 'Kundenbereich';
+        roleBadge.className = 'inline-block text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-forest-50 text-forest-700 border border-forest-100';
+      } else if (role === 'farmer') {
+        roleBadge.textContent = 'Hof-Portal';
+        roleBadge.className = 'inline-block text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-terracotta-50 text-terracotta-600 border border-terracotta-100';
+      } else {
+        roleBadge.className = 'hidden';
+      }
+
+      // 1. Center Navigation Links
+      if (role === 'farmer') {
+        const openInqCount = state.inquiries.filter(i => i.status === 'Offen').length;
+        const farmerLinks = [
+          { id: 'farmer-profile', label: 'Mein Betriebsprofil', icon: 'tractor' },
+          { id: 'farmer-products', label: 'Hofangebot & Wochenbox', icon: 'package' },
+          { id: 'farmer-animals', label: 'Tier-Partnerschaften', icon: 'heart-handshake' },
+          { id: 'farmer-inquiries', label: 'Anfragen & Bestellungen', icon: 'inbox', badge: openInqCount }
+        ];
+        nav.innerHTML = farmerLinks.map(link => {
+          const active = page === link.id;
+          return `
+            <button onclick="navigateTo('${link.id}')" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap flex items-center gap-2 ${active ? 'bg-terracotta-500 text-white shadow-sm' : 'text-gray-600 hover:bg-sand-100 hover:text-charcoal'}">
+              <i data-lucide="${link.icon}" class="w-4 h-4"></i>
+              <span>${link.label}</span>
+              ${link.badge ? `<span class="px-1.5 py-0.2 rounded-full text-[10px] font-bold ${active ? 'bg-white text-terracotta-600' : 'bg-terracotta-500 text-white'}">${link.badge}</span>` : ''}
+            </button>
+          `;
+        }).join('');
+      } else {
+        // Visitor or Logged-in Customer Navigation
+        const publicLinks = [
+          { id: 'home', label: 'Startseite', icon: 'compass' },
+          { id: 'boxes', label: 'Wochenboxen', icon: 'shopping-basket' },
+          { id: 'animals', label: 'Tier-Partnerschaften', icon: 'heart-handshake' },
+          { id: 'map', label: 'Partnerhöfe (Karte)', icon: 'map-pin' }
+        ];
+        nav.innerHTML = publicLinks.map(link => {
+          const active = page === link.id;
+          return `
+            <button onclick="navigateTo('${link.id}')" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition whitespace-nowrap flex items-center gap-2 ${active ? 'bg-forest-600 text-white shadow-sm' : 'text-gray-600 hover:bg-sand-100 hover:text-charcoal'}">
+              <i data-lucide="${link.icon}" class="w-4 h-4"></i>
+              <span>${link.label}</span>
+            </button>
+          `;
+        }).join('');
+      }
+
+      // 2. Right Account Area
+      if (!role) {
+        // Visitor: Anmelden & Registrieren Buttons
+        accountArea.innerHTML = `
+          <button onclick="openAuth('customer', 'login')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-charcoal hover:bg-sand-100 border border-sand-300 transition">
+            Anmelden
+          </button>
+          <button onclick="openAuth('customer', 'register')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-forest-600 hover:bg-forest-700 text-white shadow-sm transition flex items-center gap-1.5">
+            <span>Registrieren</span>
+          </button>
+        `;
+      } else if (role === 'customer') {
+        const cartCount = Object.values(state.customer.cart.items).reduce((a, b) => a + b, 0);
+        accountArea.innerHTML = `
+          <button onclick="navigateTo('boxes')" class="p-2.5 rounded-xl bg-sand-100 hover:bg-sand-200 text-charcoal relative transition" title="Warenkorb">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+            <span class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-forest-600 text-white text-[10px] font-bold flex items-center justify-center">${cartCount}</span>
+          </button>
+
+          <div class="relative">
+            <button onclick="toggleProfileDropdown()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-sand-100 border border-sand-200 shadow-sm flex items-center gap-2.5 transition">
+              <div class="w-8 h-8 rounded-lg bg-forest-600 text-white font-bold text-xs flex items-center justify-center">
+                ${escapeHtml(state.customer.name.charAt(0))}
+              </div>
+              <div class="text-left hidden sm:block">
+                <p class="text-xs font-bold text-charcoal leading-none">${escapeHtml(state.customer.name)}</p>
+                <p class="text-[10px] text-forest-700 font-medium mt-0.5">Kunde · ${escapeHtml(state.customer.city)}</p>
+              </div>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400"></i>
+            </button>
+
+            ${profileDropdownOpen ? `
+              <div class="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-sand-200 py-2 z-50 text-xs fade-enter">
+                <div class="px-4 py-2.5 border-b border-sand-100">
+                  <p class="font-bold text-charcoal">${escapeHtml(state.customer.name)}</p>
+                  <p class="text-gray-500 truncate">${escapeHtml(state.customer.email)}</p>
+                </div>
+                <button onclick="navigateTo('boxes')" class="w-full px-4 py-2.5 text-left hover:bg-sand-50 flex items-center gap-2.5 text-gray-700">
+                  <i data-lucide="shopping-basket" class="w-4 h-4 text-forest-600"></i>
+                  <span>Meine Wochenbox & Abos</span>
+                </button>
+                <button onclick="navigateTo('animals')" class="w-full px-4 py-2.5 text-left hover:bg-sand-50 flex items-center gap-2.5 text-gray-700">
+                  <i data-lucide="heart-handshake" class="w-4 h-4 text-terracotta-500"></i>
+                  <span>Meine Tier-Partnerschaften (${state.customer.activeSponsorshipIds.length})</span>
+                </button>
+                <div class="my-1 border-t border-sand-100"></div>
+                <button onclick="quickSwitchRole('farmer')" class="w-full px-4 py-2.5 text-left hover:bg-terracotta-50 flex items-center gap-2.5 text-terracotta-600 font-semibold">
+                  <i data-lucide="tractor" class="w-4 h-4"></i>
+                  <span>Zum Landwirt-Konto wechseln</span>
+                </button>
+                <button onclick="logoutUser()" class="w-full px-4 py-2.5 text-left hover:bg-red-50 flex items-center gap-2.5 text-red-600 font-semibold">
+                  <i data-lucide="log-out" class="w-4 h-4"></i>
+                  <span>Abmelden</span>
+                </button>
+                <div class="mt-1 pt-1 border-t border-sand-100 px-4 py-1.5 flex justify-between items-center text-[10px] text-gray-400">
+                  <span>Lokaler Speicher aktiv</span>
+                  <button onclick="resetAllAppData()" class="hover:text-charcoal underline">Zurücksetzen</button>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      } else if (role === 'farmer') {
+        const farm = getActiveFarm();
+        accountArea.innerHTML = `
+          <div class="relative">
+            <button onclick="toggleProfileDropdown()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-sand-100 border border-sand-200 shadow-sm flex items-center gap-2.5 transition">
+              <div class="w-8 h-8 rounded-lg bg-terracotta-500 text-white font-bold text-xs flex items-center justify-center">
+                <i data-lucide="tractor" class="w-4 h-4"></i>
+              </div>
+              <div class="text-left hidden sm:block">
+                <p class="text-xs font-bold text-charcoal leading-none">${escapeHtml(farm.name)}</p>
+                <p class="text-[10px] text-terracotta-600 font-medium mt-0.5">Landwirt · Partnerhof</p>
+              </div>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400"></i>
+            </button>
+
+            ${profileDropdownOpen ? `
+              <div class="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-sand-200 py-2 z-50 text-xs fade-enter">
+                <div class="px-4 py-2.5 border-b border-sand-100">
+                  <p class="font-bold text-charcoal">${escapeHtml(farm.name)}</p>
+                  <p class="text-gray-500 truncate">${escapeHtml(farm.owner)}</p>
+                </div>
+                <button onclick="navigateTo('farmer-profile')" class="w-full px-4 py-2.5 text-left hover:bg-sand-50 flex items-center gap-2.5 text-gray-700">
+                  <i data-lucide="settings" class="w-4 h-4 text-forest-600"></i>
+                  <span>Betriebsprofil & Standort</span>
+                </button>
+                <button onclick="navigateTo('farmer-inquiries')" class="w-full px-4 py-2.5 text-left hover:bg-sand-50 flex items-center gap-2.5 text-gray-700">
+                  <i data-lucide="inbox" class="w-4 h-4 text-terracotta-500"></i>
+                  <span>Kundenanfragen & Aufträge</span>
+                </button>
+                <div class="my-1 border-t border-sand-100"></div>
+                <button onclick="quickSwitchRole('customer')" class="w-full px-4 py-2.5 text-left hover:bg-forest-50 flex items-center gap-2.5 text-forest-700 font-semibold">
+                  <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                  <span>Zur Kunden-Ansicht wechseln</span>
+                </button>
+                <button onclick="logoutUser()" class="w-full px-4 py-2.5 text-left hover:bg-red-50 flex items-center gap-2.5 text-red-600 font-semibold">
+                  <i data-lucide="log-out" class="w-4 h-4"></i>
+                  <span>Abmelden</span>
+                </button>
+                <div class="mt-1 pt-1 border-t border-sand-100 px-4 py-1.5 flex justify-between items-center text-[10px] text-gray-400">
+                  <span>Lokaler Speicher aktiv</span>
+                  <button onclick="resetAllAppData()" class="hover:text-charcoal underline">Zurücksetzen</button>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }
+
+      lucide.createIcons();
+    }
+
+    // =========================================================================
+    // AUTHENTICATION LOGIC (LOGIN & REGISTER FOR KUNDE / LANDWIRT)
+    // =========================================================================
+    function switchAuthRole(role) {
+      state.session.authRoleTab = role;
+      saveState();
+      renderAuthPage();
+    }
+
+    function switchAuthMode(mode) {
+      state.session.authModeTab = mode;
+      saveState();
+      renderAuthPage();
+    }
+
+    function renderAuthPage() {
+      const isCustomer = state.session.authRoleTab === 'customer';
+      const isLogin = state.session.authModeTab === 'login';
+
+      const btnCust = document.getElementById('auth-role-btn-customer');
+      const btnFarm = document.getElementById('auth-role-btn-farmer');
+      btnCust.className = `py-3 px-4 rounded-2xl text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-2 ${isCustomer ? 'bg-forest-600 text-white shadow-sm' : 'text-gray-600 hover:text-charcoal'}`;
+      btnFarm.className = `py-3 px-4 rounded-2xl text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-2 ${!isCustomer ? 'bg-terracotta-500 text-white shadow-sm' : 'text-gray-600 hover:text-charcoal'}`;
+
+      const roleTag = document.getElementById('auth-role-tag');
+      roleTag.textContent = isCustomer ? 'Für Endkunden & Genießer' : 'Für Landwirte & Partnerhöfe';
+      roleTag.className = `text-[11px] font-semibold uppercase tracking-wider ${isCustomer ? 'text-forest-600' : 'text-terracotta-600'}`;
+
+      document.getElementById('auth-title').textContent = isLogin
+        ? (isCustomer ? 'Kunden-Anmeldung' : 'Hof-Portal Login')
+        : (isCustomer ? 'Neues Kundenkonto anlegen' : 'Partnerhof registrieren');
+
+      document.getElementById('auth-tab-login').className = `px-3.5 py-1.5 rounded-lg transition ${isLogin ? 'bg-white shadow-sm text-charcoal' : 'text-gray-500 hover:text-charcoal'}`;
+      document.getElementById('auth-tab-register').className = `px-3.5 py-1.5 rounded-lg transition ${!isLogin ? 'bg-white shadow-sm text-charcoal' : 'text-gray-500 hover:text-charcoal'}`;
+
+      // Show correct form
+      document.getElementById('form-login').classList.toggle('hidden', !isLogin);
+      document.getElementById('form-register-customer').classList.toggle('hidden', isLogin || !isCustomer);
+      document.getElementById('form-register-farmer').classList.toggle('hidden', isLogin || isCustomer);
+
+      if (isLogin) {
+        const farm = getActiveFarm();
+        document.getElementById('login-email-input').value = isCustomer ? state.customer.email : farm.email;
+        const submitBtn = document.getElementById('login-submit-btn');
+        submitBtn.className = `w-full py-3.5 rounded-xl font-semibold text-sm shadow-sm transition flex items-center justify-center gap-2 text-white ${isCustomer ? 'bg-forest-600 hover:bg-forest-700' : 'bg-terracotta-500 hover:bg-terracotta-600'}`;
+        document.getElementById('login-submit-text').textContent = isCustomer ? 'Als Kunde anmelden' : 'Im Hof-Portal anmelden';
+
+        const quickBox = document.getElementById('login-quick-account-box');
+        if (isCustomer) {
+          quickBox.innerHTML = `
+            <div>
+              <span class="font-semibold text-charcoal block">Hinterlegtes Kundenprofil:</span>
+              <span class="text-gray-500">${escapeHtml(state.customer.name)} (${escapeHtml(state.customer.city)})</span>
+            </div>
+            <span class="px-2.5 py-1 rounded-lg bg-forest-50 text-forest-700 font-semibold">Bereit</span>
+          `;
+        } else {
+          quickBox.innerHTML = `
+            <div>
+              <span class="font-semibold text-charcoal block">Hinterlegter Partnerhof:</span>
+              <span class="text-gray-500">${escapeHtml(farm.name)} (${escapeHtml(farm.cert)})</span>
+            </div>
+            <span class="px-2.5 py-1 rounded-lg bg-terracotta-50 text-terracotta-600 font-semibold">Bereit</span>
+          `;
+        }
+      }
+      lucide.createIcons();
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email-input').value.trim();
+      if (state.session.authRoleTab === 'customer') {
+        if (email) state.customer.email = email;
+        state.session.role = 'customer';
+        state.session.currentPage = 'boxes';
+        saveState();
+        renderApp();
+        showToast(`Willkommen bei LocalBite, ${state.customer.name}!`, 'success');
+      } else {
+        const farm = getActiveFarm();
+        if (email) farm.email = email;
+        state.session.role = 'farmer';
+        state.session.currentPage = 'farmer-profile';
+        saveState();
+        renderApp();
+        showToast(`Angemeldet im Hof-Portal: ${farm.name}`, 'success');
+      }
+    }
+
+    function handleCustomerRegisterSubmit(e) {
+      e.preventDefault();
+      state.customer.name = document.getElementById('reg-cust-name').value.trim();
+      state.customer.email = document.getElementById('reg-cust-email').value.trim();
+      state.customer.street = document.getElementById('reg-cust-street').value.trim();
+      state.customer.city = document.getElementById('reg-cust-city').value.trim();
+      state.customer.deliveryPref = document.getElementById('reg-cust-pref').value;
+
+      state.session.role = 'customer';
+      state.session.currentPage = 'boxes';
+      saveState();
+      renderApp();
+      showToast(`Willkommen, ${state.customer.name}! Dein Kundenkonto wurde erstellt.`, 'success');
+    }
+
+    function handleFarmerRegisterSubmit(e) {
+      e.preventDefault();
+      const farm = getActiveFarm();
+      farm.name = document.getElementById('reg-farm-name').value.trim();
+      farm.owner = document.getElementById('reg-farm-owner').value.trim();
+      farm.email = document.getElementById('reg-farm-email').value.trim();
+      farm.address = document.getElementById('reg-farm-address').value.trim();
+      farm.cert = document.getElementById('reg-farm-cert').value;
+      farm.category = document.getElementById('reg-farm-category').value;
+
+      state.session.role = 'farmer';
+      state.session.currentPage = 'farmer-profile';
+      saveState();
+      renderApp();
+      showToast(`Partnerhof „${farm.name}“ erfolgreich eingerichtet!`, 'success');
+    }
+
+    // =========================================================================
+    // CUSTOMER VIEW: WOCHENBOXEN & HOFLADEN
+    // =========================================================================
+    function getBestSponsorship() {
+      const list = state.animals.filter(a => state.customer.activeSponsorshipIds.includes(a.id));
+      if (!list.length) return null;
+      return list.reduce((best, cur) => cur.discountPercent > best.discountPercent ? cur : best, list[0]);
+    }
+
+    function formatDeliveryDays(days) {
+      if (!days || days.length === 0) return 'Montags';
+      if (days.length === 1) return days[0];
+      if (days.length === 2) return `${days[0]} & ${days[1]}`;
+      return `${days[0]}, ${days[1]} & ${days[2]}`;
+    }
+
+    function toggleDeliveryDay(checkbox) {
+      const checkboxes = Array.from(document.querySelectorAll('input[name="box_delivery_days"]'));
+      const selected = checkboxes.filter(cb => cb.checked).map(cb => cb.value);
+      if (selected.length === 0) {
+        checkbox.checked = true;
+        showToast('Bitte wähle mindestens einen Liefertag aus.', 'info');
+        return;
+      }
+      state.customer.cart.deliveryDays = selected;
+      state.customer.cart.interval = formatDeliveryDays(selected);
+      document.getElementById('box-interval-select').value = state.customer.cart.interval;
+      const summaryEl = document.getElementById('box-interval-summary');
+      if (summaryEl) {
+        summaryEl.textContent = `${selected.length}× wöchentlich`;
+      }
+      updateCartConfig();
+    }
+
+    function renderBoxesPage() {
+      // Active orders bar
+      const ordersBox = document.getElementById('customer-active-orders-box');
+      const ordersList = document.getElementById('customer-orders-list');
+      if (state.customer.orders && state.customer.orders.length > 0) {
+        ordersBox.classList.remove('hidden');
+        ordersList.innerHTML = state.customer.orders.map(ord => `
+          <div class="p-4 rounded-xl bg-sand-50 border border-sand-200 flex items-start justify-between gap-3 text-xs">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="font-mono font-bold text-charcoal">#${escapeHtml(ord.id)}</span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${ord.paused ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">
+                  ${ord.paused ? 'Abo pausiert' : 'Abo aktiv'}
+                </span>
+              </div>
+              <p class="font-semibold text-sm text-charcoal">${escapeHtml(ord.planName)} · ${escapeHtml(ord.interval)}</p>
+              <p class="text-gray-500">${escapeHtml(ord.itemsSummary)}</p>
+            </div>
+            <div class="text-right shrink-0 space-y-2">
+              <span class="block font-bold text-sm text-charcoal">${escapeHtml(ord.total)}</span>
+              <button onclick="togglePauseSubscription('${ord.id}')" class="px-3 py-1 rounded-lg border border-sand-300 bg-white hover:bg-sand-100 text-[11px] font-semibold text-charcoal transition">
+                ${ord.paused ? 'Fortsetzen' : 'Pausieren'}
+              </button>
+            </div>
+          </div>
+        `).join('');
+      } else {
+        ordersBox.classList.add('hidden');
+      }
+
+      // Sponsorship discount banner
+      const sponsor = getBestSponsorship();
+      const banner = document.getElementById('shop-sponsorship-banner');
+      if (sponsor) {
+        banner.classList.remove('hidden');
+        document.getElementById('shop-sponsorship-text').textContent = `Tier-Partnerschaft „${sponsor.name}“ aktiv: ${sponsor.discountPercent} % Hofrabatt wird im Warenkorb abgezogen.`;
+      } else {
+        banner.classList.add('hidden');
+      }
+
+      // Box Models
+      const modelsGrid = document.getElementById('box-models-grid');
+      modelsGrid.innerHTML = state.boxPlans.map(plan => {
+        const active = state.customer.cart.planId === plan.id;
+        return `
+          <div onclick="selectBoxModel('${plan.id}')" class="cursor-pointer p-4 rounded-2xl border-2 transition flex flex-col justify-between ${active ? 'border-forest-600 bg-forest-50/40' : 'border-sand-200 hover:border-sand-300 bg-sand-50/30'}">
+            <div>
+              <div class="flex items-center justify-between gap-1 mb-1.5">
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${active ? 'bg-forest-600 text-white' : 'bg-sand-200 text-gray-700'}">${escapeHtml(plan.badge)}</span>
+                <span class="text-xs font-bold text-charcoal">${plan.basePrice.toFixed(2).replace('.', ',')} €</span>
+              </div>
+              <h3 class="font-editorial font-semibold text-base text-charcoal">${escapeHtml(plan.name)}</h3>
+              <p class="text-[11px] text-gray-500 mt-1 leading-relaxed">${escapeHtml(plan.desc)}</p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-sand-200/60 flex items-center justify-between text-[11px] font-semibold ${active ? 'text-forest-700' : 'text-gray-400'}">
+              <span>${active ? 'Ausgewählt' : 'Wählen'}</span>
+              <i data-lucide="${active ? 'check-circle-2' : 'circle'}" class="w-4 h-4"></i>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const validDays = ['Montags', 'Mittwochs', 'Freitags'];
+      if (!Array.isArray(state.customer.cart.deliveryDays) || state.customer.cart.deliveryDays.length === 0) {
+        state.customer.cart.deliveryDays = ['Montags', 'Mittwochs', 'Freitags'];
+      }
+      state.customer.cart.deliveryDays = state.customer.cart.deliveryDays.filter(d => validDays.includes(d));
+      if (state.customer.cart.deliveryDays.length === 0) {
+        state.customer.cart.deliveryDays = ['Montags', 'Mittwochs', 'Freitags'];
+      }
+      state.customer.cart.interval = formatDeliveryDays(state.customer.cart.deliveryDays);
+
+      document.querySelectorAll('input[name="box_delivery_days"]').forEach(cb => {
+        cb.checked = state.customer.cart.deliveryDays.includes(cb.value);
+      });
+      const summaryEl = document.getElementById('box-interval-summary');
+      if (summaryEl) {
+        summaryEl.textContent = `${state.customer.cart.deliveryDays.length}× wöchentlich`;
+      }
+      document.getElementById('box-interval-select').value = state.customer.cart.interval;
+      document.getElementById('box-delivery-mode').value = state.customer.cart.deliveryMode;
+
+      // Pre-fill checkout address
+      document.getElementById('checkout-name-input').value = state.customer.name;
+      document.getElementById('checkout-address-input').value = `${state.customer.street}, ${state.customer.city}`;
+
+      renderShopProducts();
+      renderCartSidebar();
+      lucide.createIcons();
+    }
+
+    function togglePauseSubscription(orderId) {
+      const ord = state.customer.orders.find(o => o.id === orderId);
+      if (!ord) return;
+      ord.paused = !ord.paused;
+      saveState();
+      renderBoxesPage();
+      showToast(ord.paused ? `Abo #${ord.id} wurde flexibel pausiert.` : `Abo #${ord.id} ist wieder aktiv!`, 'info');
+    }
+
+    function selectBoxModel(planId) {
+      state.customer.cart.planId = planId;
+      saveState();
+      renderBoxesPage();
+    }
+
+    function updateCartConfig() {
+      state.customer.cart.interval = document.getElementById('box-interval-select').value;
+      state.customer.cart.deliveryMode = document.getElementById('box-delivery-mode').value;
+      saveState();
+      renderCartSidebar();
+    }
+
+    function setProductCategoryFilter(cat) {
+      state.session.productCategoryFilter = cat;
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        const active = btn.textContent.includes(cat) || (cat === 'Alle' && btn.textContent.includes('Alle'));
+        btn.className = `cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold transition ${active ? 'bg-forest-600 text-white' : 'bg-sand-100 text-gray-700 hover:bg-sand-200'}`;
+      });
+      renderShopProducts();
+    }
+
+    function renderShopProducts() {
+      const grid = document.getElementById('shop-products-grid');
+      const filter = state.session.productCategoryFilter;
+      const list = state.products.filter(p => filter === 'Alle' || p.category === filter);
+
+      grid.innerHTML = list.map(prod => {
+        const isEmpty = Boolean(prod.outOfStock);
+        const qty = isEmpty ? 0 : (state.customer.cart.items[prod.id] || 0);
+        const farm = getFarmById(prod.farmId);
+        return `
+          <div class="p-3.5 rounded-2xl border transition flex items-center justify-between gap-3 ${isEmpty ? 'border-sand-200 bg-sand-50/70 opacity-85' : (qty > 0 ? 'border-forest-600 bg-forest-50/30' : 'border-sand-200 bg-white hover:border-sand-300')}">
+            <div class="space-y-0.5 min-w-0">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="text-[10px] font-semibold text-forest-700 bg-forest-50 px-2 py-0.5 rounded-md border border-forest-100">${escapeHtml(farm.name)}</span>
+                ${prod.isNew && !isEmpty ? `<span class="text-[10px] font-bold bg-terracotta-500 text-white px-2 py-0.5 rounded-md">Erntefrisch</span>` : ''}
+                ${isEmpty ? `<span class="text-[10px] font-bold bg-red-100 text-red-700 border border-red-200 px-2 py-0.5 rounded-md">Aktuell leer</span>` : ''}
+              </div>
+              <h4 class="font-semibold text-xs sm:text-sm ${isEmpty ? 'text-gray-500 line-through' : 'text-charcoal'} truncate">${escapeHtml(prod.name)}</h4>
+              <p class="text-[11px] text-gray-500">${escapeHtml(prod.unit)} · <strong class="text-charcoal">${prod.price.toFixed(2).replace('.', ',')} €</strong></p>
+              ${isEmpty ? `
+                <p class="text-[11px] font-semibold text-terracotta-600 flex items-center gap-1 pt-0.5">
+                  <i data-lucide="clock" class="w-3 h-3 shrink-0"></i>
+                  <span>Voraussichtlich wieder verfügbar ab: ${escapeHtml(prod.restockDate || 'in Kürze')}</span>
+                </p>
+              ` : ''}
+            </div>
+
+            ${isEmpty ? `
+              <div class="shrink-0 text-right">
+                <span class="inline-block px-2.5 py-1 rounded-lg bg-sand-200/80 text-gray-500 text-[10px] font-semibold">Ausverkauft</span>
+              </div>
+            ` : `
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="adjustCartItem('${prod.id}', -1)" class="w-7 h-7 rounded-lg border border-sand-300 bg-white hover:bg-sand-100 text-charcoal font-bold text-sm flex items-center justify-center">−</button>
+                <span class="w-6 text-center text-xs font-bold ${qty > 0 ? 'text-forest-700' : 'text-gray-400'}">${qty}</span>
+                <button type="button" onclick="adjustCartItem('${prod.id}', 1)" class="w-7 h-7 rounded-lg bg-forest-600 hover:bg-forest-700 text-white font-bold text-sm flex items-center justify-center">+</button>
+              </div>
+            `}
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function adjustCartItem(prodId, delta) {
+      const prod = state.products.find(p => p.id === prodId);
+      if (prod && prod.outOfStock && delta > 0) {
+        showToast(`„${prod.name}“ ist aktuell leer (wieder verfügbar ab: ${prod.restockDate || 'in Kürze'}).`, 'info');
+        return;
+      }
+      const current = state.customer.cart.items[prodId] || 0;
+      const next = Math.max(0, current + delta);
+      if (next === 0) {
+        delete state.customer.cart.items[prodId];
+      } else {
+        state.customer.cart.items[prodId] = next;
+      }
+      saveState();
+      renderShopProducts();
+      renderCartSidebar();
+      renderHeader();
+    }
+
+    function renderCartSidebar() {
+      const plan = state.boxPlans.find(p => p.id === state.customer.cart.planId) || state.boxPlans[1];
+      document.getElementById('cart-subtitle').textContent = `${plan.name} · ${state.customer.cart.interval}`;
+      document.getElementById('cart-plan-name-row').textContent = `Basis (${plan.name})`;
+
+      const entries = Object.entries(state.customer.cart.items)
+        .map(([id, qty]) => {
+          const prod = state.products.find(p => p.id === id);
+          return prod ? { prod, qty } : null;
+        })
+        .filter(Boolean);
+
+      const itemCount = entries.reduce((sum, e) => sum + e.qty, 0);
+      document.getElementById('cart-badge-count').textContent = `${itemCount} Erzeugnisse`;
+
+      const container = document.getElementById('cart-items-container');
+      if (entries.length === 0) {
+        container.innerHTML = `<p class="text-xs text-gray-400 py-4 text-center">Wähle links deine gewünschten Hofprodukte aus.</p>`;
+      } else {
+        container.innerHTML = entries.map(({ prod, qty }) => `
+          <div class="py-2 flex items-center justify-between gap-2 text-xs">
+            <div class="truncate">
+              <span class="font-semibold text-charcoal">${qty}×</span>
+              <span class="text-gray-700">${escapeHtml(prod.name)}</span>
+            </div>
+            <span class="font-medium text-charcoal shrink-0">${(prod.price * qty).toFixed(2).replace('.', ',')} €</span>
+          </div>
+        `).join('');
+      }
+
+      const itemsSum = entries.reduce((sum, { prod, qty }) => sum + prod.price * qty, 0);
+      const gross = plan.basePrice + itemsSum;
+
+      const sponsor = getBestSponsorship();
+      let discount = 0;
+      const discountRow = document.getElementById('cart-discount-row');
+      if (sponsor) {
+        discount = gross * (sponsor.discountPercent / 100);
+        discountRow.classList.remove('hidden');
+        document.getElementById('cart-discount-value').textContent = `- ${discount.toFixed(2).replace('.', ',')} € (${sponsor.discountPercent}%)`;
+      } else {
+        discountRow.classList.add('hidden');
+      }
+
+      const finalSum = Math.max(0, gross - discount);
+      document.getElementById('cart-base-price').textContent = `${plan.basePrice.toFixed(2).replace('.', ',')} €`;
+      document.getElementById('cart-items-price').textContent = `${itemsSum.toFixed(2).replace('.', ',')} €`;
+      document.getElementById('cart-total-price').textContent = `${finalSum.toFixed(2).replace('.', ',')} €`;
+    }
+
+    function switchPaymentMethod(method) {
+      const box = document.getElementById('checkout-payment-field');
+      if (method === 'SEPA-Lastschrift') {
+        box.innerHTML = `<input type="text" required value="DE89 3704 0044 0532 0130 00" class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs font-mono bg-sand-50" placeholder="IBAN" />`;
+      } else if (method === 'Kreditkarte') {
+        box.innerHTML = `<input type="text" required value="4532 •••• •••• 8910  (09/28)" class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs font-mono bg-sand-50" placeholder="Kartennummer" />`;
+      } else {
+        box.innerHTML = `<input type="email" required value="${escapeHtml(state.customer.email)}" class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs bg-sand-50" placeholder="PayPal E-Mail" />`;
+      }
+    }
+
+    function handleCheckoutSubmit(e) {
+      e.preventDefault();
+      const recipientName = document.getElementById('checkout-name-input').value.trim();
+      const recipientAddress = document.getElementById('checkout-address-input').value.trim();
+      const note = document.getElementById('checkout-note-input').value.trim();
+
+      if (recipientName) state.customer.name = recipientName;
+      if (!state.session.role) {
+        state.session.role = 'customer';
+      }
+
+      const plan = state.boxPlans.find(p => p.id === state.customer.cart.planId) || state.boxPlans[1];
+      const totalStr = document.getElementById('cart-total-price').textContent;
+      const newOrderId = 'LB-' + Math.floor(1000 + Math.random() * 9000);
+
+      const itemsSummary = Object.entries(state.customer.cart.items)
+        .map(([id, qty]) => {
+          const p = state.products.find(x => x.id === id);
+          return p ? `${qty}x ${p.name}` : null;
+        })
+        .filter(Boolean)
+        .join(', ') || 'Saisonale Hof-Auswahl';
+
+      // Save in customer's active subscriptions
+      state.customer.orders.unshift({
+        id: newOrderId,
+        planName: plan.name,
+        interval: state.customer.cart.interval,
+        total: totalStr,
+        createdAt: 'Gerade bestellt',
+        paused: false,
+        itemsSummary
+      });
+
+      // Also notify the farmer in their inbox
+      state.inquiries.unshift({
+        id: 'inq-' + Date.now(),
+        customerName: state.customer.name,
+        customerEmail: state.customer.email,
+        farmId: state.activeFarmId,
+        type: 'Wochenbox-Abo',
+        subject: `Bestellung #${newOrderId}: ${plan.name} (${totalStr})`,
+        message: `Lieferintervall: ${state.customer.cart.interval}, Zustellung: ${state.customer.cart.deliveryMode} an ${recipientAddress}. Produkte: ${itemsSummary}. ${note ? 'Hinweis: ' + note : ''}`,
+        createdAt: 'Gerade eben',
+        status: 'Offen',
+        farmerReply: ''
+      });
+
+      saveState();
+      document.getElementById('checkout-note-input').value = '';
+      renderApp();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      showToast(`Vielen Dank! Deine Bestellung #${newOrderId} (${plan.name}) wurde bestätigt.`);
+    }
+
+    // =========================================================================
+    // CUSTOMER VIEW: TIER-PARTNERSCHAFTEN (ANIMAL-SHARING)
+    // =========================================================================
+    function renderAnimalsPage() {
+      const grid = document.getElementById('animals-public-grid');
+      grid.innerHTML = state.animals.map(animal => {
+        const farm = getFarmById(animal.farmId);
+        const isPartner = state.customer.activeSponsorshipIds.includes(animal.id);
+        const pct = Math.min(100, Math.round((animal.bookedShares / animal.totalShares) * 100));
+        const freeShares = Math.max(0, animal.totalShares - animal.bookedShares);
+
+        return `
+          <div class="bg-white rounded-3xl border ${isPartner ? 'border-forest-600 ring-2 ring-forest-600/15' : 'border-sand-200'} shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+            <div>
+              <div class="relative h-56 bg-sand-200 overflow-hidden">
+                <img src="${animal.imageUrl}" alt="${escapeHtml(animal.name)}" onerror="this.src='https://placehold.co/600x400/1F4D36/FFFFFF?text=Weidetier'" class="w-full h-full object-cover" />
+                <div class="absolute top-3.5 left-3.5 flex flex-wrap gap-1.5">
+                  <span class="px-3 py-1 rounded-full bg-charcoal/80 backdrop-blur-sm text-white text-[11px] font-semibold">${escapeHtml(farm.name)}</span>
+                  <span class="px-3 py-1 rounded-full bg-terracotta-500 text-white text-[11px] font-bold">-${animal.discountPercent} % Hofrabatt</span>
+                </div>
+                ${isPartner ? `
+                  <div class="absolute bottom-3.5 right-3.5 px-3 py-1 rounded-full bg-forest-600 text-white text-xs font-bold shadow flex items-center gap-1.5">
+                    <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                    <span>Deine Partnerschaft</span>
+                  </div>
+                ` : ''}
+              </div>
+
+              <div class="p-6 space-y-4">
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <h3 class="font-editorial text-2xl font-semibold text-charcoal">${escapeHtml(animal.name)}</h3>
+                    <p class="text-xs text-gray-500">${escapeHtml(animal.species)}</p>
+                  </div>
+                  <div class="text-right shrink-0">
+                    <span class="text-xl font-bold text-charcoal">${animal.monthlyPrice} €</span>
+                    <span class="block text-[10px] text-gray-500">pro Monat / Anteil</span>
+                  </div>
+                </div>
+
+                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">${escapeHtml(animal.description)}</p>
+
+                <!-- Live Pasture Update -->
+                <div class="p-3.5 rounded-2xl bg-sand-50 border border-sand-200 space-y-1">
+                  <div class="flex items-center justify-between text-[10px] font-semibold text-forest-700">
+                    <span class="flex items-center gap-1"><i data-lucide="message-square-heart" class="w-3.5 h-3.5"></i> Aktuelles Weide-Update</span>
+                    <span class="text-gray-400">${escapeHtml(animal.updatedAt)}</span>
+                  </div>
+                  <p class="text-xs text-charcoal italic">„${escapeHtml(animal.statusUpdate)}“</p>
+                </div>
+
+                <!-- Shares Bar -->
+                <div class="space-y-1.5">
+                  <div class="flex justify-between text-xs">
+                    <span class="font-medium text-gray-600">Finanzierungsstatus</span>
+                    <span class="font-semibold text-charcoal">${animal.bookedShares} von ${animal.totalShares} Anteilen (${freeShares} frei)</span>
+                  </div>
+                  <div class="w-full h-2 rounded-full bg-sand-200 overflow-hidden">
+                    <div class="h-full bg-forest-600 rounded-full transition-all duration-300" style="width: ${pct}%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 pt-0">
+              <button onclick="openAnimalBookingModal('${animal.id}')" class="w-full py-3 rounded-xl ${isPartner ? 'bg-forest-50 hover:bg-forest-100 text-forest-700 border border-forest-200' : 'bg-forest-600 hover:bg-forest-700 text-white shadow-sm'} font-semibold text-xs transition flex items-center justify-center gap-2">
+                <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+                <span>${isPartner ? 'Weiteren Anteil oder Hofbesuch buchen' : `Partnerschaft übernehmen (${animal.monthlyPrice} €/Monat)`}</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function openAnimalBookingModal(animalId) {
+      const animal = state.animals.find(a => a.id === animalId);
+      if (!animal) return;
+      const farm = getFarmById(animal.farmId);
+
+      document.getElementById('modal-animal-id').value = animal.id;
+      document.getElementById('modal-animal-heading').textContent = `Partnerschaft für ${animal.name}`;
+      document.getElementById('modal-animal-sub').textContent = `${farm.name} · ${animal.monthlyPrice} €/Monat · ${animal.discountPercent} % Hofrabatt`;
+      document.getElementById('modal-animal-note').value = `Hallo liebes Team vom ${farm.name}! Ich übernehme gerne eine Tier-Partnerschaft für ${animal.name} und freue mich auf einen baldigen Besuch auf eurem Hof.`;
+
+      document.getElementById('modal-animal-booking').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeAnimalBookingModal() {
+      document.getElementById('modal-animal-booking').classList.add('hidden');
+    }
+
+    function submitAnimalBooking(e) {
+      e.preventDefault();
+      const animalId = document.getElementById('modal-animal-id').value;
+      const shares = parseInt(document.getElementById('modal-animal-shares').value, 10) || 1;
+      const duration = document.getElementById('modal-animal-duration').value;
+      const note = document.getElementById('modal-animal-note').value.trim();
+
+      const animal = state.animals.find(a => a.id === animalId);
+      if (!animal) return;
+
+      if (!state.session.role) {
+        state.session.role = 'customer';
+      }
+
+      if (!state.customer.activeSponsorshipIds.includes(animal.id)) {
+        state.customer.activeSponsorshipIds.push(animal.id);
+      }
+      animal.bookedShares = Math.min(animal.totalShares, animal.bookedShares + shares);
+
+      state.inquiries.unshift({
+        id: 'inq-' + Date.now(),
+        customerName: state.customer.name,
+        customerEmail: state.customer.email,
+        farmId: animal.farmId,
+        type: 'Tierpartnerschaft',
+        subject: `Neue Tier-Partnerschaft: ${animal.name} (${shares} Anteil/e, ${duration})`,
+        message: note,
+        createdAt: 'Gerade eben',
+        status: 'Offen',
+        farmerReply: ''
+      });
+
+      saveState();
+      closeAnimalBookingModal();
+      renderApp();
+
+      showToast(
+        `Deine Tier-Partnerschaft für „${animal.name}“ ist aktiv! Dein ${animal.discountPercent} % Hofrabatt wurde im Warenkorb hinterlegt.`,
+        'success',
+        'Zur Wochenbox',
+        () => navigateTo('boxes')
+      );
+    }
+
+    // =========================================================================
+    // CUSTOMER VIEW: PARTNERHÖFE & INTERAKTIVE KARTE
+    // =========================================================================
+    function renderFarmsMap() {
+      const cat = document.getElementById('map-category-select').value;
+      const query = document.getElementById('map-search-query').value.trim().toLowerCase();
+      const maxKm = parseInt(document.getElementById('map-radius-range').value, 10) || 35;
+
+      document.getElementById('map-radius-text').textContent = `${maxKm} km`;
+      document.getElementById('map-user-city').textContent = state.customer.city;
+
+      const svgCircle = document.getElementById('map-svg-radius');
+      if (svgCircle) {
+        svgCircle.setAttribute('r', Math.round((maxKm / 50) * 250));
+      }
+
+      const visibleFarms = state.farms.filter(f => {
+        if (f.distanceKm > maxKm) return false;
+        if (cat !== 'Alle' && f.category !== cat) return false;
+        if (query) {
+          const prods = state.products.filter(p => p.farmId === f.id).map(p => p.name.toLowerCase()).join(' ');
+          const text = `${f.name} ${f.owner} ${f.category} ${f.address} ${prods}`.toLowerCase();
+          if (!text.includes(query)) return false;
+        }
+        return true;
+      });
+
+      document.getElementById('map-count-badge').textContent = `${visibleFarms.length} Partnerhöfe im Umkreis`;
+
+      if (!visibleFarms.some(f => f.id === state.session.selectedMapFarmId) && visibleFarms.length > 0) {
+        state.session.selectedMapFarmId = visibleFarms[0].id;
+      }
+
+      // Render Map Pins
+      const pinsContainer = document.getElementById('map-pins-container');
+      pinsContainer.innerHTML = visibleFarms.map(farm => {
+        const selected = farm.id === state.session.selectedMapFarmId;
+        return `
+          <button
+            onclick="selectMapFarmPin('${farm.id}')"
+            style="left: ${farm.mapX}%; top: ${farm.mapY}%;"
+            class="absolute -translate-x-1/2 -translate-y-1/2 z-20 focus:outline-none transition-all duration-200 ${selected ? 'scale-110 z-30' : 'hover:scale-105'}"
+          >
+            <div class="relative flex items-center gap-1.5 px-3 py-1.5 rounded-full shadow-lg border-2 border-white font-semibold text-xs whitespace-nowrap transition ${selected ? 'bg-forest-600 text-white pin-pulse' : 'bg-white text-charcoal hover:bg-forest-50'}">
+              <i data-lucide="tractor" class="w-3.5 h-3.5 ${selected ? 'text-emerald-300' : 'text-terracotta-500'}"></i>
+              <span>${escapeHtml(farm.name)}</span>
+              <span class="text-[10px] opacity-80">(${farm.distanceKm} km)</span>
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      // Bottom Farm Selector Bar
+      document.getElementById('map-bottom-pills').innerHTML = visibleFarms.map(farm => {
+        const selected = farm.id === state.session.selectedMapFarmId;
+        return `
+          <button onclick="selectMapFarmPin('${farm.id}')" class="px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition flex items-center gap-1.5 ${selected ? 'bg-forest-600 text-white' : 'bg-white text-gray-700 border border-sand-200 hover:bg-sand-100'}">
+            <span>${escapeHtml(farm.name)}</span>
+            <span class="text-[10px] opacity-75">${farm.distanceKm} km</span>
+          </button>
+        `;
+      }).join('');
+
+      renderMapFarmDetailSidebar(visibleFarms);
+      lucide.createIcons();
+    }
+
+    function selectMapFarmPin(farmId) {
+      state.session.selectedMapFarmId = farmId;
+      saveState();
+      renderFarmsMap();
+    }
+
+    function renderMapFarmDetailSidebar(visibleFarms) {
+      const sidebar = document.getElementById('map-detail-sidebar');
+      const farm = visibleFarms.find(f => f.id === state.session.selectedMapFarmId);
+
+      if (!farm) {
+        sidebar.innerHTML = `
+          <div class="bg-white rounded-2xl border border-sand-200 p-8 text-center space-y-2">
+            <p class="font-editorial text-lg text-charcoal">Keine Höfe für diesen Filter gefunden</p>
+            <p class="text-xs text-gray-500">Vergrößere den Umkreis-Radius oder wähle „Alle Hof-Schwerpunkte“.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const farmProducts = state.products.filter(p => p.farmId === farm.id);
+      const farmAnimals = state.animals.filter(a => a.farmId === farm.id);
+
+      sidebar.innerHTML = `
+        <div class="bg-white rounded-2xl border border-sand-200 shadow-sm p-5 sm:p-6 space-y-5 fade-enter">
+          <div class="flex items-start justify-between gap-3 border-b border-sand-100 pb-4">
+            <div>
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="px-2.5 py-0.5 rounded-full bg-forest-50 text-forest-700 text-[11px] font-semibold border border-forest-100">${escapeHtml(farm.cert)}</span>
+                <span class="text-xs text-gray-500">${farm.distanceKm} km entfernt</span>
+              </div>
+              <h3 class="font-editorial text-2xl font-semibold text-charcoal mt-1">${escapeHtml(farm.name)}</h3>
+              <p class="text-xs text-gray-500">Inhaber: ${escapeHtml(farm.owner)} · ${escapeHtml(farm.address)}</p>
+            </div>
+            <div class="w-10 h-10 rounded-xl bg-terracotta-50 text-terracotta-600 flex items-center justify-center shrink-0">
+              <i data-lucide="store" class="w-5 h-5"></i>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-600 leading-relaxed">${escapeHtml(farm.bio)}</p>
+
+          <div class="grid grid-cols-2 gap-2.5 text-xs bg-sand-50 p-3 rounded-xl border border-sand-200">
+            <div>
+              <span class="text-[10px] uppercase tracking-wider text-gray-400 block">Schwerpunkt</span>
+              <span class="font-semibold text-charcoal">${escapeHtml(farm.category)}</span>
+            </div>
+            <div>
+              <span class="text-[10px] uppercase tracking-wider text-gray-400 block">Hofladen & Besuch</span>
+              <span class="font-semibold text-charcoal">${escapeHtml(farm.hours)}</span>
+            </div>
+          </div>
+
+          <!-- Farm Products -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="text-xs font-semibold uppercase tracking-wider text-gray-500">Erzeugnisse vom Hof (${farmProducts.length})</h4>
+              <button onclick="navigateTo('boxes')" class="text-[11px] font-semibold text-forest-600 hover:underline">Zur Wochenbox →</button>
+            </div>
+            <div class="space-y-1.5 max-h-36 overflow-y-auto pr-1">
+              ${farmProducts.map(p => `
+                <div class="px-3 py-2 rounded-lg bg-sand-50 border border-sand-200 flex items-center justify-between gap-2 text-xs">
+                  <div class="min-w-0">
+                    <span class="font-medium ${p.outOfStock ? 'text-gray-400 line-through' : 'text-charcoal'}">${escapeHtml(p.name)} <span class="text-gray-400">(${escapeHtml(p.unit)})</span></span>
+                    ${p.outOfStock ? `<span class="block text-[10px] font-semibold text-terracotta-600">Leer · Wieder verfügbar ab: ${escapeHtml(p.restockDate || 'in Kürze')}</span>` : ''}
+                  </div>
+                  <div class="flex items-center gap-2 shrink-0">
+                    <span class="font-bold text-charcoal">${p.price.toFixed(2).replace('.', ',')} €</span>
+                    ${p.outOfStock
+                      ? `<span class="px-2 py-0.5 rounded bg-red-100 text-red-700 text-[10px] font-semibold">Leer</span>`
+                      : `<button onclick="addProductFromMapToBox('${p.id}')" class="px-2 py-0.5 rounded bg-forest-600 hover:bg-forest-700 text-white text-[10px] font-semibold">+ In die Box</button>`
+                    }
+                  </div>
+                </div>
+              `).join('') || '<p class="text-xs text-gray-400">Aktuell keine Produkte gelistet.</p>'}
+            </div>
+          </div>
+
+          <!-- Direct Contact / Inquiry Form -->
+          <form onsubmit="submitMapInquiry(event, '${farm.id}')" class="pt-4 border-t border-sand-200 space-y-3">
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-terracotta-600 flex items-center gap-1.5">
+              <i data-lucide="send" class="w-3.5 h-3.5"></i>
+              <span>Anfrage an ${escapeHtml(farm.name)} senden</span>
+            </h4>
+            <div class="grid sm:grid-cols-2 gap-2.5">
+              <select id="map-contact-type" class="px-3 py-2 rounded-xl border border-sand-300 text-xs bg-white font-medium">
+                <option value="Hofbesuch / Community-Kochen">Hofbesuch / Community-Kochen</option>
+                <option value="Sonderbestellung">Sonderbestellung anfragen</option>
+                <option value="Tierpartnerschaft">Frage zu Tier-Partnerschaften (${farmAnimals.length})</option>
+              </select>
+              <input type="text" id="map-contact-subject" required placeholder="Betreff / Wunschtermin" class="px-3 py-2 rounded-xl border border-sand-300 text-xs bg-white" />
+            </div>
+            <textarea id="map-contact-message" rows="2" required placeholder="Deine Nachricht an Familie ${escapeHtml(farm.owner)}..." class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs bg-white"></textarea>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-charcoal hover:bg-forest-700 text-white font-semibold text-xs transition flex items-center justify-center gap-2">
+              <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+              <span>Nachricht direkt an den Hof senden</span>
+            </button>
+          </form>
+        </div>
+      `;
+    }
+
+    function addProductFromMapToBox(prodId) {
+      const prod = state.products.find(p => p.id === prodId);
+      if (!prod) return;
+      if (prod.outOfStock) {
+        showToast(`„${prod.name}“ ist aktuell leer (wieder verfügbar ab: ${prod.restockDate || 'in Kürze'}).`, 'info');
+        return;
+      }
+      state.customer.cart.items[prodId] = (state.customer.cart.items[prodId] || 0) + 1;
+      saveState();
+      renderHeader();
+      showToast(`„${prod.name}“ wurde deiner Wochenbox hinzugefügt.`, 'success', 'Wochenbox öffnen', () => navigateTo('boxes'));
+    }
+
+    function submitMapInquiry(e, farmId) {
+      e.preventDefault();
+      const farm = getFarmById(farmId);
+      const type = document.getElementById('map-contact-type').value;
+      const subject = document.getElementById('map-contact-subject').value.trim();
+      const message = document.getElementById('map-contact-message').value.trim();
+
+      state.inquiries.unshift({
+        id: 'inq-' + Date.now(),
+        customerName: state.customer.name,
+        customerEmail: state.customer.email,
+        farmId: farm.id,
+        type,
+        subject: `${subject} (${farm.name})`,
+        message,
+        createdAt: 'Gerade eben',
+        status: 'Offen',
+        farmerReply: ''
+      });
+
+      saveState();
+      document.getElementById('map-contact-subject').value = '';
+      document.getElementById('map-contact-message').value = '';
+      showToast(`Deine Anfrage wurde an „${farm.name}“ gesendet!`);
+    }
+
+    // =========================================================================
+    // FARMER PORTAL VIEW 1: BETRIEBSPROFIL & STANDORT
+    // =========================================================================
+    function renderFarmerProfilePage() {
+      const farm = getActiveFarm();
+      document.getElementById('fp-name').value = farm.name;
+      document.getElementById('fp-owner').value = farm.owner;
+      document.getElementById('fp-email').value = farm.email;
+      document.getElementById('fp-phone').value = farm.phone;
+      document.getElementById('fp-cert').value = farm.cert;
+      document.getElementById('fp-category').value = farm.category;
+      document.getElementById('fp-address').value = farm.address;
+      document.getElementById('fp-hours').value = farm.hours;
+      document.getElementById('fp-bio').value = farm.bio;
+      document.getElementById('fp-distance-input').value = farm.distanceKm;
+      document.getElementById('fp-distance-badge').textContent = `${farm.distanceKm} km Radius`;
+      document.getElementById('fp-coords-display').value = `X: ${farm.mapX}% · Y: ${farm.mapY}%`;
+
+      const marker = document.getElementById('fp-pin-marker');
+      marker.style.left = `${farm.mapX}%`;
+      marker.style.top = `${farm.mapY}%`;
+      document.getElementById('fp-pin-label').textContent = farm.name;
+    }
+
+    function handleFarmerPinClick(event) {
+      const rect = document.getElementById('fp-pin-map').getBoundingClientRect();
+      const x = Math.max(10, Math.min(90, Math.round(((event.clientX - rect.left) / rect.width) * 100)));
+      const y = Math.max(12, Math.min(88, Math.round(((event.clientY - rect.top) / rect.height) * 100)));
+
+      const farm = getActiveFarm();
+      farm.mapX = x;
+      farm.mapY = y;
+      const dist = Math.max(3, Math.min(45, Math.round(Math.hypot(x - 50, y - 50) * 0.75)));
+      farm.distanceKm = dist;
+
+      saveState();
+      renderFarmerProfilePage();
+      showToast(`Karten-Standort für „${farm.name}“ aktualisiert (${dist} km).`);
+    }
+
+    function saveFarmerProfileForm(e) {
+      e.preventDefault();
+      const farm = getActiveFarm();
+      farm.name = document.getElementById('fp-name').value.trim();
+      farm.owner = document.getElementById('fp-owner').value.trim();
+      farm.email = document.getElementById('fp-email').value.trim();
+      farm.phone = document.getElementById('fp-phone').value.trim();
+      farm.cert = document.getElementById('fp-cert').value;
+      farm.category = document.getElementById('fp-category').value;
+      farm.address = document.getElementById('fp-address').value.trim();
+      farm.hours = document.getElementById('fp-hours').value.trim();
+      farm.bio = document.getElementById('fp-bio').value.trim();
+      farm.distanceKm = parseInt(document.getElementById('fp-distance-input').value, 10) || 15;
+
+      saveState();
+      renderApp();
+      showToast(`Betriebsprofil für „${farm.name}“ wurde gespeichert.`);
+    }
+
+    // =========================================================================
+    // FARMER PORTAL VIEW 2: HOFANGEBOT & WOCHENBOX-PRODUKTE
+    // =========================================================================
+    function toggleNewProductEmptyField() {
+      const checked = document.getElementById('new-prod-empty').checked;
+      document.getElementById('new-prod-restock-wrap').classList.toggle('hidden', !checked);
+    }
+
+    function toggleFarmerProductEmptyInput(prodId) {
+      const checked = document.getElementById(`fprod-empty-${prodId}`).checked;
+      const wrap = document.getElementById(`fprod-restock-wrap-${prodId}`);
+      if (wrap) {
+        wrap.classList.toggle('hidden', !checked);
+        wrap.classList.toggle('flex', checked);
+      }
+    }
+
+    function renderFarmerProductsPage() {
+      const farm = getActiveFarm();
+      const myProducts = state.products.filter(p => p.farmId === farm.id);
+      document.getElementById('fp-products-counter').textContent = `${myProducts.length} aktive Hofprodukte`;
+
+      const table = document.getElementById('farmer-products-table');
+      if (myProducts.length === 0) {
+        table.innerHTML = `<p class="text-xs text-gray-400 py-6 text-center">Noch keine eigenen Produkte angelegt.</p>`;
+        return;
+      }
+
+      table.innerHTML = myProducts.map(prod => `
+        <div class="p-4 rounded-2xl bg-sand-50/70 border border-sand-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-1 flex-1">
+            <div class="flex items-center gap-2 flex-wrap">
+              <input type="text" id="fprod-name-${prod.id}" value="${escapeHtml(prod.name)}" class="px-2.5 py-1 rounded-lg border border-sand-300 bg-white text-xs sm:text-sm font-semibold text-charcoal w-full max-w-xs" />
+              <span class="px-2.5 py-0.5 rounded-full bg-white border border-sand-200 text-gray-600 text-[10px] font-semibold shrink-0">${escapeHtml(prod.category)}</span>
+              ${prod.outOfStock
+                ? `<span class="px-2 py-0.5 rounded-full bg-red-100 text-red-700 border border-red-200 text-[10px] font-bold shrink-0">Aktuell leer</span>`
+                : `<span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-semibold shrink-0">Verfügbar</span>`
+              }
+            </div>
+            <div class="flex items-center gap-2 pt-1">
+              <input type="text" id="fprod-unit-${prod.id}" value="${escapeHtml(prod.unit)}" class="px-2.5 py-1 rounded-lg border border-sand-300 bg-white text-xs text-gray-600 w-28" />
+              <div class="flex items-center gap-1">
+                <input type="number" step="0.10" id="fprod-price-${prod.id}" value="${prod.price.toFixed(2)}" class="px-2.5 py-1 rounded-lg border border-sand-300 bg-white text-xs font-bold text-charcoal w-20" />
+                <span class="text-xs text-gray-500">€</span>
+              </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-3 pt-2 mt-1 border-t border-sand-200/70">
+              <label class="inline-flex items-center gap-1.5 cursor-pointer text-xs font-semibold ${prod.outOfStock ? 'text-red-600' : 'text-gray-600'}">
+                <input type="checkbox" id="fprod-empty-${prod.id}" ${prod.outOfStock ? 'checked' : ''} onchange="toggleFarmerProductEmptyInput('${prod.id}')" class="rounded text-terracotta-600" />
+                <span>Produkt aktuell leer</span>
+              </label>
+              <div id="fprod-restock-wrap-${prod.id}" class="${prod.outOfStock ? 'flex' : 'hidden'} items-center gap-1.5 flex-1 min-w-[210px]">
+                <span class="text-[11px] text-gray-500 whitespace-nowrap">Wieder verfügbar ab:</span>
+                <input type="text" id="fprod-restock-${prod.id}" value="${escapeHtml(prod.restockDate || '')}" placeholder="z. B. Donnerstag, 05.11.2026" class="px-2.5 py-1 rounded-lg border border-sand-300 bg-white text-xs text-charcoal w-full" />
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 self-end sm:self-center">
+            <button onclick="saveFarmerProductItem('${prod.id}')" class="px-3 py-1.5 rounded-xl bg-forest-600 hover:bg-forest-700 text-white text-xs font-semibold transition flex items-center gap-1">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Speichern</span>
+            </button>
+            <button onclick="removeFarmerProductItem('${prod.id}')" class="p-2 rounded-xl bg-white hover:bg-red-50 text-gray-400 hover:text-red-600 border border-sand-200 transition" title="Produkt löschen">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function handleAddProductSubmit(e) {
+      e.preventDefault();
+      const farm = getActiveFarm();
+      const name = document.getElementById('new-prod-title').value.trim();
+      const category = document.getElementById('new-prod-cat').value;
+      const unit = document.getElementById('new-prod-unit').value.trim();
+      const price = parseFloat(document.getElementById('new-prod-price').value) || 3.90;
+      const outOfStock = document.getElementById('new-prod-empty').checked;
+      const restockDate = outOfStock ? (document.getElementById('new-prod-restock').value.trim() || 'in Kürze') : '';
+
+      const newProd = {
+        id: 'prod-' + Date.now(),
+        farmId: farm.id,
+        name,
+        category,
+        unit,
+        price,
+        isNew: true,
+        outOfStock,
+        restockDate
+      };
+
+      state.products.unshift(newProd);
+      if (!outOfStock) {
+        state.customer.cart.items[newProd.id] = 1;
+      }
+      saveState();
+
+      document.getElementById('new-prod-title').value = '';
+      document.getElementById('new-prod-unit').value = '';
+      document.getElementById('new-prod-price').value = '';
+      document.getElementById('new-prod-empty').checked = false;
+      document.getElementById('new-prod-restock').value = '';
+      document.getElementById('new-prod-restock-wrap').classList.add('hidden');
+
+      renderFarmerProductsPage();
+      showToast(`„${name}“ wurde zum Wochenbox-Sortiment hinzugefügt.`);
+    }
+
+    function saveFarmerProductItem(prodId) {
+      const prod = state.products.find(p => p.id === prodId);
+      if (!prod) return;
+      prod.name = document.getElementById(`fprod-name-${prodId}`).value.trim();
+      prod.unit = document.getElementById(`fprod-unit-${prodId}`).value.trim();
+      prod.price = parseFloat(document.getElementById(`fprod-price-${prodId}`).value) || prod.price;
+      prod.outOfStock = document.getElementById(`fprod-empty-${prodId}`).checked;
+      const restockVal = document.getElementById(`fprod-restock-${prodId}`).value.trim();
+      prod.restockDate = prod.outOfStock ? (restockVal || 'in Kürze') : restockVal;
+      if (prod.outOfStock) {
+        delete state.customer.cart.items[prodId];
+      }
+      saveState();
+      renderFarmerProductsPage();
+      showToast(`Produkt „${prod.name}“ wurde aktualisiert.`);
+    }
+
+    function removeFarmerProductItem(prodId) {
+      state.products = state.products.filter(p => p.id !== prodId);
+      delete state.customer.cart.items[prodId];
+      saveState();
+      renderFarmerProductsPage();
+      showToast('Produkt wurde aus dem Hofangebot entfernt.', 'info');
+    }
+
+    // =========================================================================
+    // FARMER PORTAL VIEW 3: TIER-PARTNERSCHAFTEN VERWALTEN
+    // =========================================================================
+    function handleNewAnimalPhotoSelect(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        stagedNewAnimalPhoto = evt.target.result;
+        document.getElementById('fa-new-photo-img').src = stagedNewAnimalPhoto;
+        document.getElementById('fa-new-photo-preview').classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleAddAnimalSubmit(e) {
+      e.preventDefault();
+      const farm = getActiveFarm();
+      const name = document.getElementById('fa-new-name').value.trim();
+      const species = document.getElementById('fa-new-species').value.trim();
+      const monthlyPrice = parseInt(document.getElementById('fa-new-price').value, 10) || 25;
+      const discountPercent = parseInt(document.getElementById('fa-new-discount').value, 10) || 15;
+      const totalShares = parseInt(document.getElementById('fa-new-shares').value, 10) || 10;
+      const description = document.getElementById('fa-new-desc').value.trim();
+
+      const fallbackImg = 'https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&w=800&q=80';
+
+      state.animals.unshift({
+        id: 'animal-' + Date.now(),
+        farmId: farm.id,
+        name,
+        species,
+        monthlyPrice,
+        discountPercent,
+        totalShares,
+        bookedShares: 1,
+        statusUpdate: `Frisch auf der Weide von ${farm.name}: ${name} freut sich über Tierpartner!`,
+        updatedAt: 'Gerade eben',
+        description,
+        imageUrl: stagedNewAnimalPhoto || fallbackImg
+      });
+
+      stagedNewAnimalPhoto = null;
+      saveState();
+
+      document.getElementById('fa-new-name').value = '';
+      document.getElementById('fa-new-species').value = '';
+      document.getElementById('fa-new-desc').value = '';
+      document.getElementById('fa-new-photo').value = '';
+      document.getElementById('fa-new-photo-preview').classList.add('hidden');
+
+      renderFarmerAnimalsPage();
+      showToast(`Tierprofil für „${name}“ wurde veröffentlicht!`);
+    }
+
+    function renderFarmerAnimalsPage() {
+      const grid = document.getElementById('farmer-animals-grid');
+      grid.innerHTML = state.animals.map(animal => {
+        const farm = getFarmById(animal.farmId);
+        return `
+          <div class="bg-white rounded-2xl border border-sand-200 shadow-sm overflow-hidden flex flex-col justify-between">
+            <div class="p-6 space-y-4">
+              <div class="flex items-start gap-4">
+                <div class="w-24 h-24 rounded-2xl overflow-hidden bg-sand-100 border border-sand-200 shrink-0">
+                  <img src="${animal.imageUrl}" alt="${escapeHtml(animal.name)}" class="w-full h-full object-cover" />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <span class="text-[10px] font-semibold uppercase tracking-wider text-forest-700 bg-forest-50 px-2 py-0.5 rounded">${escapeHtml(farm.name)}</span>
+                  <div class="grid sm:grid-cols-2 gap-2 mt-1.5">
+                    <input type="text" id="fanim-name-${animal.id}" value="${escapeHtml(animal.name)}" class="px-2.5 py-1.5 rounded-lg border border-sand-300 text-sm font-semibold text-charcoal" />
+                    <input type="text" id="fanim-species-${animal.id}" value="${escapeHtml(animal.species)}" class="px-2.5 py-1.5 rounded-lg border border-sand-300 text-xs text-gray-600" />
+                  </div>
+                  <div class="mt-2 flex items-center gap-2">
+                    <label class="cursor-pointer inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-sand-100 hover:bg-sand-200 text-charcoal text-[11px] font-semibold transition">
+                      <i data-lucide="camera" class="w-3.5 h-3.5 text-terracotta-600"></i>
+                      <span>Foto ändern</span>
+                      <input type="file" accept="image/*" onchange="updateExistingAnimalPhoto(event, '${animal.id}')" class="hidden" />
+                    </label>
+                    <span class="text-[11px] text-gray-400">${escapeHtml(animal.updatedAt)}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-terracotta-50/50 border border-terracotta-100 space-y-1.5">
+                <label class="block text-[11px] font-semibold text-terracotta-600 flex items-center gap-1">
+                  <i data-lucide="megaphone" class="w-3.5 h-3.5"></i>
+                  <span>Aktuelles Status-Update von der Weide</span>
+                </label>
+                <input type="text" id="fanim-status-${animal.id}" value="${escapeHtml(animal.statusUpdate)}" class="w-full px-3 py-2 rounded-lg border border-sand-300 text-xs bg-white" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Steckbrief & Rabatt-Vorteil</label>
+                <textarea id="fanim-desc-${animal.id}" rows="2" class="w-full px-3 py-2 rounded-xl border border-sand-300 text-xs leading-relaxed">${escapeHtml(animal.description)}</textarea>
+              </div>
+
+              <div class="grid grid-cols-3 gap-3">
+                <div>
+                  <label class="block text-[11px] font-semibold text-gray-600 mb-1">Beitrag (€/Monat)</label>
+                  <input type="number" id="fanim-price-${animal.id}" value="${animal.monthlyPrice}" class="w-full px-3 py-1.5 rounded-lg border border-sand-300 text-xs font-semibold" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-gray-600 mb-1">Kundenrabatt (%)</label>
+                  <input type="number" id="fanim-disc-${animal.id}" value="${animal.discountPercent}" class="w-full px-3 py-1.5 rounded-lg border border-sand-300 text-xs font-semibold" />
+                </div>
+                <div>
+                  <label class="block text-[11px] font-semibold text-gray-600 mb-1">Vergebene Anteile</label>
+                  <div class="flex items-center gap-1">
+                    <input type="number" id="fanim-booked-${animal.id}" value="${animal.bookedShares}" class="w-full px-2 py-1.5 rounded-lg border border-sand-300 text-xs text-center" />
+                    <span class="text-xs text-gray-400">/</span>
+                    <input type="number" id="fanim-total-${animal.id}" value="${animal.totalShares}" class="w-full px-2 py-1.5 rounded-lg border border-sand-300 text-xs text-center" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 py-3.5 bg-sand-50 border-t border-sand-200 flex items-center justify-between">
+              <span class="text-[11px] text-gray-500">${animal.bookedShares} aktive Patenschaften</span>
+              <button onclick="saveExistingAnimalChanges('${animal.id}')" class="px-4 py-2 rounded-xl bg-forest-600 hover:bg-forest-700 text-white text-xs font-semibold transition flex items-center gap-1.5">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                <span>Änderungen veröffentlichen</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function updateExistingAnimalPhoto(event, animalId) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const animal = state.animals.find(a => a.id === animalId);
+        if (animal) {
+          animal.imageUrl = evt.target.result;
+          animal.updatedAt = 'Gerade eben';
+          saveState();
+          renderFarmerAnimalsPage();
+          showToast(`Neues Foto für „${animal.name}“ gespeichert.`);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function saveExistingAnimalChanges(animalId) {
+      const animal = state.animals.find(a => a.id === animalId);
+      if (!animal) return;
+      animal.name = document.getElementById(`fanim-name-${animalId}`).value.trim();
+      animal.species = document.getElementById(`fanim-species-${animalId}`).value.trim();
+      animal.statusUpdate = document.getElementById(`fanim-status-${animalId}`).value.trim();
+      animal.description = document.getElementById(`fanim-desc-${animalId}`).value.trim();
+      animal.monthlyPrice = parseInt(document.getElementById(`fanim-price-${animalId}`).value, 10) || 25;
+      animal.discountPercent = parseInt(document.getElementById(`fanim-disc-${animalId}`).value, 10) || 15;
+      animal.bookedShares = parseInt(document.getElementById(`fanim-booked-${animalId}`).value, 10) || 1;
+      animal.totalShares = parseInt(document.getElementById(`fanim-total-${animalId}`).value, 10) || 10;
+      animal.updatedAt = 'Gerade eben';
+
+      saveState();
+      renderFarmerAnimalsPage();
+      showToast(`Steckbrief & Weide-Update für „${animal.name}“ veröffentlicht.`);
+    }
+
+    // =========================================================================
+    // FARMER PORTAL VIEW 4: KUNDENANFRAGEN & BESTELLUNGEN
+    // =========================================================================
+    function setFarmerInboxFilter(status) {
+      state.session.farmerInboxFilter = status;
+      document.querySelectorAll('.inbox-tab').forEach(btn => {
+        const active = btn.textContent.trim() === status;
+        btn.className = `inbox-tab px-3 py-1.5 rounded-lg transition ${active ? 'bg-charcoal text-white font-semibold' : 'text-gray-600 hover:text-charcoal'}`;
+      });
+      renderFarmerInquiriesPage();
+    }
+
+    function renderFarmerInquiriesPage() {
+      const openCount = state.inquiries.filter(i => i.status === 'Offen').length;
+      const doneCount = state.inquiries.filter(i => i.status === 'Angenommen' || i.status === 'Beantwortet').length;
+      const sharesCount = state.animals.reduce((acc, a) => acc + a.bookedShares, 0);
+
+      document.getElementById('farmer-inbox-kpis').innerHTML = `
+        <div class="bg-white p-4 rounded-2xl border border-sand-200 shadow-sm">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-terracotta-600">Offene Eingänge</span>
+          <p class="font-editorial text-3xl font-semibold text-charcoal mt-1">${openCount}</p>
+          <p class="text-[11px] text-gray-500 mt-0.5">Neue Anfragen & Bestellungen</p>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-sand-200 shadow-sm">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-forest-600">Bearbeitet</span>
+          <p class="font-editorial text-3xl font-semibold text-charcoal mt-1">${doneCount}</p>
+          <p class="text-[11px] text-gray-500 mt-0.5">Angenommen oder beantwortet</p>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-sand-200 shadow-sm">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-gray-500">Tier-Partnerschaften</span>
+          <p class="font-editorial text-3xl font-semibold text-charcoal mt-1">${sharesCount}</p>
+          <p class="text-[11px] text-gray-500 mt-0.5">Vergebene Animal-Sharing Anteile</p>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-sand-200 shadow-sm">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-gray-500">Hofangebot</span>
+          <p class="font-editorial text-3xl font-semibold text-charcoal mt-1">${state.products.length}</p>
+          <p class="text-[11px] text-gray-500 mt-0.5">Erzeugnisse für Wochenboxen</p>
+        </div>
+      `;
+
+      const filter = state.session.farmerInboxFilter;
+      const list = state.inquiries.filter(i => filter === 'Alle' || i.status === filter);
+      const container = document.getElementById('farmer-inbox-list');
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white rounded-2xl border border-sand-200 p-10 text-center space-y-2">
+            <p class="font-editorial text-lg text-charcoal">Keine Einträge mit Status „${filter}“</p>
+            <p class="text-xs text-gray-500">Wähle oben „Alle“, um sämtliche Nachrichten und Bestellungen zu sehen.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(inq => {
+        const badgeStyle = {
+          'Offen': 'bg-amber-50 text-amber-700 border-amber-200',
+          'Angenommen': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+          'Beantwortet': 'bg-blue-50 text-blue-700 border-blue-200',
+          'Abgelehnt': 'bg-red-50 text-red-700 border-red-200'
+        }[inq.status] || 'bg-sand-100 text-gray-700';
+
+        const icon = {
+          'Tierpartnerschaft': 'heart-handshake',
+          'Hofbesuch / Community-Kochen': 'utensils',
+          'Sonderbestellung': 'package-plus',
+          'Wochenbox-Abo': 'shopping-basket'
+        }[inq.type] || 'mail';
+
+        return `
+          <div class="bg-white rounded-2xl border border-sand-200 shadow-sm p-5 sm:p-6 space-y-4">
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-sand-100 text-forest-700 flex items-center justify-center shrink-0 mt-0.5">
+                  <i data-lucide="${icon}" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="text-xs font-bold text-charcoal">${escapeHtml(inq.customerName)}</span>
+                    <span class="text-xs text-gray-400">(${escapeHtml(inq.customerEmail)})</span>
+                    <span class="px-2 py-0.5 rounded-md bg-sand-100 text-gray-700 text-[10px] font-semibold">${escapeHtml(inq.type)}</span>
+                    <span class="text-[11px] text-gray-400">· ${escapeHtml(inq.createdAt)}</span>
+                  </div>
+                  <h3 class="font-editorial text-lg font-semibold text-charcoal mt-1">${escapeHtml(inq.subject)}</h3>
+                </div>
+              </div>
+
+              <span class="px-3 py-1 rounded-full border text-xs font-semibold ${badgeStyle}">${escapeHtml(inq.status)}</span>
+            </div>
+
+            <p class="text-xs sm:text-sm text-gray-600 bg-sand-50 p-3.5 rounded-xl border border-sand-200/80 leading-relaxed">
+              „${escapeHtml(inq.message)}“
+            </p>
+
+            ${inq.farmerReply ? `
+              <div class="p-3.5 rounded-xl bg-forest-50 border border-forest-100 text-xs space-y-1">
+                <span class="font-semibold text-forest-700 flex items-center gap-1.5">
+                  <i data-lucide="corner-down-right" class="w-3.5 h-3.5"></i>
+                  Deine Antwort an ${escapeHtml(inq.customerName)}:
+                </span>
+                <p class="text-charcoal pl-5">${escapeHtml(inq.farmerReply)}</p>
+              </div>
+            ` : ''}
+
+            <div class="pt-2 border-t border-sand-100 flex flex-wrap items-center gap-2">
+              <button onclick="setInquiryStatus('${inq.id}', 'Angenommen')" class="px-3.5 py-2 rounded-xl bg-forest-600 hover:bg-forest-700 text-white text-xs font-semibold transition flex items-center gap-1.5">
+                <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                <span>Annehmen</span>
+              </button>
+              <button onclick="toggleInquiryReplyBox('${inq.id}')" class="px-3.5 py-2 rounded-xl bg-sand-100 hover:bg-sand-200 text-charcoal text-xs font-semibold transition flex items-center gap-1.5">
+                <i data-lucide="message-square" class="w-3.5 h-3.5"></i>
+                <span>Nachricht schreiben</span>
+              </button>
+              <button onclick="setInquiryStatus('${inq.id}', 'Abgelehnt')" class="px-3.5 py-2 rounded-xl bg-white hover:bg-red-50 text-gray-600 hover:text-red-600 border border-sand-200 text-xs font-medium transition flex items-center gap-1.5">
+                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                <span>Ablehnen</span>
+              </button>
+            </div>
+
+            <div id="inq-reply-box-${inq.id}" class="hidden pt-2 space-y-2">
+              <textarea id="inq-reply-input-${inq.id}" rows="2" class="w-full px-3.5 py-2 rounded-xl border border-sand-300 text-xs focus:outline-none focus:border-forest-600">${escapeHtml(inq.farmerReply || `Hallo ${inq.customerName}, herzlichen Dank für deine Nachricht! Wir haben alles für dich vorbereitet und freuen uns auf dich.`)}</textarea>
+              <div class="flex justify-end gap-2">
+                <button onclick="toggleInquiryReplyBox('${inq.id}')" class="px-3 py-1.5 rounded-lg text-xs text-gray-500 hover:bg-sand-100">Abbrechen</button>
+                <button onclick="submitInquiryReply('${inq.id}')" class="px-4 py-1.5 rounded-lg bg-charcoal hover:bg-forest-700 text-white text-xs font-semibold">Antwort absenden</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function setInquiryStatus(inqId, status) {
+      const inq = state.inquiries.find(i => i.id === inqId);
+      if (!inq) return;
+      inq.status = status;
+      saveState();
+      renderFarmerInquiriesPage();
+      renderHeader();
+      showToast(`Status für „${inq.subject}“ auf „${status}“ aktualisiert.`);
+    }
+
+    function toggleInquiryReplyBox(inqId) {
+      const box = document.getElementById(`inq-reply-box-${inqId}`);
+      if (box) box.classList.toggle('hidden');
+    }
+
+    function submitInquiryReply(inqId) {
+      const inq = state.inquiries.find(i => i.id === inqId);
+      if (!inq) return;
+      const text = document.getElementById(`inq-reply-input-${inqId}`).value.trim();
+      if (!text) return;
+      inq.farmerReply = text;
+      inq.status = 'Beantwortet';
+      saveState();
+      renderFarmerInquiriesPage();
+      renderHeader();
+      showToast(`Antwort an ${inq.customerName} wurde versendet.`);
+    }
+
+    // =========================================================================
+    // MASTER RENDERER
+    // =========================================================================
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function renderApp() {
+      renderHeader();
+
+      const page = state.session.currentPage;
+      document.querySelectorAll('.page-section').forEach(sec => {
+        sec.classList.toggle('hidden', sec.id !== `page-${page}`);
+      });
+
+      const farmsCounter = document.getElementById('stat-farms-count');
+      if (farmsCounter) farmsCounter.textContent = `${state.farms.length} Höfe`;
+
+      if (page === 'auth') renderAuthPage();
+      if (page === 'boxes') renderBoxesPage();
+      if (page === 'animals') renderAnimalsPage();
+      if (page === 'map') renderFarmsMap();
+      if (page === 'farmer-profile') renderFarmerProfilePage();
+      if (page === 'farmer-products') renderFarmerProductsPage();
+      if (page === 'farmer-animals') renderFarmerAnimalsPage();
+      if (page === 'farmer-inquiries') renderFarmerInquiriesPage();
+
+      lucide.createIcons();
+    }
+
+    // Close profile dropdown when clicking outside
+    window.addEventListener('click', (e) => {
+      const accountArea = document.getElementById('header-account-area');
+      if (profileDropdownOpen && accountArea && !accountArea.contains(e.target)) {
+        profileDropdownOpen = false;
+        renderHeader();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderApp();
+    });
+  </script>
+</body>
+</html>
