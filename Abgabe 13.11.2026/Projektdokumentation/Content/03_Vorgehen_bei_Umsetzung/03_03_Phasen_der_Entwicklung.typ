@@ -1,5 +1,6 @@
 Die Bearbeitung von LocalBite gliederte sich in mehrere aufeinander aufbauende Phasen. Dieser Abschnitt gibt einen Überblick über den Ablauf von der Konzeption bis zur Implementierung.
 
+-----
 
 Ja, genau! Konzeption und Implementierung waren bei euch keine streng getrennten Phasen, sondern haben sich durch das agile Vorgehen immer wieder überschnitten. Das sollten wir auch so dokumentieren.
 

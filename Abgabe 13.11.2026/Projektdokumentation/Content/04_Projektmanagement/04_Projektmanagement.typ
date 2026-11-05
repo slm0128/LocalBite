@@ -1,6 +1,8 @@
 Dieses Kapitel dokumentiert die Organisation und Steuerung des Projekts LocalBite während der Bearbeitung der Fallstudie.
 
-Dieser Abschnitt stellt die zeitliche Planung und den tatsächlichen Ablauf des Projekts LocalBite dar. Dazu zählen die wichtigsten Meilensteine sowie die Gegenüberstellung von geplantem und tatsächlichem Verlauf.
+----
+
+Darin beschreibt ihr Zeitplanung, Aufgabenverteilung, Zusammenarbeit, Meilensteine und Kontrolle der Ergebnisse.
 
 
 
