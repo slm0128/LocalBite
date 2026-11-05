@@ -61,9 +61,6 @@
 = Projektmanagement
 #include "Content/04_Projektmanagement/04_Projektmanagement.typ"
 
-== Zeit- und Ablaufplanung (Projektphasen)
-#include "Content/04_Projektmanagement/04_01_Zeit_und_Ablaufplanung.typ"
-
 = Überblick über die erstellten Artefakte
 #include "Content/05_Ueberblick_ueber_die_erstellten_Artefakte/05_Ueberblick_ueber_die_erstellten_Artefakte.typ"
 
