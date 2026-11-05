@@ -1,0 +1,7 @@
+<plugin
+		id="com.localbite.vpplinevisibilityfix"
+		name="LocalBite Sequence Diagram Line Visibility"
+		description="Improves sequence diagram line contrast"
+		provider="LocalBite"
+		class="VPPLineVisibilityFix">
+</plugin>
