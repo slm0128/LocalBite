@@ -1,0 +1,1 @@
+Dieser Abschnitt begründet das für die Bearbeitung von LocalBite gewählte Vorgehensmodell. Erläutert wird, warum die eingesetzte Methodik zu den Anforderungen und zum zeitlichen Rahmen der Fallstudie passt.

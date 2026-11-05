@@ -1,0 +1,1 @@
+Dieser Abschnitt stellt die zeitliche Planung und den tatsächlichen Ablauf des Projekts LocalBite dar. Dazu zählen die wichtigsten Meilensteine sowie die Gegenüberstellung von geplantem und tatsächlichem Verlauf.

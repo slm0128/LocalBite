@@ -1,0 +1,1 @@
+Dieser Abschnitt stellt die funktionalen und nicht-funktionalen Anforderungen an LocalBite dar. Dabei wird zwischen Muss-Kriterien wie der Aboverwaltung und der Boxkonfiguration und ergänzenden Kann-Kriterien unterschieden.

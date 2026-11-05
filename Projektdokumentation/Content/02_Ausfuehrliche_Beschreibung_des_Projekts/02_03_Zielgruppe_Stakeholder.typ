@@ -1,0 +1,1 @@
+Dieser Abschnitt beschreibt die Zielgruppe und die beteiligten Stakeholder von LocalBite. Zu den zentralen Akteuren zählen die Kunden, die lokalen Landwirte sowie LocalBite selbst als vermittelnde Plattform.

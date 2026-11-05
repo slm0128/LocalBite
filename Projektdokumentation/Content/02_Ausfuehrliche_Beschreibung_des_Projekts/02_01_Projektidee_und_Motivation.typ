@@ -1,0 +1,1 @@
+LocalBite verbindet lokale Landwirte und Verbraucher über eine digitale Plattform und bietet einen abobasierten Lieferservice für konfigurierbare Boxen mit frischen regionalen Erzeugnissen. Dieser Abschnitt beschreibt die Entstehung der Projektidee sowie die Motivation hinter dem Konzept.

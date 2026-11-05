@@ -17,72 +17,85 @@
   front_margins: front_margins,
 )
 
-= Mitglieder der Gruppe (ca. 1 Seite)
-#include("Content/02_Projektbeschreibung.typ")
+= Mitglieder der Gruppe
+#include "Content/01_Mitglieder_der_Gruppe/01_Mitglieder_der_Gruppe.typ"
 
 == Vorstellung der Gruppenmitglieder
+#include "Content/01_Mitglieder_der_Gruppe/01_01_Vorstellung_der_Gruppenmitglieder.typ"
 
 == Rollen- und Aufgabenverteilung
+#include "Content/01_Mitglieder_der_Gruppe/01_02_Rollen_und_Aufgabenverteilung.typ"
 
 
 
-
-
-
-= Ausführliche Beschreibung des Projekts (ca. 3–4 Seiten)
+= Ausführliche Beschreibung des Projekts
+#include "Content/02_Ausfuehrliche_Beschreibung_des_Projekts/02_Ausfuehrliche_Beschreibung_des_Projekts.typ"
 
 == Projektidee und Motivation
+#include "Content/02_Ausfuehrliche_Beschreibung_des_Projekts/02_01_Projektidee_und_Motivation.typ"
 
 == Zielsetzung und Anforderungen (Requirements)
+#include "Content/02_Ausfuehrliche_Beschreibung_des_Projekts/02_02_Zielsetzung_und_Anforderungen.typ"
 
 == Zielgruppe / Stakeholder
+#include "Content/02_Ausfuehrliche_Beschreibung_des_Projekts/02_03_Zielgruppe_Stakeholder.typ"
 
-
-= Vorgehen bei Umsetzung (ca. 5–6 Seiten)
+= Vorgehen bei Umsetzung
+#include "Content/03_Vorgehen_bei_Umsetzung/03_Vorgehen_bei_Umsetzung.typ"
 
 == Wahl des Vorgehensmodells (Methodik)
+#include "Content/03_Vorgehen_bei_Umsetzung/03_01_Wahl_des_Vorgehensmodells.typ"
 
 == Architektur und technologischer Stack
+#include "Content/03_Vorgehen_bei_Umsetzung/03_02_Architektur_und_technologischer_Stack.typ"
 
 == Phasen der Entwicklung
+#include "Content/03_Vorgehen_bei_Umsetzung/03_03_Phasen_der_Entwicklung.typ"
 
 === Konzeption & Design
+#include "Content/03_Vorgehen_bei_Umsetzung/03_03_01_Konzeption_und_Design.typ"
 
 === Implementierung
+#include "Content/03_Vorgehen_bei_Umsetzung/03_03_02_Implementierung.typ"
 
-=== Qualitätssicherung & Tests
-
-= Projektmanagement (ca. 3–4 Seiten)
+= Projektmanagement
+#include "Content/04_Projektmanagement/04_Projektmanagement.typ"
 
 == Zeit- und Ablaufplanung (Projektphasen)
+#include "Content/04_Projektmanagement/04_01_Zeit_und_Ablaufplanung.typ"
 
-== Ressourcen- und Kostenplanung
-
-== Kommunikation und Kollaboration
-
-= Überblick über die erstellten Artefakte (ca. 4–5 Seiten)
+= Überblick über die erstellten Artefakte
+#include "Content/05_Ueberblick_ueber_die_erstellten_Artefakte/05_Ueberblick_ueber_die_erstellten_Artefakte.typ"
 
 == Dokumentations- und Planungsartefakte
-
-== Technische Artefakte
+#include "Content/05_Ueberblick_ueber_die_erstellten_Artefakte/05_01_Dokumentations_und_Planungsartefakte.typ"
 
 == Benutzeroberfläche (UI/UX)
+#include "Content/05_Ueberblick_ueber_die_erstellten_Artefakte/05_02_Benutzeroberflaeche_UI_UX.typ"
 
-= Probleme / Herausforderungen (ca. 2 Seiten)
+= Probleme / Herausforderungen
+#include "Content/06_Probleme_Herausforderungen/06_Probleme_Herausforderungen.typ"
 
 == Technische Schwierigkeiten
+#include "Content/06_Probleme_Herausforderungen/06_01_Technische_Schwierigkeiten.typ"
 
 == Organisatorische Herausforderungen
+#include "Content/06_Probleme_Herausforderungen/06_02_Organisatorische_Herausforderungen.typ"
 
-== Lessons Learned (Was lief gut, was beim nächsten Mal anders?)
+== Lessons Learned
+#include "Content/06_Probleme_Herausforderungen/06_03_Lessons_Learned.typ"
 
-= Feedback, Fazit & Ausblick (ca. 2 Seiten)
+= Feedback, Fazit & Ausblick
+#include "Content/07_Feedback_Fazit_und_Ausblick/07_Feedback_Fazit_und_Ausblick.typ"
 
 == Externes Feedback / Evaluation
+#include "Content/07_Feedback_Fazit_und_Ausblick/07_01_Externes_Feedback_Evaluation.typ"
 
 == Fazit
+#include "Content/07_Feedback_Fazit_und_Ausblick/07_02_Fazit.typ"
 
 == Ausblick
+#include "Content/07_Feedback_Fazit_und_Ausblick/07_03_Ausblick.typ"
 
 // Literaturverzeichnis nur aktivieren, wenn ihr Quellen verwendet:
 // #pagebreak()

@@ -1,0 +1,1 @@
+Dieser Abschnitt fasst die dokumentations- und planungsbezogenen Artefakte von LocalBite zusammen. Dazu gehören die BPMN-Prozessmodelle sowie die UML-Diagramme wie Use-Case-, Klassen- und Sequenzdiagramme.

@@ -1,0 +1,1 @@
+An der Fallstudie LocalBite waren fünf Studierende des Studiengangs Wirtschaftsinformatik an der DHBW Karlsruhe beteiligt. Dieser Abschnitt stellt die einzelnen Gruppenmitglieder mit Name, Studiengang und Matrikelnummer vor.

@@ -1,0 +1,1 @@
+Für die Bearbeitung von LocalBite wurden innerhalb des Teams feste Rollen und Zuständigkeiten vereinbart. Dieser Abschnitt erläutert die gewählte Aufgabenverteilung sowie die Gründe für die jeweilige Zuordnung der Verantwortlichkeiten.
