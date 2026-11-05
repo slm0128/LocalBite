@@ -17,32 +17,72 @@
   front_margins: front_margins,
 )
 
-= Projektüberblick
-#include("Content/01_Projektueberblick.typ")
-
-= Projektbeschreibung
+= Mitglieder der Gruppe (ca. 1 Seite)
 #include("Content/02_Projektbeschreibung.typ")
 
-= Vorgehen bei der Umsetzung
-#include("Content/03_Vorgehen_bei_der_Umsetzung.typ")
+== Vorstellung der Gruppenmitglieder
 
-= Projektmanagement
-#include("Content/04_Projektmanagement.typ")
+== Rollen- und Aufgabenverteilung
 
-= Geschäftsprozessanalyse
-#include("Content/05_Geschaeftsprozessanalyse.typ")
 
-= Automatisierungspotenzial
-#include("Content/06_Automatisierungspotenzial.typ")
 
-= Objektorientierte Analyse
-#include("Content/07_Objektorientierte_Analyse.typ")
 
-= Probleme und Herausforderungen
-#include("Content/08_Probleme_und_Herausforderungen.typ")
 
-= Feedback und Fazit
-#include("Content/09_Feedback_und_Fazit.typ")
+
+= Ausführliche Beschreibung des Projekts (ca. 3–4 Seiten)
+
+== Projektidee und Motivation
+
+== Zielsetzung und Anforderungen (Requirements)
+
+== Zielgruppe / Stakeholder
+
+
+= Vorgehen bei Umsetzung (ca. 5–6 Seiten)
+
+== Wahl des Vorgehensmodells (Methodik)
+
+== Architektur und technologischer Stack
+
+== Phasen der Entwicklung
+
+=== Konzeption & Design
+
+=== Implementierung
+
+=== Qualitätssicherung & Tests
+
+= Projektmanagement (ca. 3–4 Seiten)
+
+== Zeit- und Ablaufplanung (Projektphasen)
+
+== Ressourcen- und Kostenplanung
+
+== Kommunikation und Kollaboration
+
+= Überblick über die erstellten Artefakte (ca. 4–5 Seiten)
+
+== Dokumentations- und Planungsartefakte
+
+== Technische Artefakte
+
+== Benutzeroberfläche (UI/UX)
+
+= Probleme / Herausforderungen (ca. 2 Seiten)
+
+== Technische Schwierigkeiten
+
+== Organisatorische Herausforderungen
+
+== Lessons Learned (Was lief gut, was beim nächsten Mal anders?)
+
+= Feedback, Fazit & Ausblick (ca. 2 Seiten)
+
+== Externes Feedback / Evaluation
+
+== Fazit
+
+== Ausblick
 
 // Literaturverzeichnis nur aktivieren, wenn ihr Quellen verwendet:
 // #pagebreak()

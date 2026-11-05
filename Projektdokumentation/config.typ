@@ -9,13 +9,15 @@
 
 // Vollständige Namen aller Gruppenmitglieder eintragen.
 #let authors = [
-  Vorname Nachname \
-  Vorname Nachname \
-  Vorname Nachname
+  Aaron Rock \
+  Selim Kalinci \
+  Esra Karakus \
+  Mika Kuschel \
+  Leon Vogel
 ]
 
 #let course = "WWI25B1"
-#let group = "Gruppe X"
+#let group = "Gruppe 4"
 #let submission_date = "13.11.2026"
 
 // PA1-Designwerte – zentral anpassbar.
