@@ -5,8 +5,8 @@ Dieser Abschnitt beschreibt die Umsetzung der zuvor erarbeiteten Konzepte von Lo
 Hier beschreiben wir anschließend, was ihr aus der Konzeption tatsächlich umgesetzt habt.
 
 - Erprobung einer lokal ausführbaren Webanwendung.
-- Entscheidung für ein interaktives HTML-Mockup anstelle einer vollständigen Webanwendung.
+- Entscheidung für ein interaktives HTML-Mockup anstelle einer vollständigen Webanwendung in Svelte.
 - Umsetzung verschiedener Benutzeransichten und Rollenwechsel.
-- Visuelle Darstellung ausgewählter Funktionen und Abläufe von LocalBite.
-- Anpassung des Mockups an die fortlaufend weiterentwickelten Konzepte.
-- Verwendung des Mockups zur anschaulichen Präsentation der Geschäftsidee.
+- Visuelle Darstellung ausgewählter Kernfunktionen und Abläufe von LocalBite.
+- Iterative Anpassung des Mockups an die sich fortlaufend weiterentwickelnden Konzepte.
+- Verwendung des finalen Mockups zur anschaulichen Präsentation/Pitch der Geschäftsidee.
