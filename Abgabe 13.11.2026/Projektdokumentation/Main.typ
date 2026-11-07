@@ -40,6 +40,11 @@
 == Zielgruppe / Stakeholder
 #include "Content/02_Ausfuehrliche_Beschreibung_des_Projekts/02_03_Zielgruppe_Stakeholder.typ"
 
+
+
+
+
+
 = Vorgehen bei Umsetzung
 #include "Content/03_Vorgehen_bei_Umsetzung/03_Vorgehen_bei_Umsetzung.typ"
 
@@ -52,14 +57,20 @@
 == Phasen der Entwicklung
 #include "Content/03_Vorgehen_bei_Umsetzung/03_03_Phasen_der_Entwicklung.typ"
 
-=== Konzeption & Design
+=== Konzeption & Design <konzeption-design>
 #include "Content/03_Vorgehen_bei_Umsetzung/03_03_01_Konzeption_und_Design.typ"
 
 === Implementierung
 #include "Content/03_Vorgehen_bei_Umsetzung/03_03_02_Implementierung.typ"
 
-= Projektmanagement
+= Projektmanagement <projektmanagement>
 #include "Content/04_Projektmanagement/04_Projektmanagement.typ"
+
+
+
+
+
+
 
 = Überblick über die erstellten Artefakte
 #include "Content/05_Ueberblick_ueber_die_erstellten_Artefakte/05_Ueberblick_ueber_die_erstellten_Artefakte.typ"

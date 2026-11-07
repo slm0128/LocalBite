@@ -10,6 +10,32 @@ Um die Qualität unserer Ergebnisse sicherzustellen, überprüften wir die erste
 
 Für die gemeinsame Verwaltung unserer Projektdateien entschieden wir uns in Absprache mit unserem Dozenten für Git und GitHub. Ein wichtiger Grund dafür war, unsere Dateien regelmäßig zu sichern und das Risiko eines Datenverlusts möglichst gering zu halten. Dadurch konnten alle Gruppenmitglieder jederzeit auf den aktuellen Stand des Projekts zugreifen und ihre Änderungen mit den anderen teilen. Teilweise arbeiteten wir auf eigenen Branches, um Änderungen zunächst unabhängig voneinander vorzunehmen und anschließend in den gemeinsamen Main-Branch zu übernehmen. Mit Git konnten wir auch jederzeit auf ältere Versionen unserer Dateien zurückgreifen und diese bei Bedarf wiederherstellen. Dies war besonders hilfreich, wenn versehentlich Änderungen vorgenommen oder Inhalte gelöscht wurden, die sich in den jeweiligen Programmen nicht mehr rückgängig machen ließen. Mit GitHub konnten wir unsere Änderungen gut nachvollziehen und alle Ergebnisse zentral sichern. Gleichzeitig konnten wir an unseren jeweiligen Aufgaben arbeiten, ohne uns gegenseitig in die Quere zu kommen. Bei gemeinsam genutzten Dateien, wie dem UML-Klassendiagramm, sprachen wir uns vorher in unserem Gruppenchat ab, damit nicht mehrere Personen gleichzeitig Änderungen an derselben Datei vornahmen.
 
+
+
+/*
+ÜBERARBEITUNGSNOTIZ – aus Kapitel 3.1, Absatz 2
+
+- Die Zeitplanung, Zwischenziele und Besprechungstermine
+  werden bereits in Kapitel 4 beschrieben.
+- Beim UML-Klassendiagramm sollte jeder seinen eigenen
+  Teil bis zum nächsten Treffen weitgehend fertigstellen.
+- Die einzelnen Teile mussten vorher noch nicht
+  miteinander verbunden sein.
+- In der nächsten Vorlesung wurden sie gemeinsam
+  besprochen und zusammengeführt.
+
+Warum verschoben?
+Diese Informationen beschreiben die konkrete
+Aufgabenverteilung und Projektorganisation.
+
+Noch prüfen:
+Ist das Beispiel mit dem Klassendiagramm in Kapitel 4
+ausführlich genug enthalten?
+*/
+
+
+
+
 /*
 
 Dieses Kapitel dokumentiert die Organisation und Steuerung des Projekts LocalBite während der Bearbeitung der Fallstudie.

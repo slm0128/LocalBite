@@ -8,6 +8,25 @@ Während der Konzeption entstanden immer wieder neue Ideen, die wir gemeinsam be
 
 
 /*
+ÜBERARBEITUNGSNOTIZ – aus Kapitel 3.1, Absatz 2
+
+Nach der Erstellung der Sequenzdiagramme wurde das
+gemeinsame Klassendiagramm erneut überprüft und
+abschließend angepasst.
+
+Warum hier?
+Hier wird beschrieben, wie die Modelle entwickelt
+und miteinander abgeglichen wurden.
+
+Bereits teilweise im Fließtext enthalten.
+Bei der Endkontrolle auf Vollständigkeit prüfen.
+*/
+
+
+
+
+
+/*
 In der Konzeptions- und Designphase wurden die fachlichen Grundlagen von LocalBite erarbeitet. Dazu zählen insbesondere die Prozessmodelle sowie erste Entwürfe der Systemstruktur.
 
 -----
