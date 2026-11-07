@@ -1,3 +1,12 @@
+Nach der Konzeption begannen wir damit, unsere Ideen in einem interaktiven Webseiten-Mockup umzusetzen. Zunächst erprobten wir eine lokal ausführbare Webanwendung mit Svelte, entschieden uns im weiteren Verlauf jedoch für eine einfachere Umsetzung mit HTML, CSS und JavaScript. Dabei stand vor allem im Vordergrund, die geplanten Funktionen von LocalBite anschaulich darzustellen, ohne bereits eine vollständig funktionsfähige Plattform entwickeln zu müssen.
+
+Für das Mockup gestalteten wir verschiedene Benutzeroberflächen, die auf die jeweiligen Aufgaben der Nutzergruppen abgestimmt waren. Durch die Möglichkeit, zwischen den Rollen zu wechseln, konnten wir die Plattform aus unterschiedlichen Perspektiven zeigen. Dabei stellten wir ausgewählte Kernfunktionen und Abläufe beispielhaft dar, um einen ersten Eindruck davon zu vermitteln, wie LocalBite später funktionieren könnte.
+
+Durch die regelmäßige Überprüfung und Überarbeitung unserer erstellten Artefakte konnten wir die Anforderungen und Abläufe während des Projekts schrittweise genauer festlegen. Erst gegen Ende der Entwicklung begannen wir mit der eigentlichen Umsetzung des Mockups. Zu diesem Zeitpunkt waren die wichtigsten fachlichen Grundlagen bereits ausgearbeitet, sodass wir die Benutzeroberflächen gezielt an unserem Konzept ausrichten konnten. Das fertige Mockup nutzten wir schließlich für die Präsentation unserer Geschäftsidee, um die geplante Plattform nicht nur theoretisch zu erklären, sondern auch praktisch vorzuführen.
+
+
+/*
+
 Dieser Abschnitt beschreibt die Umsetzung der zuvor erarbeiteten Konzepte von LocalBite sowie die dabei entstandenen Artefakte.
 
 ------
@@ -10,3 +19,5 @@ Hier beschreiben wir anschließend, was ihr aus der Konzeption tatsächlich umge
 - Visuelle Darstellung ausgewählter Kernfunktionen und Abläufe von LocalBite.
 - Iterative Anpassung des Mockups an die sich fortlaufend weiterentwickelnden Konzepte.
 - Verwendung des finalen Mockups zur anschaulichen Präsentation/Pitch der Geschäftsidee.
+
+*/

@@ -1,3 +1,6 @@
+Die Entwicklung von LocalBite gliederte sich in mehrere aufeinander aufbauende Phasen. Zunächst beschäftigten wir uns mit der Konzeption und dem Design unserer Plattform. Dabei überprüften und überarbeiteten wir unsere Ideen und Modelle regelmäßig, sodass die einzelnen Entwicklungsschritte nicht immer streng voneinander getrennt waren. Nachdem die wichtigsten Anforderungen und Abläufe weitgehend feststanden, begannen wir gegen Ende des Projekts mit der praktischen Umsetzung unseres interaktiven Webseiten-Mockups. Die folgenden Abschnitte beschreiben die einzelnen Schritte von der Konzeption bis zur Implementierung.
+
+/*
 Die Bearbeitung von LocalBite gliederte sich in mehrere aufeinander aufbauende Phasen. Dieser Abschnitt gibt einen Überblick über den Ablauf von der Konzeption bis zur Implementierung.
 
 -----
@@ -26,3 +29,4 @@ Ein wichtiger Satz sollte später noch in 3.3 stehen:
 Damit erklärt ihr, warum ihr nicht erst alle Anforderungen vollständig abgeschlossen und danach mit der Umsetzung begonnen habt.
 
 Meine Einschätzung: So hat 3.3 einen klareren roten Faden. Ihr beschreibt eure tatsächliche Entwicklung und nicht einfach nur, welche Diagramme ihr erstellt habt. Die ausführliche Erklärung der einzelnen Artefakte bleibt weiterhin Kapitel 5 vorbehalten.
+*/
