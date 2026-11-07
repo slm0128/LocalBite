@@ -8,7 +8,7 @@ Zu Beginn des Projekts arbeiteten wir hauptsächlich während der Vorlesungen ge
 
 Um die Qualität unserer Ergebnisse sicherzustellen, überprüften wir die erstellten Diagramme und Konzepte regelmäßig innerhalb der Gruppe. Dabei achteten wir besonders darauf, dass die einzelnen Modelle fachlich richtig und vollständig waren und auch untereinander zusammenpassten. Zusätzlich legten wir gemeinsame Regeln für die Benennung und Darstellung der einzelnen Bestandteile fest, damit alle Gruppenmitglieder möglichst einheitlich arbeiteten. Wenn uns Fehler oder Unstimmigkeiten auffielen, besprachen wir diese gemeinsam und entschieden, welche Anpassungen notwendig waren. Kleinere Änderungen setzten wir nach Möglichkeit direkt während der Besprechung um. Größere Anpassungen wurden hingegen zunächst notiert und anschließend vom jeweiligen Gruppenmitglied oder in der zuständigen Kleingruppe überarbeitet. Beim nächsten Besprechungstermin stellten wir die überarbeiteten Ergebnisse erneut vor, damit alle Gruppenmitglieder über die Änderungen Bescheid wussten und diese gemeinsam überprüfen konnten. So konnten wir sicherstellen, dass die einzelnen Arbeiten am Ende ein einheitliches Gesamtkonzept ergaben.
 
-Für die gemeinsame Verwaltung unserer Projektdateien entschieden wir uns in Absprache mit unserem Dozenten für Git und GitHub. Ein wichtiger Grund dafür war, unsere Dateien regelmäßig zu sichern und das Risiko eines Datenverlusts möglichst gering zu halten. Dadurch konnten alle Gruppenmitglieder jederzeit auf den aktuellen Stand des Projekts zugreifen und ihre Änderungen mit den anderen teilen. Teilweise arbeiteten wir auf eigenen Branches, um Änderungen zunächst unabhängig voneinander vorzunehmen und anschließend in den gemeinsamen Main-Branch zu übernehmen. Mit Git konnten wir auch jederzeit auf ältere Versionen unserer Dateien zurückgreifen und diese bei Bedarf wiederherstellen. Dies war besonders hilfreich, wenn versehentlich Änderungen vorgenommen oder Inhalte gelöscht wurden, die sich in den jeweiligen Programmen nicht mehr rückgängig machen ließen. Mit GitHub konnten wir unsere Änderungen gut nachvollziehen und alle Ergebnisse zentral sichern. Gleichzeitig konnten wir an unseren jeweiligen Aufgaben arbeiten, ohne uns gegenseitig in die Quere zu kommen. Bei gemeinsam genutzten Dateien, wie dem UML-Klassendiagramm, sprachen wir uns vorher in unserem Gruppenchat ab, damit nicht mehrere Personen gleichzeitig Änderungen an derselben Datei vornahmen.
+Für die gemeinsame Verwaltung unserer Projektdateien entschieden wir uns in Absprache mit unserem Dozenten für Git und GitHub. Damit konnten wir unsere Dateien regelmäßig an einem zentralen Ort sichern und die Änderungen jederzeit nachvollziehen. Außerdem hatten alle Gruppenmitglieder Zugriff auf den aktuellen Projektstand und konnten ihre Ergebnisse mit den anderen teilen. Teilweise arbeiteten wir auf eigenen Branches, um Änderungen zunächst unabhängig voneinander vorzunehmen und anschließend in den gemeinsamen Main-Branch zu übernehmen. Mit Git konnten wir auch jederzeit auf ältere Versionen unserer Dateien zurückgreifen und diese bei Bedarf wiederherstellen. Dies war besonders hilfreich, wenn versehentlich Änderungen vorgenommen oder Inhalte gelöscht wurden, die sich in den jeweiligen Programmen nicht mehr rückgängig machen ließen. Gleichzeitig konnten wir an unseren jeweiligen Aufgaben arbeiten, ohne uns gegenseitig in die Quere zu kommen. Bei gemeinsam genutzten Dateien, wie dem UML-Klassendiagramm, sprachen wir uns vorher in unserem Gruppenchat ab, damit nicht mehrere Personen gleichzeitig Änderungen an derselben Datei vornahmen.
 
 
 /*
@@ -48,6 +48,20 @@ Einleitung ausführlich erklärt werden.
 
 Status: Im Fließtext vollständig enthalten.
 */
+
+/*
+ÜBERARBEITUNGSNOTIZ – Änderung 6, Kapitel 4
+
+- Doppelte Aussagen zur zentralen Datensicherung
+  und Nachvollziehbarkeit von Änderungen entfernt.
+- Vorteile von Git und GitHub im ersten Teil
+  des Absatzes zusammengefasst.
+- Beispiele zur Wiederherstellung älterer Versionen,
+  Branches und Abstimmung im Gruppenchat beibehalten.
+
+Status: Alle Informationen weiterhin enthalten.
+*/
+
 
 
 
