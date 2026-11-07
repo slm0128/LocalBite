@@ -14,7 +14,7 @@ Anfängliche Zusammenarbeit: Gemeinsame Erarbeitung erster Konzepte und BPMN-Dia
 
 Anpassung der Arbeitsweise: Im weiteren Projektverlauf zunehmend eigenständige Arbeit und Zusammenarbeit in kleineren Gruppen, um effizienter voranzukommen.
 
-Aufgabenverteilung: Möglichst gleichmäßige Verteilung der Modellierungsarbeiten unter Berücksichtigung verschiedener Themenbereiche.
+Aufgabenverteilung: Möglichst gleichmäßige Verteilung der Modellierungsarbeiten unter Berücksichtigung ähnlicher Themenbereiche.
 
 BPMN: Zehn Geschäftsprozesse auf die Gruppenmitglieder verteilt.
 
