@@ -1,5 +1,20 @@
-Bei der Entwicklung von LocalBite legten wir zunächst fest, wie wir unsere Zusammenarbeit organisieren und die Aufgaben innerhalb des Teams verteilen. Dabei orientierten wir uns an einem agilen Vorgehen und vereinbarten gemeinsame Zwischenziele sowie regelmäßige Besprechungstermine. Außerdem legten wir vor jeder Aufgabe fest, welche Grundlagen dafür benötigt wurden und wie weit die Aufgabe bearbeitet sein musste, um sie gemeinsam besprechen oder darauf aufbauen zu können. Dabei unterschieden wir zwischen einem vorläufigen Ergebnis, mit dem wir weiterarbeiten konnten, und einer vollständig abgeschlossenen Aufgabe, bei der keine weiteren Anpassungen mehr notwendig waren. Anschließend arbeiteten wir schrittweise an der Konzeption und Umsetzung unserer Plattform. In den folgenden Abschnitten beschreiben wir unser Vorgehensmodell, die eingesetzten Technologien und die einzelnen Entwicklungsphasen.
+Bei der Entwicklung von LocalBite legten wir zunächst fest, wie wir unsere Zusammenarbeit organisieren und die Aufgaben innerhalb des Teams verteilen. Dabei orientierten wir uns an einem agilen Vorgehen und vereinbarten gemeinsame Zwischenziele sowie regelmäßige Besprechungstermine. Außerdem legten wir vor jeder Aufgabe fest, welche Grundlagen wir benötigten, wie weit wir bis zum nächsten Treffen sein wollten und wann wir die Aufgabe vorerst als fertig betrachteten. Falls sich im weiteren Projektverlauf neue Anforderungen oder Verbesserungsmöglichkeiten ergaben, konnten wir auch bereits vorerst abgeschlossene Aufgaben erneut überarbeiten. Anschließend arbeiteten wir schrittweise an der Konzeption und Umsetzung unserer Plattform. In den folgenden Abschnitten beschreiben wir unser Vorgehensmodell, die eingesetzten Technologien und die einzelnen Entwicklungsphasen.
 
+/*
+ÜBERARBEITUNGSNOTIZ – Änderung 7, Kapitel 3
+
+- Abschlusskriterien der Aufgaben präzisiert.
+- Eine fertiggestellte Aufgabe konnte bei neuen
+  Erkenntnissen erneut überarbeitet werden.
+- Unterscheidung zwischen Zwischenstand und
+  fertiggestelltem Ergebnis beibehalten.
+
+Warum?
+Die ursprüngliche Formulierung widersprach dem
+iterativen Vorgehen aus Kapitel 3.1 und 3.3.1.
+
+Status: Inhalt korrigiert, keine Informationen verloren.
+*/
 
 /*
 
