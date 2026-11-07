@@ -4,7 +4,8 @@ Zu Beginn organisierten wir unsere Aufgaben in kurzen, sprintähnlichen Arbeitsp
 
 Die Zusammenarbeit erfolgte hauptsächlich während der Vorlesungen, aber auch bei zusätzlichen Online-Treffen. Dabei arbeiteten wir häufig in kleineren Gruppen von zwei oder drei Personen zusammen, um die jeweiligen Aufgaben gemeinsam zu bearbeiten und unsere Ergebnisse aufeinander abzustimmen. Bei Bedarf trafen wir uns auch außerhalb der Vorlesungen online, um an den Aufgaben weiterzuarbeiten oder einzelne Ergebnisse zusammenzuführen. Anschließend stellten wir unsere Ergebnisse der gesamten Gruppe vor. So konnten alle noch einmal darüber schauen, mögliche Unstimmigkeiten erkennen und gemeinsam Verbesserungen besprechen. Gleichzeitig stellten wir dadurch sicher, dass alle Gruppenmitglieder über den aktuellen Stand der anderen Aufgaben informiert waren.
 
-Insbesondere bei der Erstellung der BPMN- und UML-Modelle war dieses iterative Vorgehen hilfreich. Da zu Beginn des Projekts noch nicht alle Anforderungen und Ziele vollständig feststanden, entwickelten sich während der Bearbeitung immer wieder neue Ideen und Verbesserungsmöglichkeiten. Durch unsere flexible Arbeitsweise konnten wir diese Änderungen direkt aufgreifen und die bestehenden Modelle schrittweise überarbeiten. So verhinderten wir, dass einzelne Gruppenmitglieder in unterschiedliche Richtungen arbeiteten, und konnten gemeinsam auf ein einheitliches Ergebnis hinarbeiten.
+Das iterative Vorgehen war für uns besonders hilfreich, da zu Beginn des Projekts noch nicht alle Anforderungen und Ziele vollständig feststanden. So konnten wir neue Ideen während der Entwicklung aufnehmen und bestehende Konzepte bei Bedarf anpassen, ohne jedes Mal die gesamte Planung überarbeiten zu müssen.
+
 
 /*
 

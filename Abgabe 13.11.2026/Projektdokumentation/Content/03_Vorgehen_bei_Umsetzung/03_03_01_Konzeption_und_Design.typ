@@ -23,6 +23,23 @@ Bei der Endkontrolle auf Vollständigkeit prüfen.
 */
 
 
+/*
+ÜBERARBEITUNGSNOTIZ – Änderung 2, aus Kapitel 3.1
+
+- Regelmäßige Überarbeitung der BPMN- und UML-Modelle
+  bei neuen Ideen oder Unstimmigkeiten
+- Schrittweise Verbesserung der bestehenden Konzepte
+- Gemeinsame Abstimmung für ein einheitliches Ergebnis
+
+Warum hier?
+Die konkrete Weiterentwicklung der Modelle gehört
+zur Konzeption und zum Design.
+
+Status: Inhalt größtenteils bereits in 3.3.1 enthalten.
+*/
+
+
+
 
 
 
