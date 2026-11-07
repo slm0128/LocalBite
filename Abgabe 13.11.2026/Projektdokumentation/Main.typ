@@ -51,7 +51,7 @@
 == Wahl des Vorgehensmodells (Methodik)
 #include "Content/03_Vorgehen_bei_Umsetzung/03_01_Wahl_des_Vorgehensmodells.typ"
 
-== Architektur und technologischer Stack
+== Architektur und technologischer Stack <architektur-stack>
 #include "Content/03_Vorgehen_bei_Umsetzung/03_02_Architektur_und_technologischer_Stack.typ"
 
 == Phasen der Entwicklung

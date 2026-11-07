@@ -7,6 +7,23 @@ Für die Erstellung der verschiedenen Diagramme verwendeten wir hauptsächlich z
 Ursprünglich hatten wir geplant, eine lokal ausführbare Webanwendung mit dem Framework Svelte zu entwickeln. Während der Umsetzung stellten wir jedoch fest, dass der technische Aufwand für diese frühe Projektphase zu hoch war. Deshalb entschieden wir uns, zunächst auf eine einfachere Webseiten-Variante zu setzen. So konnten wir uns stärker auf die Darstellung unserer Geschäftsidee und die wichtigsten Funktionen konzentrieren, ohne bereits eine vollständige Anwendung entwickeln zu müssen. Da sich die Anforderungen und Vorstellungen der Stakeholder im weiteren Projektverlauf noch ändern können, hielten wir es für sinnvoller, zunächst die grundlegenden Funktionen und Abläufe festzulegen, anstatt bereits viel Zeit in technische Details zu investieren.
 
 /*
+ÜBERARBEITUNGSNOTIZ – Änderung 4, aus Kapitel 3.3.2
+
+- Ursprünglich geplante Webanwendung mit Svelte
+- Entscheidung für ein einfacheres HTML-Mockup
+- Begründung: geringerer Entwicklungsaufwand
+- Konzentration auf die Kernfunktionen und das Konzept
+- Anforderungen der Stakeholder können sich noch ändern
+
+Warum hier?
+Die Entscheidung für die eingesetzten Technologien
+gehört in Kapitel 3.2.
+
+Status: Bereits im dritten Absatz von 3.2 enthalten.
+Kapitel 3.3.2 verweist jetzt auf diesen Abschnitt.
+*/
+
+/*
 Dieser Abschnitt stellt die fachliche Architektur von LocalBite sowie die eingesetzten Werkzeuge und Technologien vor. Die getroffene Auswahl wird jeweils kurz begründet.
 
 ----

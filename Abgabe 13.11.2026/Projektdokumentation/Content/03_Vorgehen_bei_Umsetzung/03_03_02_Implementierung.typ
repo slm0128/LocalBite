@@ -1,4 +1,4 @@
-Nach der Konzeption begannen wir damit, unsere Ideen in einem interaktiven Webseiten-Mockup umzusetzen. Zunächst erprobten wir eine lokal ausführbare Webanwendung mit Svelte, entschieden uns im weiteren Verlauf jedoch für eine einfachere Umsetzung mit HTML, CSS und JavaScript. Dabei stand vor allem im Vordergrund, die geplanten Funktionen von LocalBite anschaulich darzustellen, ohne bereits eine vollständig funktionsfähige Plattform entwickeln zu müssen.
+Für die praktische Darstellung unseres Konzepts entwickelten wir ein interaktives Webseiten-Mockup mit HTML, CSS und JavaScript. Warum wir uns nach der Erprobung von Svelte für diese einfachere Umsetzung entschieden, beschreiben wir in #link(<architektur-stack>)[Kapitel 3.2].
 
 Für das Mockup gestalteten wir verschiedene Benutzeroberflächen, die auf die jeweiligen Aufgaben der Nutzergruppen abgestimmt waren. Durch die Möglichkeit, zwischen den Rollen zu wechseln, konnten wir die Plattform aus unterschiedlichen Perspektiven zeigen. Dabei stellten wir ausgewählte Kernfunktionen und Abläufe beispielhaft dar, um einen ersten Eindruck davon zu vermitteln, wie LocalBite später funktionieren könnte.
 
