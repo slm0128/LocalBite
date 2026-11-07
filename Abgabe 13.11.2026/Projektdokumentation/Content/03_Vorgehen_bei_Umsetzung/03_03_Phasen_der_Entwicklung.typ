@@ -2,9 +2,9 @@ Die Bearbeitung von LocalBite gliederte sich in mehrere aufeinander aufbauende P
 
 -----
 
-Ja, genau! Konzeption und Implementierung waren bei euch keine streng getrennten Phasen, sondern haben sich durch das agile Vorgehen immer wieder überschnitten. Das sollten wir auch so dokumentieren.
+Konzeption und Implementierung waren keine streng getrennten Phasen, sondern haben sich durch das agile Vorgehen immer wieder überschnitten.
 
-Und ja: BPMN, Use-Case-, Klassen- und Sequenzdiagramme gehören zur Konzeption und zum Design, weil ihr damit das geplante System beschreibt, bevor es technisch umgesetzt wird.
+(BPMN, Use-Case-, Klassen- und Sequenzdiagramme gehören zur Konzeption und zum Design, weil ihr damit das geplante System beschreibt, bevor es technisch umgesetzt wird)
 
 Ich würde 3.3 deshalb etwas konkreter und chronologischer aufbauen.
 
