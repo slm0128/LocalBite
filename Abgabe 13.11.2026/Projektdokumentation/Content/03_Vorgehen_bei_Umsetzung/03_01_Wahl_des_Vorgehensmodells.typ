@@ -5,10 +5,10 @@ Dieser Abschnitt begründet das für die Bearbeitung von LocalBite gewählte Vor
 - Agil orientiertes Vorgehen, kein streng eingehaltenes Scrum.
 - Anfangs Arbeit in kürzeren, sprintähnlichen Zeitabschnitten.
 - Feste einwöchige Sprints waren aufgrund anderer Studienverpflichtungen nicht immer praktikabel.
-- Deshalb Umstellung auf flexible Arbeitsphasen mit vereinbarten Zwischenzielen und Besprechungsterminen.
-- Regelmäßige Online-Treffen außerhalb der Vorlesungen.
-- Gegenseitige Vorstellung und Überprüfung der Ergebnisse.
-- Zusätzliche gegenseitige Reviews innerhalb kleinerer Arbeitsgruppen, häufig zu zweit.
+- Deshalb Umstellung auf flexible Arbeitsphasen mit vereinbarten Zwischenzielen und Besprechungsterminen (DOR/DOD Festlegung)
+- Bei Bedarf Online-Treffen außerhalb der Vorlesungen.
+- gegenseitige Reviews innerhalb kleinerer Arbeitsgruppen, häufig zu zweit.
+- Vorstellung und Überprüfung der Ergebnisse in der Gruppe an Besprechungstermin
 - Iterative Überarbeitung der Modelle, wenn neue Ideen oder Unstimmigkeiten entstanden.
 
 
