@@ -1,4 +1,4 @@
-Für die praktische Darstellung unseres Konzepts entwickelten wir ein interaktives Webseiten-Mockup mit HTML, CSS und JavaScript. Warum wir uns nach der Erprobung von Svelte für diese einfachere Umsetzung entschieden, beschreiben wir in #link(<architektur-stack>)[Kapitel 3.2].
+Für die praktische Darstellung unseres Konzepts entwickelten wir ein interaktives Webseiten-Mockup mit HTML, CSS und JavaScript. Wie bereits in #link(<architektur-stack>)[Kapitel 3.2] beschrieben, entschieden wir uns gegen Svelte, um den technischen Aufwand in dieser frühen Projektphase gering zu halten.
 
 Für das Mockup gestalteten wir verschiedene Benutzeroberflächen, die auf die jeweiligen Aufgaben der Nutzergruppen abgestimmt waren. Durch die Möglichkeit, zwischen den Rollen zu wechseln, konnten wir die Plattform aus unterschiedlichen Perspektiven zeigen. Dabei stellten wir ausgewählte Kernfunktionen und Abläufe beispielhaft dar, um einen ersten Eindruck davon zu vermitteln, wie LocalBite später funktionieren könnte.
 

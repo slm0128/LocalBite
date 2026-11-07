@@ -45,7 +45,7 @@
 
 
 
-= Vorgehen bei Umsetzung
+= Vorgehen bei der Umsetzung
 #include "Content/03_Vorgehen_bei_Umsetzung/03_Vorgehen_bei_Umsetzung.typ"
 
 == Wahl des Vorgehensmodells (Methodik)
@@ -57,7 +57,7 @@
 == Phasen der Entwicklung
 #include "Content/03_Vorgehen_bei_Umsetzung/03_03_Phasen_der_Entwicklung.typ"
 
-=== Konzeption & Design <konzeption-design>
+=== Konzeption und Design <konzeption-design>
 #include "Content/03_Vorgehen_bei_Umsetzung/03_03_01_Konzeption_und_Design.typ"
 
 === Implementierung
