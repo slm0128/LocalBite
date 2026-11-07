@@ -3,7 +3,7 @@ In der Konzeptions- und Designphase wurden die fachlichen Grundlagen von LocalBi
 -----
 
 - Entwicklung der Geschäftsidee: Gemeinsame Diskussion und Ausarbeitung des grundlegenden LocalBite-Konzepts.
-- Festlegung der Anforderungen: Definition der wichtigsten Funktionen, Nutzerrollen (Kunde, Landwirt, Fahrer, Disposition) und ihrer Aufgaben.
+- Festlegung der Anforderungen: Definition der wichtigsten Funktionen, Nutzerrollen (Kunde, Landwirt, Fahrer) und ihrer Aufgaben.
 - Geschäftsprozessmodellierung: Erstellung der BPMN-Diagramme zur Darstellung zentraler Abläufe, beispielsweise Bestellung, Lieferung und Produktverwaltung.
 - Systemmodellierung: Erstellung der Use-Case-Diagramme zur Darstellung der Anwendungsfälle und beteiligten Akteure.
 - Struktur und Interaktionen: Entwicklung des UML-Klassendiagramms und der Sequenzdiagramme zur Beschreibung der Systemstruktur und der Abläufe zwischen den Klassen.
