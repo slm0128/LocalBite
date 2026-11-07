@@ -38,7 +38,23 @@ zur Konzeption und zum Design.
 Status: Inhalt größtenteils bereits in 3.3.1 enthalten.
 */
 
+/*
+ÜBERARBEITUNGSNOTIZ – Änderung 3, aus Kapitel 3.2
 
+- Zunächst Modellierung der Geschäftsprozesse in BPMN
+- Danach Darstellung der Funktionen im Use-Case-Diagramm
+- Darauf aufbauend Erstellung der Klassen- und
+  Sequenzdiagramme
+- Beschreibung der Beziehungen und des Zusammenspiels
+  der einzelnen Systembestandteile
+
+Warum hier?
+Die Reihenfolge der Modellierung gehört zum
+Entwicklungsablauf und damit zu Kapitel 3.3.1.
+
+Status: Alle Informationen sind bereits im
+Fließtext von 3.3.1 enthalten.
+*/
 
 
 
