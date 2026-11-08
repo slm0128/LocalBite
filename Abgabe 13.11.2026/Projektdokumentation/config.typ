@@ -20,17 +20,33 @@
 #let group = "Gruppe 4"
 #let submission_date = "13.11.2026"
 
-// PA1-Designwerte – zentral anpassbar.
+// Dezenter LocalBite-Stil für die Inhaltsseiten.
+// Bei formalen Vorgaben können Schriftart/-größe und Ränder hier geändert werden.
 #let font_family = "Times New Roman"
 #let font_size = 12pt
-#let line_leading = 1em
-#let paragraph_spacing = 1.65em
+#let line_leading = 0.55em
+#let paragraph_spacing = 1.1em
+
+#let dark_green = rgb("#193D2A")
+#let accent_green = rgb("#8DAD48")
+
+// Autor(en) pro Hauptkapitel (Kapitelnummer 1 bis 7).
+// Die Angaben bitte durch die tatsächlichen Verfasser ersetzen.
+#let chapter_authors = (
+  "1": "Esra",
+  "2": "Esra",
+  "3": "Leon / Aaron",
+  "4": "Leon / Aaron",
+  "5": "Selim",
+  "6": "Mika",
+  "7": "Mika",
+)
 
 #let main_margins = (
-  top: 2.5cm,
-  left: 3.5cm,
+  top: 2.65cm,
+  left: 2.5cm,
   right: 2.5cm,
-  bottom: 2cm,
+  bottom: 2.5cm,
 )
 
 #let front_margins = (

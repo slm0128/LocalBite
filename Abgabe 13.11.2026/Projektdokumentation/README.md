@@ -50,9 +50,20 @@ Das Titelblatt wird automatisch durch `template.typ` erzeugt. Es enthält nur da
 - `Assets/BPMN/` – BPMN-Abbildungen
 - `Assets/UML/` – UML-Abbildungen
 - `Assets/Bilder/` – sonstige Bilder/Screenshots
-- `Assets/Logos/` – nur das DHBW-Logo
+- `Assets/Logos/` – DHBW-Logo und austauschbares LocalBite-Logo
 - `Literature/` – Quellen bei Bedarf
 
 ## Hinweis
 
 Die Struktur ist bewusst klein gehalten: kein Sperrvermerk, keine Selbstständigkeitserklärung, kein SAP-Logo und keine PA-spezifischen Sonderteile.
+
+## LocalBite-Inhaltsseiten-Design (Patch November 2026)
+
+- `template.typ` gestaltet die **Inhaltsseiten** mit grünem SVG-Logo, Kapitelkopf, grünen Header-/Footer-Trennlinien sowie dunkelgrünen Überschriften ohne Unterstreichungen.
+- Das bereits vorhandene **Titelblatt und Inhaltsverzeichnis** bleiben in ihrer Struktur erhalten.
+- `config.typ` steuert Schriftart, Schriftgröße, Seitenränder, Akzentfarben und die **Verfassenden je Hauptkapitel** (Schlüssel `"1"` bis `"7"`). Dort die Platzhalter `Projektteam` durch tatsächliche Namen ersetzen.
+- `Assets/Logos/LocalBite-Logo.svg` ist ein **austauschbarer SVG-Platzhalter** für das vollständige Logo mit Schriftzug.
+- `Assets/Design/Blatt.svg` ist das kleine Blatt am Fußzeilenende.
+- `Main.typ` enthält weiterhin alle Kapitel und Querverweise; die vorhandenen `Content/`-Dateien wurden **nicht verändert**.
+- Am besten `Main.typ` in VS Code/Tinymist als Hauptdatei öffnen und das Ergebnis kontrollieren.
+- Die Schrift wurde auf `Arial` (11 pt) umgestellt; bei verbindlichen Formatvorgaben die Werte in `config.typ` entsprechend anpassen.

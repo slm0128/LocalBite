@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" role="img" aria-label="Dekoratives Blatt">
+  <g fill="none" stroke="#8DAD48" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M29 52 V27"/>
+    <path d="M29 35 C15 35 7 27 7 12 C20 13 29 19 29 35Z"/>
+    <path d="M29 29 C43 29 50 20 50 5 C37 8 29 16 29 29Z"/>
+    <path d="M29 35 L14 20 M29 29 L42 14"/>
+  </g>
+</svg>
