@@ -15,6 +15,9 @@
   paragraph_spacing: paragraph_spacing,
   main_margins: main_margins,
   front_margins: front_margins,
+  dark_green: dark_green,
+  accent_green: accent_green,
+  chapter_authors: chapter_authors,
 )
 
 = Mitglieder der Gruppe

@@ -15,6 +15,9 @@
   paragraph_spacing: 1.65em,
   main_margins: (top: 2.5cm, left: 3.5cm, right: 2.5cm, bottom: 2cm),
   front_margins: (top: 2.5cm, left: 3.5cm, right: 2.5cm, bottom: 2.5cm),
+  dark_green: rgb("#193D2A"),
+  accent_green: rgb("#8DAD48"),
+  chapter_authors: (:),
   body,
 ) = {
   // ------------------------------------------------------------
@@ -26,7 +29,7 @@
     lang: "de",
     font: font_family,
     size: font_size,
-    hyphenate: false,
+    hyphenate: true,
   )
   set par(
     justify: true,
@@ -34,15 +37,17 @@
     leading: line_leading,
   )
 
-  // Überschriften wie in der PA1.
+  // Dokumentstruktur bleibt erhalten, nur die Optik wird modernisiert.
+  // Bewusst KEINE Linien oder Balken unter den Überschriften.
   set heading(numbering: heading_numbering)
   show heading.where(level: 1): set heading(supplement: "Kapitel")
   show heading.where(level: 2): set heading(supplement: "Abschnitt")
   show heading.where(level: 3): set heading(supplement: "Unterabschnitt")
 
   show heading: it => {
-    text(font: font_family, it)
-    v(0.5cm)
+    let title_size = if it.level == 1 { 20pt } else if it.level == 2 { 15pt } else { 12pt }
+    text(font: font_family, size: title_size, weight: "bold", fill: dark_green, it)
+    v(if it.level == 1 { 0.48cm } else { 0.22cm })
   }
 
   show heading.where(level: 1): it => {
@@ -51,12 +56,12 @@
   }
 
   show heading.where(level: 2): it => {
-    v(weak: true, 1.2cm)
+    v(weak: true, 0.58cm)
     it
   }
 
   show heading.where(level: 3): it => {
-    v(weak: true, 1.2cm)
+    v(weak: true, 0.4cm)
     it
   }
 
@@ -155,61 +160,73 @@
   pagebreak()
 
   // ------------------------------------------------------------
-  // Hauptteil – Kopf-/Fußzeile wie in der PA1
-  // ------------------------------------------------------------
-  set page(header: context {
-    if here().page-numbering() != page_numbering {
-      return
-    }
-
-    let display_heading = []
-    let elems = query(selector(heading).after(here()))
-
-    if elems != () and elems.first().location().page() == here().page() and elems.first().level == 1 {
-      display_heading = elems.first().body
+  // Hauptteil – zurückhaltendes LocalBite-Design.
+  // Logo und Blätter sind eigenständige SVG-Dateien und austauschbar.
+  // Bestimmung des Hauptkapitels auch auf dessen erster Seite:
+  // Der Header liegt vor dem eigentlichen Seiteninhalt.
+  // Für die Fußzeile wird derselbe Kapitelstand verwendet.
+  let current_chapter = () => {
+    let chapters = query(heading.where(level: 1))
+    let page_no = here().page()
+    let this_page = chapters.filter(it => it.location().page() == page_no)
+    let preceding = chapters.filter(it => it.location().page() < page_no)
+    let item = if this_page.len() > 0 {
+      this_page.last()
+    } else if preceding.len() > 0 {
+      preceding.last()
     } else {
-      elems = query(heading.where(level: 1).before(here()))
-      if elems != () and elems.last().location().page-numbering() == page_numbering {
-        display_heading = elems.last().body
-      }
+      none
     }
 
-    place(
-      top,
-      grid(
-        columns: (auto, 1fr),
-        align(left, text(title_short)),
-        align(right, text(style: "italic", display_heading)),
-      ),
-      dy: 1.25cm,
-    )
-
-    place(
-      top,
-      line(length: 100%, stroke: (paint: gray)),
-      dy: 1.75cm,
-    )
-  })
+    if item == none {
+      (number: 0, title: [])
+    } else {
+      (
+        number: counter(heading).at(item.location()).first(),
+        title: item.body,
+      )
+    }
+  }
 
   set page(
     numbering: page_numbering,
     margin: main_margins,
-    footer: context align(right)[
-      #place(
-        bottom,
-        line(length: 100%, stroke: (paint: gray)),
-        dy: -1.7cm,
-      )
+    footer-descent: 0pt, // Footer höher platzieren, damit das Blatt nicht über die Seite hinausragt.
+    header: context {
+      let chapter = current_chapter()
+      let chapter_num = if chapter.number > 0 { str(chapter.number) + " " } else { "" }
 
-      #place(
-        bottom + right,
-        counter(page).display(),
-        dy: -1.25cm,
+      grid(
+        columns: (1fr, 1fr),
+        align: (left, right),
+        move(dy: 4mm, image("Assets/Logos/LocalBite-Logo.svg", height: 10mm)),
+        text(size: 9pt, fill: dark_green)[#chapter_num#chapter.title],
       )
-    ],
+      v(5pt)
+      line(length: 100%, stroke: (paint: accent_green, thickness: 0.8pt))
+    },
+    footer: context {
+      let chapter = current_chapter()
+      let author = chapter_authors.at(str(chapter.number), default: "Projektteam")
+
+      v(3pt)
+      line(length: 100%, stroke: (paint: accent_green, thickness: 0.8pt))
+      v(2pt)
+      grid(
+        columns: (1fr, auto, auto),
+        gutter: 5pt,
+        align: (left + horizon, right + horizon, right + horizon),
+        [
+          #text(size: 8.5pt, fill: dark_green)[Projektdokumentation – LocalBite]
+          #v(2pt)
+          #text(size: 8pt, fill: dark_green)[Verfasst von: #author]
+        ],
+        text(size: 8.5pt, fill: dark_green)[Seite #counter(page).display("1")],
+        image("Assets/Design/Blatt.svg", height: 5mm),
+      )
+    },
   )
 
   counter(page).update(1)
-
   body
 }
