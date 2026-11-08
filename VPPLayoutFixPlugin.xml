@@ -1,7 +1,0 @@
-<plugin
-		id="com.localbite.vpplayoutfix"
-		name="LocalBite Sequence Diagram Layout Fix"
-		description="Moves interaction fragments behind lifelines"
-		provider="LocalBite"
-		class="VPPLayoutFix">
-</plugin>
