@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="210" viewBox="0 0 160 210" role="img" aria-label="LocalBite – weißes Logo für dunklen Hintergrund">
+  <!-- Austauschbarer Deckblatt-Logo-Slot: Bei einem Redesign nur diese SVG-Datei ersetzen. -->
+  <g transform="translate(39 8)" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M41 0 C16 0 1 21 1 45 C1 72 28 92 41 109 C55 90 83 67 83 42 C83 18 65 0 48 0 C48 10 55 15 63 16 C63 26 69 31 76 32"/>
+    <path d="M41 83 L41 56" stroke-width="3.8"/>
+    <path d="M40 75 C23 77 16 65 18 55 C30 53 38 62 40 75Z" fill="white" stroke-width="2"/>
+    <path d="M43 75 C59 77 67 65 65 55 C52 52 45 61 43 75Z" fill="white" stroke-width="2"/>
+  </g>
+  <text x="80" y="172" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="33" fill="white">LocalBite</text>
+</svg>

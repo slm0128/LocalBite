@@ -1,3 +1,5 @@
+#import "deckblatt.typ": localbite_deckblatt
+
 #let page_numbering = "1 / 1"
 #let heading_numbering = "1.1.1"
 
@@ -86,56 +88,24 @@
   )
 
   // ------------------------------------------------------------
-  // Titelblatt – reduziert auf die Fallstudie, nur DHBW
+  // Deckblatt – eigenständiges LocalBite-Layout mit austauschbaren SVGs.
+  // Ein Seitenlayoutwechsel via set page(...) trennt Deckblatt und Verzeichnis.
   // ------------------------------------------------------------
-  set page(margin: front_margins)
-  set par(spacing: 2em)
-
-  grid(
-    columns: (1fr, 1fr),
-    align(left)[],
-    align(right)[
-      #image("Assets/Logos/DHBW-Logo.svg", height: 2.5cm)
-    ],
+  set page(
+    paper: "a4",
+    margin: 0pt,
+    numbering: none,
+    header: none,
+    footer: none,
+    fill: rgb("#FCFBF7"),
   )
-
-  v(0.1cm)
-
-  align(center)[
-    #set par(justify: false, leading: 0.7em)
-
-    #text(16pt)[*Fakultät Wirtschaft*]
-    #v(0.1cm)
-
-    #text(16pt)[*Studiengang Wirtschaftsinformatik*]
-    #v(0.1cm)
-
-    #text(size: 26pt)[*#title_long*]
-    #v(0.1cm)
-
-    #text(16pt)[*#document_type*]
-    #v(0.1cm)
-
-    #text(12pt)[Im Rahmen der Fallstudie im 3. Semester]
-  ]
-
-  v(0.5cm)
-
-  set par(leading: 0.9em)
-  align(center)[
-    #table(
-      columns: (1fr, 1fr),
-      align: (right, left),
-      stroke: none,
-      [*Verfasst von*], [#authors],
-      [*Kurs, Gruppe*], [#course, #group],
-      [*Hochschule*], [Duale Hochschule Baden-Württemberg Karlsruhe],
-      [*Abgabedatum*], [#submission_date],
-    )
-  ]
-
-  // Der folgende Seitenlayoutwechsel via set page(...) erzeugt selbst den
-  // notwendigen Umbruch vom Deckblatt zum Inhaltsverzeichnis.
+  localbite_deckblatt(
+    title_long: title_long,
+    authors: authors,
+    course: course,
+    group: group,
+    submission_date: submission_date,
+  )
 
   // ------------------------------------------------------------
   // Inhaltsverzeichnis – dezentes LocalBite-Design.
