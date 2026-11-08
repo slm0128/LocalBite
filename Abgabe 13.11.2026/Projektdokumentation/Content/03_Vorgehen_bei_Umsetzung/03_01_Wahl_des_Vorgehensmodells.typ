@@ -5,24 +5,3 @@ Zu Beginn organisierten wir unsere Aufgaben in kurzen, sprintähnlichen Arbeitsp
 Die Zusammenarbeit erfolgte hauptsächlich während der Vorlesungen, aber auch bei zusätzlichen Online-Treffen. Dabei arbeiteten wir häufig in kleineren Gruppen von zwei oder drei Personen zusammen, um die jeweiligen Aufgaben gemeinsam zu bearbeiten und unsere Ergebnisse aufeinander abzustimmen. Bei Bedarf trafen wir uns auch außerhalb der Vorlesungen online, um an den Aufgaben weiterzuarbeiten oder einzelne Ergebnisse zusammenzuführen. Anschließend stellten wir unsere Ergebnisse der gesamten Gruppe vor. So konnten alle noch einmal den Output überprüfen, mögliche Unstimmigkeiten erkennen und gemeinsam Verbesserungen besprechen. Gleichzeitig stellten wir dadurch sicher, dass alle Gruppenmitglieder über den aktuellen Stand der anderen Aufgaben informiert waren.
 
 Das iterative Vorgehen war für uns besonders hilfreich, da zu Beginn des Projekts noch nicht alle Anforderungen und Ziele vollständig feststanden. So konnten wir neue Ideen während der Entwicklung aufnehmen und bestehende Konzepte bei Bedarf anpassen, ohne jedes Mal die gesamte Planung überarbeiten zu müssen.
-
-
-/*
-
-Dieser Abschnitt begründet das für die Bearbeitung von LocalBite gewählte Vorgehensmodell. Erläutert wird, warum die eingesetzte Methodik zu den Anforderungen und zum zeitlichen Rahmen der Fallstudie passt.
-
----
-
-- Agil orientiertes Vorgehen, kein streng eingehaltenes Scrum.
-- Anfangs Arbeit in kürzeren, sprintähnlichen Zeitabschnitten.
-- Feste einwöchige Sprints waren aufgrund anderer Studienverpflichtungen nicht immer praktikabel.
-- Deshalb Umstellung auf flexible Arbeitsphasen mit vereinbarten Zwischenzielen und Besprechungsterminen (DOR/DOD Festlegung)
-- Bei Bedarf Online-Treffen außerhalb der Vorlesungen.
-- gegenseitige Reviews innerhalb kleinerer Arbeitsgruppen, häufig zu zweit.
-- Vorstellung und Überprüfung der Ergebnisse in der Gruppe an Besprechungstermin
-- Iterative Überarbeitung der Modelle, wenn neue Ideen oder Unstimmigkeiten entstanden.
-
-
-Wichtiger Punkt: Ich würde das als agiles, iteratives Vorgehen mit flexiblen Meilensteinen bezeichnen. Das beschreibt eure tatsächliche Arbeitsweise besser als die Behauptung, ihr hättet Scrum vollständig umgesetzt.
-
-*/
