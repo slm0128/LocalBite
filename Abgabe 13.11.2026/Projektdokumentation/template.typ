@@ -50,7 +50,7 @@
     v(if it.level == 1 { 0.48cm } else { 0.22cm })
   }
 
-  show heading.where(level: 1): it => {
+  show heading.where(level: 1, outlined: true): it => {
     pagebreak(weak: true)
     it
   }
@@ -134,25 +134,55 @@
     )
   ]
 
-  pagebreak()
+  // Der folgende Seitenlayoutwechsel via set page(...) erzeugt selbst den
+  // notwendigen Umbruch vom Deckblatt zum Inhaltsverzeichnis.
 
   // ------------------------------------------------------------
-  // Vorspann – römische Seitenzahlen
+  // Inhaltsverzeichnis – dezentes LocalBite-Design.
+  // Keine Aenderung an Schriftart oder Formatierung der Untereintraege.
   // ------------------------------------------------------------
   set par(spacing: paragraph_spacing)
   set page(
     numbering: "I",
-    margin: front_margins,
+    // Die gleichen Seitenraender wie im Hauptteil (keine 1-cm-Verschiebung).
+    margin: main_margins,
+    footer-descent: 0pt,
+    header: context {
+      // Gleiche Logo-Position wie auf den Textseiten.
+      grid(
+        columns: (1fr, 1fr),
+        align: (left, right),
+        move(dy: 4mm, image("Assets/Logos/LocalBite-Logo.svg", height: 10mm)),
+        [],
+      )
+      v(9pt)
+      line(length: 100%, stroke: (paint: accent_green, thickness: 0.5pt))
+    },
+    footer: context {
+      line(length: 100%, stroke: (paint: accent_green, thickness: 0.5pt))
+      v(9pt)
+      grid(
+        columns: (1fr, auto, auto),
+        gutter: 5pt,
+        align: (left + horizon, right + horizon, right + horizon),
+        text(size: 8.5pt, fill: dark_green)[Projektdokumentation – LocalBite],
+        text(size: 8.5pt, fill: dark_green)[#counter(page).display("I")],
+        image("Assets/Design/Blatt.svg", height: 5mm),
+      )
+    },
   )
   counter(page).update(1)
 
+  // Nur die Hauptkapitel im Verzeichnis werden grün;
+  // Schriftart, Schriftgroesse, Texte, Seitenzahlen und Einrueckungen bleiben erhalten.
   show outline.entry.where(level: 1): it => {
     v(12pt, weak: true)
-    strong(it)
+    text(fill: dark_green, strong(it))
   }
 
+  v(6mm)
   outline(
-    title: [Inhaltsverzeichnis],
+    title: text(size: 20pt, weight: "bold", fill: dark_green)[Inhaltsverzeichnis],
     depth: 3,
     indent: auto,
   )
