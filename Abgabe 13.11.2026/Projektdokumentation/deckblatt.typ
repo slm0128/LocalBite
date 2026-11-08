@@ -20,7 +20,7 @@
     #place(top + left, dx: 0mm, dy: 0mm,
       image("Assets/Design/Deckblatt_Seitenleiste.svg", width: 40mm, height: 297mm))
     #place(top + left, dx: 3mm, dy: 12mm,
-      image("Assets/Logos/LocalBite-Logo-Weiss.svg", width: 34mm))
+      image("Assets/Logos/LocalBite-Logo-Weiss.png", width: 34mm))
     #place(top + left, dx: 10mm, dy: 61mm,
       line(length: 22mm, stroke: 1.2pt + green))
 

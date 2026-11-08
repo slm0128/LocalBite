@@ -122,7 +122,7 @@
       grid(
         columns: (1fr, 1fr),
         align: (left, right),
-        move(dy: 4mm, image("Assets/Logos/LocalBite-Logo.svg", height: 10mm)),
+        move(dy: 4mm, image("Assets/Logos/LocalBite-Logo.png", height: 12mm)),
         [],
       )
       v(9pt)
@@ -199,7 +199,7 @@
       grid(
         columns: (1fr, 1fr),
         align: (left, right),
-        move(dy: 4mm, image("Assets/Logos/LocalBite-Logo.svg", height: 10mm)),
+        move(dy: 4mm, image("Assets/Logos/LocalBite-Logo.png", height: 12mm)),
         text(size: 9pt, fill: dark_green)[#chapter_num#chapter.title],
       )
       v(5pt)
