@@ -1,1 +1,5 @@
-Dieser Abschnitt wertet das externe Feedback zu LocalBite aus, etwa Rückmeldungen von Testpersonen aus dem persönlichen Umfeld.
+Um die Praxistauglichkeit und Verständlichkeit unseres Systems zu überprüfen, wurden unsere Ergebnisse (BPMN-Diagramme, Sequenzdiagramme und der Website-Prototyp) von Kommilitonen evaluiert. Das Feedback fiel dabei überaus positiv und konstruktiv aus.
+
+Besonders gelobt wurde die hohe Detailtiefe und logische Konsistenz der BPMN- und Sequenzdiagramme. Den Testern fiel es leicht, die komplexen Abläufe – vom Bestellabschluss bis hin zur Retouren-Abwicklung der Pfandboxen – nachzuvollziehen. Auch der interaktive Prototyp der Website wurde für seine intuitive Benutzerführung und das ansprechende UI-Design positiv hervorgehoben.
+
+Ein kritischer, aber wertvoller Einwand der Kommilitonen betraf die Einzigartigkeit der Grundidee. Es wurde angemerkt, dass das reine Konzept eines Farm-to-Table-Abosystems (die Schnittmenge aus HelloFresh und Lieferando) am Markt nicht völlig neuartig ist. Allerdings stimmten die Tester überein, dass gerade die innovativen Zusatzfeatures wie das Animal-Sharing und die Kopplung mit lokalen Community-Kochen-Events dem System ein Alleinstellungsmerkmal verleihen, das LocalBite von bestehenden Konkurrenten abhebt.

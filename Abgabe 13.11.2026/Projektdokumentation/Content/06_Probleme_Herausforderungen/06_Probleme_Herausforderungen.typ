@@ -1,1 +1,1 @@
-Dieses Kapitel beschreibt die während der Bearbeitung von LocalBite aufgetretenen Herausforderungen sowie die daraus gezogenen Erkenntnisse.
+Jedes Software- und Systementwicklungsprojekt ist mit Hürden verbunden, die im Verlauf des Entwicklungsprozesses identifiziert und bewältigt werden müssen. Im Fall von LocalBite lagen die primären Herausforderungen weniger in der reinen Programmierung, sondern vielmehr in der konzeptionellen Abstimmung, der Priorisierung von Aufgaben und der Modellierung der hochkomplexen Geschäftslogik.

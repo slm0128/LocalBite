@@ -1,1 +1,1 @@
-Dieses Kapitel fasst Rückmeldungen, Ergebnisse und mögliche Weiterentwicklungen des Projekts LocalBite zusammen.
+Zum Abschluss des Projekts wurden die erstellten Artefakte und der Prototyp einer kritischen Überprüfung unterzogen. In diesem Kapitel werden die Ergebnisse dieser Evaluation zusammengefasst, der Gesamterfolg des Projekts bewertet und mögliche Weiterentwicklungen skizziert.
