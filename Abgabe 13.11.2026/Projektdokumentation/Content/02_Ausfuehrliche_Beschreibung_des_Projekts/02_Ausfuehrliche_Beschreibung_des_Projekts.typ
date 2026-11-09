@@ -1,1 +1,1 @@
-Dieses Kapitel beschreibt das Projekt LocalBite ausführlich und ordnet die Projektidee, die Anforderungen sowie die Zielgruppe in den fachlichen Kontext ein.
+In diesem Kapitel stellen wir unser Projekt LocalBite ausführlich vor. Dabei erläutern wir zunächst die grundlegende Projektidee und die Motivation hinter der Entwicklung. Anschließend gehen wir auf die angestrebten Ziele sowie die funktionalen und nicht-funktionalen Anforderungen ein. Abschließend betrachten wir die Zielgruppen und Stakeholder, die an unserem Projekt beteiligt sind oder von diesem profitieren.
