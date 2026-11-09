@@ -1,1 +1,11 @@
-An der Fallstudie LocalBite waren fünf Studierende des Studiengangs Wirtschaftsinformatik an der DHBW Karlsruhe beteiligt. Dieser Abschnitt stellt die einzelnen Gruppenmitglieder mit Name, Studiengang und Matrikelnummer vor.
+An der Fallstudie LocalBite haben wir als fünf Gruppenmitglieder gemeinsam an der Konzeption und Ausarbeitung des Projekts gearbeitet.
+
+-	Esra Karakus
+
+-	Selim Kalinci
+
+-	Mika Kuschel
+
+-	Leon Vogel
+
+-	Aaron Rock

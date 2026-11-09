@@ -1,1 +1,1 @@
-Dieses Kapitel stellt die Mitglieder der Projektgruppe vor, die an der Fallstudie LocalBite mitgewirkt haben. Zusätzlich wird erläutert, wie Rollen und Aufgaben innerhalb des Teams verteilt wurden.
+In diesem Kapitel stellen wir unsere Gruppenmitglieder sowie die Rollen- und Aufgabenverteilung innerhalb der Gruppe vor.
