@@ -1,1 +1,1 @@
-Dieses Kapitel gibt einen Überblick über die im Rahmen von LocalBite erstellten Artefakte, von den Planungsdokumenten bis hin zur Benutzeroberfläche.
+In diesem Kapitel geben wir einen Überblick über die erstellten Artefakte. Dabei stellen wir sowohl unsere Diagramme zur Darstellung der Prozesse und Systemstruktur als auch die Entwürfe unserer Benutzeroberfläche vor.
