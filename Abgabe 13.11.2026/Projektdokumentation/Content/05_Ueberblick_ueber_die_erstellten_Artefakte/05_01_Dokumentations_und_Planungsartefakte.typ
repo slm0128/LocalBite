@@ -8,25 +8,25 @@ Unsere BPMN-Diagramme behandeln folgende Prozesse:
 
 - 01 - Kundenkonto anlegen (erstellt von Mika Kuschel/ Aaron Rock)
 
-- 02 - Abo ändern (erstellt von Mika Kuschel/ Aaron Rock)
+- 02 - Abo verwalten (erstellt von Mika Kuschel/ Aaron Rock)
 
 - 03 - Abrechnung und Rechnungsstellung (erstellt von Mika Kuschel/ Aaron Rock)
 
-- 04 - Zahlungsdaten prüfen (erstellt von Mika Kuschel/ Aaron Rock)
+- 04 - Zahlungsdaten prüfen Subprozess (erstellt von Mika Kuschel/ Aaron Rock)
 
 - 05 - Reklamation und Support (erstellt von Mika Kuschel/ Aaron Rock)
 
-- 06 - Routenplanung (erstellt von Leon Vogel)
+- 06 - Routenplanung und Freigabe (erstellt von Leon Vogel)
 
-- 07 - Fahrer und Fahrzeug (erstellt von Leon Vogel)
+- 07 - Fahrer und Fahrzeugzuweisung mit Routendurchführung (erstellt von Leon Vogel)
 
-- 08 - Retouren und Pfand (erstellt von Leon Vogel)
+- 08 - Retouren und Pfandmanagement (erstellt von Leon Vogel)
 
--	09 - Onboarding (erstellt von Esra Karakus/ Selim Kalinci)
+-	09 - Onboarding Landwirt (erstellt von Esra Karakus/ Selim Kalinci)
 
 -	10 - Box und Lieferantenmanagement (erstellt von Esra Karakus/ Selim Kalinci)
 
--	11 - Abholung und Wareneingang (erstellt von Esra Karakus/ Selim Kalinci)
+-	11 - Wareneingang und Qualitätskontrolle (erstellt von Esra Karakus/ Selim Kalinci)
 
 Die Prozesse werden mithilfe von Pools und Lanes strukturiert, wodurch die verschiedenen Beteiligten und ihre jeweiligen Aufgaben voneinander abgegrenzt werden. Ergänzend werden Ereignisse, Aktivitäten, Nachrichten und Datenobjekte verwendet, um die Abläufe nachvollziehbar darzustellen.
 
