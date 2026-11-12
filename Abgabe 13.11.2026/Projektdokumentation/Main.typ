@@ -77,8 +77,6 @@
 
 = Überblick über die erstellten Artefakte
 #include "Content/05_Ueberblick_ueber_die_erstellten_Artefakte/05_Ueberblick_ueber_die_erstellten_Artefakte.typ"
-// Testabbildung: für die finale PDF bitte durch ein echtes Projektbild ersetzen oder entfernen.
-#include "Content/05_Ueberblick_ueber_die_erstellten_Artefakte/05_00_Beispielbild.typ"
 
 == Dokumentations- und Planungsartefakte
 #include "Content/05_Ueberblick_ueber_die_erstellten_Artefakte/05_01_Dokumentations_und_Planungsartefakte.typ"
