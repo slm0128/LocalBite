@@ -2,7 +2,7 @@ Für die Planung und Modellierung unserer LocalBite-Plattform haben wir verschie
 
 *BPMN-Diagramme*
 
-Zur Darstellung unserer Geschäftsprozesse haben wir insgesamt elf BPMN-Diagramme erstellt. Diese veranschaulichen die einzelnen Abläufe innerhalb der geplanten LocalBite-Plattform und zeigen, welche Aufgaben von den beteiligten Akteuren übernommen werden. Dabei werden die Prozessschritte, Entscheidungen und deren Reihenfolge dargestellt.
+Zur Darstellung unserer Geschäftsprozesse haben wir insgesamt zehn BPMN-Diagramme erstellt. Diese veranschaulichen die einzelnen Abläufe innerhalb der geplanten LocalBite-Plattform und zeigen, welche Aufgaben von den beteiligten Akteuren übernommen werden. Dabei werden die Prozessschritte, Entscheidungen und deren Reihenfolge dargestellt.
 
 Unsere BPMN-Diagramme behandeln folgende Prozesse:
 
@@ -10,23 +10,23 @@ Unsere BPMN-Diagramme behandeln folgende Prozesse:
 
 - 02 - Abo verwalten (erstellt von Mika Kuschel/ Aaron Rock)
 
+- 02b - Zahlungsdaten prüfen Subprozess (erstellt von Mika Kuschel/ Aaron Rock)
+
 - 03 - Abrechnung und Rechnungsstellung (erstellt von Mika Kuschel/ Aaron Rock)
 
-- 04 - Zahlungsdaten prüfen Subprozess (erstellt von Mika Kuschel/ Aaron Rock)
+- 04 - Reklamation und Support (erstellt von Mika Kuschel/ Aaron Rock)
 
-- 05 - Reklamation und Support (erstellt von Mika Kuschel/ Aaron Rock)
+- 05 - Routenplanung und Freigabe (erstellt von Leon Vogel)
 
-- 06 - Routenplanung und Freigabe (erstellt von Leon Vogel)
+- 06 - Fahrer und Fahrzeugzuweisung mit Routendurchführung (erstellt von Leon Vogel)
 
-- 07 - Fahrer und Fahrzeugzuweisung mit Routendurchführung (erstellt von Leon Vogel)
+- 07 - Retouren und Pfandmanagement (erstellt von Leon Vogel)
 
-- 08 - Retouren und Pfandmanagement (erstellt von Leon Vogel)
+-	08 - Onboarding Landwirt (erstellt von Esra Karakus/ Selim Kalinci)
 
--	09 - Onboarding Landwirt (erstellt von Esra Karakus/ Selim Kalinci)
+-	09 - Box und Lieferantenmanagement (erstellt von Esra Karakus/ Selim Kalinci)
 
--	10 - Box und Lieferantenmanagement (erstellt von Esra Karakus/ Selim Kalinci)
-
--	11 - Wareneingang und Qualitätskontrolle (erstellt von Esra Karakus/ Selim Kalinci)
+-	10 - Wareneingang und Qualitätskontrolle (erstellt von Esra Karakus/ Selim Kalinci)
 
 Die Prozesse werden mithilfe von Pools und Lanes strukturiert, wodurch die verschiedenen Beteiligten und ihre jeweiligen Aufgaben voneinander abgegrenzt werden. Ergänzend werden Ereignisse, Aktivitäten, Nachrichten und Datenobjekte verwendet, um die Abläufe nachvollziehbar darzustellen.
 

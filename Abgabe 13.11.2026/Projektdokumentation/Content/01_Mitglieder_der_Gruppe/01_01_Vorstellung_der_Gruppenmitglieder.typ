@@ -1,11 +1,11 @@
 An der Fallstudie LocalBite haben wir als fünf Gruppenmitglieder gemeinsam an der Konzeption und Ausarbeitung des Projekts gearbeitet.
 
--	Aaron Rock
+-	Kalinci Selim
 
--	Selim Kalinci
+-	Karakus Esra
 
--	Mika Kuschel
+-	Kuschel Mika
 
--	Leon Vogel
+-	Rock Aaron
 
--	Esra Karakus
+-	Vogel Leon

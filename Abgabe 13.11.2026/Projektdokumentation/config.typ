@@ -9,11 +9,11 @@
 
 // Vollständige Namen aller Gruppenmitglieder eintragen.
 #let authors = [
-  Aaron Rock \
-  Selim Kalinci \
-  Esra Karakus \
-  Mika Kuschel \
-  Leon Vogel
+  Kalinci Selim \
+  Karakus Esra \
+  Kuschel Mika \
+  Rock Aaron \
+  Vogel Leon
 ]
 
 #let course = "WWI25B1"
@@ -35,8 +35,8 @@
 #let chapter_authors = (
   "1": "Esra",
   "2": "Esra",
-  "3": "Leon / Aaron",
-  "4": "Leon / Aaron",
+  "3": "Aaron / Leon",
+  "4": "Aaron / Leon",
   "5": "Selim",
   "6": "Mika",
   "7": "Mika",
